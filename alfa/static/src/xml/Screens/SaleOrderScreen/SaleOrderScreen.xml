@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="SaleOrderScreen" owl="1">
+        <div class="ticket-screen screen">
+            <div class="screen-content" style="max-width:100%;">
+                <div class="controls">
+                    <div class="buttons">
+                        <button class="discard" t-on-click="_closeSaleScreen">Close</button>
+                    </div>
+                    <SearchBar config="searchBarConfig" placeholder="'Search Orders...'" />
+                </div>
+                <div class="orders">
+                    <div class="header-row">
+                        <div class="col start wide">Name</div>
+                        <div class="col start wide">Customer</div>
+                        <div class="col start wide">Order Date</div>
+                        <div class="col start wide">Amount Due</div>
+                        <div class="col start wide">Total</div>
+                        <div class="col start">Operation</div>
+<!--                        <div class="col start narrow">Create Picking</div>-->
+<!--                        <div class="col center very-narrow" name="delete"></div>-->
+                    </div>
+                    <t t-foreach="filteredOrderList" t-as="saleOrder">
+                        <SaleOrdersLine line="saleOrder"/>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="coupon_template" xml:space="preserve">
+    <t t-name="POSSalesPersonButton" owl="1">
+        <div class='control-button'>
+            <div class="pos-coupons">
+                <i class='fa fa-clock-o' />
+                Set  Sales Represtiative
+            </div>
+        </div>
+    </t>
+
+    <t t-name="POSSalesPersonPopup" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <Draggable>
+                <div class="popup popup-text">
+                    <header class="title">
+                        <div class="row">
+                            <t t-esc="props.title" />
+                        </div>
+                    </header>
+
+                    <main class="body product_configurator_attributes col-lg-4 col-md-6 col-sm-12">
+                        <div class="row">
+                            <input type="text" class="search_salesperson pull-right p-0 pb-1" placeholder="Search..."
+                                        t-on-keyup="updateSalespersons"/>
+                                <br/>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <select class="type" style="width: 233px;height:46px" t-model="state.sales_person" required="">
+                                    <t t-foreach="state.salespersons" t-as="sales_person" t-key="sales_person.name">
+                                        <option t-att-value="sales_person.id" t-esc="sales_person.name" />
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <br/>
+
+                    </main>
+                    <footer class="footer">
+                        <div class="button confirm-coupon" t-on-click="click_confirm">
+                            Select
+                        </div>
+                        <div class="button cancel" t-on-click="cancel">
+                            Cancel
+                        </div>
+                    </footer>
+                </div>
+            </Draggable>
+        </div>
+    </t>
+
+
+
+
+</templates>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="SetPricelistButton" t-inherit="point_of_sale.SetPricelistButton" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[@class='control-button o_pricelist_button']" position="replace">
+            <t t-if="env.pos.config.show_price_list">
+                <div class="control-button o_pricelist_button">
+                    <i class="fa fa-th-list" role="img" aria-label="Price list" title="Price list" />
+                    <t t-esc="currentPricelistName" />
+                </div>
+            </t>
+        </xpath>
+    </t>
+</templates>
+

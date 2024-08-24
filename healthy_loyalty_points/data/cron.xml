@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+         <record id="action_pos_convert_to_points" model="ir.cron">
+            <field name="model_id" ref="point_of_sale.model_pos_order"/>
+            <field name="state">code</field>
+            <field name="name">pos_convert_to_points</field>
+            <field name="active" eval="True"/>
+            <field name="code">model.convert_points()</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="interval_number">1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+
+        <record id="action_check_point" model="ir.cron">
+            <field name="model_id" ref="point_of_sale.model_pos_order"/>
+            <field name="state">code</field>
+            <field name="name">check_point</field>
+            <field name="active" eval="True"/>
+            <field name="code">model.residual_points()</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="interval_number">1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <record id="action_modify_partner_code" model="ir.cron">
+            <field name="model_id" ref="point_of_sale.model_res_partner"/>
+            <field name="state">code</field>
+            <field name="name">modify_code</field>
+            <field name="active" eval="True"/>
+            <field name="code">model.modify_code_partners()</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="interval_number">1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+
+    </data>
+</odoo>

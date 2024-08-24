@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="coupon_template" xml:space="preserve">
+    <!--template for coupons-->
+    <t t-name="POSCouponWidgetbutton" owl="1">
+        <div class='control-button' >
+            <div class="pos-coupons">
+                <i class='fa fa-tag' /> POS Coupons
+            </div>
+        </div>
+    </t>
+
+    <t t-name="POSCouponPopupWidget" owl="1">
+        <div class="modal-dialog">
+            <div class="popup popup-text">
+                <p class="title"><t t-esc=" props.title || '' " /></p>
+                <input t-model="state.coupon_code" id="coupon_code" type='text'></input>
+                <button class="verify_coupon">Verify</button>
+                <div class="coupon_message">
+                    <p class="coupon_status_p"></p>
+                </div>
+                <div class="footer">
+                    <div class="button confirm-coupon"  t-on-click="click_confirm" style="display:none;">
+                        Apply
+                    </div>
+                    <div class="button cancel"  t-on-click="cancel">
+                        Cancel
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

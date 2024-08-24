@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_testimonials_form" model="ir.ui.view">
+            <field name="name">Testimonials</field>
+            <field name="model">api.testimonials</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="image" widget="image"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_testimonials_tree" model="ir.ui.view">
+            <field name="name">Testimonials</field>
+            <field name="model">api.testimonials</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_testimonials" model="ir.actions.act_window">
+            <field name="name">Testimonials</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">api.testimonials</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_testimonials_action" name="Testimonials" parent="menu_api_action" action="action_testimonials" sequence="4"/>
+
+
+    </data>
+</odoo>

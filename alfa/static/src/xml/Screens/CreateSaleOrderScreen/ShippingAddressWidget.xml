@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ShippingAddressWidget" owl="1">
+        <div id="tab-1" class="tab-content">
+            <div class="choices_content">
+                <span class="shipping_content">Shipping Address</span>
+                <select class="shipping_contact_selection">
+                    <option value="0">Select Address</option>
+                </select>
+            </div>
+            <div class="choices_content">
+                <div class="shipping_content choice-2">
+                    <input type="checkbox" class="ship_diff_address" name="ship_diff_address" />
+                    <span>Ship to Different Address</span>
+                </div>
+                <div class="ship_create_contact">
+                    <table>
+                        <tr>
+                            <td><input t-model="state.S_client_name" type="text" class="client_name" placeholder="Name"/></td>
+                            <td><input t-model="state.S_client_email" type="text" class="client_email" placeholder="Email"/></td>
+                        </tr>
+                        <tr>
+                            <td><input t-model="state.S_client_city" type="text" class="client_city" placeholder="City"/></td>
+                            <td><input t-model="state.S_client_state" type="text" class="client_state" placeholder="States"/></td>
+                        </tr>
+                        <tr>
+                            <td><input t-model="state.S_client_zip" type="text" class="client_zip" placeholder="Zip"/></td>
+                            <td><input t-model="state.S_client_country" type="text" class="client_country" placeholder="Country"/></td>
+                        </tr>
+                        <tr>
+                            <td><input t-model="state.S_client_mobile"  type="text" class="client_mobile" placeholder="Mobile"/></td>
+                            <td><input t-model="state.S_client_phone"  type="text" class="client_phone" placeholder="Phone"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

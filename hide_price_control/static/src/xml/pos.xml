@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+
+    <t t-name="CashOpeningPopup" t-inherit="point_of_sale.CashOpeningPopup" t-inherit-mode="extension" owl="1">
+        <xpath expr="//input[@class='pos-input']" position="replace">
+            <t t-if="env.pos.get_cashier().can_edit_open_cash_control">
+                <input class="pos-input" type="number" t-model.number="state.openingCash"/>
+            </t>
+            <t t-else="">
+                <input class="pos-input" readonly="true" type="number" t-model.number="state.openingCash"/>
+
+            </t>
+
+
+
+        </xpath>
+        <xpath expr="//div[@class='button icon']" position="replace"/>
+     </t>
+    <t t-name="ClosePosPopup" t-inherit="point_of_sale.ClosePosPopup" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[@class='accept-closing']" position="replace"/>
+        <xpath expr="//div[@class='payment-methods-overview']" position="replace">
+            <div class="payment-methods-overview">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Payment Method</th>
+                                    <th>Expected</th>
+                                    <th style="width: 25%">Counted</th>
+                                    <th style="width: 20%">Difference</th>
+                                </tr>
+                            </thead>
+                            <t t-if="cashControl">
+                                <tbody>
+                                    <tr>
+                                        <td t-esc="defaultCashDetails.name"/>
+                                        <td t-esc="env.pos.format_currency(defaultCashDetails.amount)"/>
+                                        <td class="flex" t-on-input="handleInputChange(defaultCashDetails.id)">
+                                            <input class="pos-input" type="number"
+                                                   t-model.number="state.payments[defaultCashDetails.id].counted"/>
+                                            <div class="button icon" t-on-click="openDetailsPopup()">
+                                                <i class="fa fa-calculator" role="img"
+                                                   title="Open the money details popup"/>
+                                            </div>
+                                        </td>
+                                        <td t-esc="env.pos.format_currency(state.payments[defaultCashDetails.id].difference)"
+                                            t-att-class="{'warning': state.payments[defaultCashDetails.id].difference}"/>
+                                    </tr>
+                                </tbody>
+                                <tbody class="cash-overview">
+                                    <tr>
+                                        <td>Opening</td>
+                                        <td t-esc="env.pos.format_currency(defaultCashDetails.opening)"/>
+                                    </tr>
+                                    <tr t-foreach="defaultCashDetails.moves" t-as="move" t-key="move.name">
+                                        <td>
+                                            <div class="flex">
+                                                <div class="cash-sign" t-esc="move.amount &lt; 0 ? '-' : '+'"/>
+                                                <t t-esc="move.name"/>
+                                            </div>
+                                        </td>
+                                        <td t-esc="env.pos.format_currency(Math.abs(move.amount))"/>
+                                    </tr>
+                                    <tr t-if="defaultCashDetails.payment_amount">
+                                        <td>
+                                            <div class="flex">
+                                                <div class="cash-sign"
+                                                     t-esc="defaultCashDetails.payment_amount &lt; 0 ? '-' : '+'"/>
+                                                Payments in
+                                                <t t-esc="defaultCashDetails.name"/>
+                                            </div>
+                                        </td>
+                                        <td t-esc="env.pos.format_currency(Math.abs(defaultCashDetails.payment_amount))"/>
+                                    </tr>
+                                </tbody>
+                            </t>
+                            <tbody t-if="otherPaymentMethods.length &gt; 0">
+                                <tr t-foreach="otherPaymentMethods" t-as="pm" t-key="pm.id">
+                                    <td t-esc="pm.name"/>
+                                    <td t-esc="env.pos.format_currency(pm.amount)"/>
+                                    <t t-set="_showDiff" t-value="_getShowDiff(pm)"/>
+                                    <td t-if="_showDiff" t-on-input="handleInputChange(pm.id)"><input class="pos-input" readonly="true" type="number" t-model.number="state.payments[pm.id].counted"/></td>
+                                    <td t-if="_showDiff"
+                                        t-esc="env.pos.format_currency(state.payments[pm.id].difference)"
+                                        t-att-class="{'warning': state.payments[pm.id].difference}"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+        </xpath>
+
+    </t>
+</templates>

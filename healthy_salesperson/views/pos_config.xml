@@ -1,0 +1,34 @@
+<odoo>
+
+	<record id="group_pos_sales_represtiative" model="res.groups">
+		<field name="name">Show Sales Represtiative</field>
+	</record>
+
+  	<record id="pos_config_view_form_inherit_add_salespersons" model="ir.ui.view" >
+		<field name="name">delivery.order.pos.config.form</field>
+		<field name="model">pos.config</field>
+		<field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//div[@id='category_reference']" position="after">
+
+				<div class="col-xs-12 col-md-6 o_setting_box" groups="healthy_salesperson.group_pos_sales_represtiative">
+
+					<div class="o_setting_left_pane">
+						<field name="show_sales_represtiative"/>
+					</div>
+					<div class="o_setting_right_pane">
+						<label for="show_sales_represtiative" string="Show Sales Represtiative"/>
+						<div class="text-muted">
+							Show Sales Represtiative
+						</div>
+					</div>
+				</div>
+
+
+
+			</xpath>
+		</field>
+	</record>
+
+
+</odoo>

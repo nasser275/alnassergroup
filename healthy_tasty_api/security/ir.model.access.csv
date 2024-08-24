@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_api_sliders,api_sliders,model_api_sliders,,1,1,1,1
+access_api_social,api_social,model_api_social,,1,1,1,1
+access_jwt_provider_access_token,jwt_provider_access_token,model_jwt_provider_access_token,,1,1,1,1
+access_api_others,api_others,model_api_others,,1,1,1,1
+access_api_testimonials,api_testimonials,model_api_testimonials,,1,1,1,1
+access_api_contact_us,api_contact_us,model_api_contact_us,,1,1,1,1
+access_common_questions,common_questions,model_common_questions,,1,1,1,1

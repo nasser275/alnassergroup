@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<record id="inter_warehouse_transfer_tree_view_return" model="ir.ui.view">
+			<field name="name">return.inter.warehouse.transfer.tree.view</field>
+			<field name="model">return.inter.warehouse.transfer</field>
+			<field name="arch" type="xml">
+				<tree string="Inter Warehouse Transfer">
+					<field name="name"/>
+					<field name="from_loc_id"/>
+					<field name="dest_loc_id"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+		
+		
+		<record id="inter_warehouse_transfer_form_view_return" model="ir.ui.view">
+			<field name="name">inter.warehouse.transfer.form.view</field>
+			<field name="model">return.inter.warehouse.transfer</field>
+			<field name="arch" type="xml">
+				<form string="Inter Warehouse Transfer"  create="0" edit = "0">
+					<header>
+						<button name='revertorder' type='object' string='Process' class="btn-primary" attrs="{'invisible': [('state','!=', 'draft')]}"/>
+						<button name='%(bi_inter_warehouse_transfer_generic.return_action_received_qty)d' type='action' string='Make Received' class="btn-primary"
+								context="{'default_inter_trans_id':active_id}"
+								attrs="{'invisible':['|',('main_user','=',False),('state', 'not in', ['done'])]}"/>
+						<field name="state" widget='statusbar'/> 
+					</header>
+					<sheet >
+						<div class="oe_button_box" name="button_box" attrs="{'invisible':[('main_user','=',False)]}">
+							<button name="action_view_picking" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('picking_id', '=', False)]}">
+								<span>Picking</span>
+							</button>
+						</div>	
+						<div class="oe_title oe_left">
+							<h1> <field name="name"/> </h1>
+						</div>	
+						<group>
+							<field name="transfer_type"/>
+							<field name="internal_id"/>
+							<field name="main_user"/>
+							<field name="branch_user"/>
+						</group>
+						<group invisible="1">
+							<field name="company_id"/>
+							<field name="validated_by_src" readonly='1'/>
+							<field name="picking_id" invisible='1'/>
+						</group>			
+						<group>
+							<group>
+								<field name="from_loc_id" context="{'loc' : True}" widget='selection'/>
+							</group>
+							<group>
+								<field name="dest_loc_id" context="{'loc' : True}" widget='selection'/>
+							</group>
+						</group>
+						<notebook>
+							<page string="Products">
+								<field name="transfer_lines">
+									<tree editable="bottom">
+										<field name="product_id"/>
+										<field name="qty"/>
+										<field name="received_qty"/>
+									</tree>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+						<field name="activity_ids" widget="mail_activity"/>
+						<field name="message_ids" widget="mail_thread"/>
+					</div>
+				</form>
+			</field>
+		</record>
+		
+		
+		
+		<record id="action_return_warehouse_form_template" model="ir.actions.act_window">
+		<field name="name">Return Inter Company stock</field>
+		<field name="res_model">return.inter.warehouse.transfer</field>
+		<field name="view_mode">form</field>
+		<field eval="inter_warehouse_transfer_form_view_return" name="view_id"/>
+		<field name="help" type="html">
+		  <p class="o_view_nocontent_smiling_face">
+			Record a Reverse Inter Company Transfer
+		  </p>
+		</field>
+	</record>
+		
+		
+		
+		
+		<record model="ir.actions.act_window" id="action_open_inter_warehouse_transfer_return">
+			<field name="name">Return Inter Warehouse Transfer</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">return.inter.warehouse.transfer</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		
+
+			
+		<menuitem 
+			parent="menu_main_int_wh_trans" 
+			action="action_open_inter_warehouse_transfer_return" 
+			name="Return Inter Warehouse Transfers" 
+			id="menu_int_wh_transfer_return" 
+			sequence="2"/>
+			
+	</data>	
+</odoo>

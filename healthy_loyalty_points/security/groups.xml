@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="group_loyal_points_admin" model="res.groups">
+            <field name="name">Loyal Points Admin</field>
+        </record>
+        <record id="group_loyal_points_modify" model="res.groups">
+            <field name="name">Loyal Points Modify Record</field>
+        </record>
+
+
+    </data>
+</odoo>

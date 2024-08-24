@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="InvoiceLine" owl="1">
+        <div class="order-row pointer">
+            <div class="col start wide">
+                <t t-esc="props.line.name"/>
+            </div>
+            <div class="col start wide">
+                <t t-esc="env.pos.db.get_partner_by_id(props.line.partner_id).name"/>
+            </div>
+            <div class="col start wide">
+                <t t-esc="props.line.date"/>
+            </div>
+            <div class="col start wide">
+                <t t-esc="props.line.invoice_date_due"/>
+            </div>
+            <div class="col start wide">
+                <t t-esc="env.pos.format_currency(props.line.amount_residual)"/>
+            </div>
+            <div class="col start wide">
+                <t t-esc="env.pos.format_currency(props.line.amount_total)"/>
+            </div>
+            <div class="col start" t-on-click="payInvoice(props.line)">
+                <t t-if="props.line.amount_residual > 0">
+                    <i class="fa fa-money" aria-hidden="true" style="font-size: x-large;"></i>
+                </t>
+            </div>
+            <div class="col start" t-on-click="printInvoice(props.line.id)">
+                <i class="fa fa-file-pdf-o" aria-hidden="true" style="font-size: x-large;"></i>
+            </div>
+        </div>
+    </t>
+
+</templates>

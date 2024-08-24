@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="group_allow_cancel_move" model="res.groups">
+            <field name="name">Allow Cancel Entry</field>
+        </record>
+          <record id="group_allow_reset_draft_move" model="res.groups">
+            <field name="name">Reset to Draft</field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,67 @@
+<odoo>
+    <data>
+        <record id="view_picking_type_form_5005" model="ir.ui.view">
+            <field name="name">stock.view_picking_type_form</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sequence_code']" position="after">
+                    <field name="disenable_add_lines"/>
+                    <field name="enable_notes"/>
+                    <field name="enable_create_credit_note"/>
+                    <field name="enable_filter_vendors"/>
+                    <field name="vendor_ids" attrs="{'invisible':[('enable_filter_vendors','=',False)]}" widget="many2many_tags"/>
+                    <field name="credit_note_type" attrs="{'invisible':[('enable_create_credit_note','=',False)]}"/>
+                    <field name="journal_id" attrs="{'invisible':[('enable_create_credit_note','=',False)]}"/>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="view_picking_form_5520" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <field name="enable_create_credit_note" invisible="1"/>
+                    <field name="disenable_add_lines" invisible="1"/>
+                    <field name="enable_notes" invisible="1"/>
+<!--                    <button name="create_creditnote"-->
+<!--                            attrs="{'invisible': ['|',('state', 'not in', ('done')), ('enable_create_credit_note', '=', False)]}"-->
+<!--                            string="Create Credit Note" type="object" groups="healthy_credit_note.create_creditnnote"-->
+<!--                            class="o_btn_validate"/>-->
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="refund_type"
+                           attrs="{'readonly': [('state', 'not in', ('draft'))],'invisible':[('enable_create_credit_note','=',False)],'required':[('enable_create_credit_note','=',True)]}"/>
+                    <field name="credit_note_id" readonly="1" attrs="{'invisible':[('credit_note_id','=',False)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='%(stock.act_stock_return_picking)d']" position="attributes">
+                    <attribute name="groups">healthy_credit_note.return_button_picking</attribute>
+                </xpath>
+                   <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="options">
+                        {
+                        'no_create': True,
+                        'no_create_edit': True,
+                        'no_open': True
+                        }
+                    </attribute>
+                </xpath>
+                <xpath expr="//field[@name='move_ids_without_package']" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|',('disenable_add_lines','=',True),'&amp;', ('state', '=', 'done'), ('is_locked', '=', True)]}</attribute>
+                </xpath>
+		<xpath expr="//field[@name='move_line_ids_without_package']" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|',('disenable_add_lines','=',True),'&amp;', ('state', '=', 'done'), ('is_locked', '=', True)]}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='note']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('enable_notes','=',False)],'required':[('enable_notes','=',True)]}</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

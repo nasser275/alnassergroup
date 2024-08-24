@@ -1,0 +1,185 @@
+/* Sale order Popup */
+.date_box{
+    height: 40px;
+    line-height: 40px;
+    border-radius: 2px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+    width: 100% !important;
+}
+.date_box input, .date_box select{
+    min-height: 0px !important;
+    height: 22px !important;
+    width: 55% !important;
+    margin-left: 10px;
+    box-sizing: unset !important;
+    font-size: 14px !important;
+}
+/* TABS */
+.tabs-menu {
+    height: 30px;
+    float: left;
+    clear: both;
+}
+.tabs-menu li {
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    width: 137px;
+    text-align: center;
+    margin-right: 10px;
+    background-color: #ccc;
+    border-top: 1px solid #d4d4d1;
+    border-right: 1px solid #d4d4d1;
+    border-left: 1px solid #d4d4d1;
+}
+.tabs-menu li.current {
+    position: relative;
+    background-color: #fff;
+    border-bottom: 1px solid #fff;
+    z-index: 5;
+}
+.tabs-menu .current span {
+    color: #2e7da3;
+}
+.tab {
+    border: 1px solid #d4d4d1;
+    background-color: #fff;
+    float: left;
+    margin-bottom: 20px;
+    width: 100% !important;
+    height: 340px;
+}
+.choices_content{
+    padding: 5px;
+}
+.ship_create_contact, .invoice_create_contact{
+    margin-top: 30px;
+}
+#tab-1 {
+ display: block;
+ text-align: center;
+}
+#tab-2 {
+ display: block;
+ text-align: center;
+}
+
+.client-details-box{
+    margin-top: 20px;
+}
+.client-details-left{
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+.client-details-right{
+    width: 50%;
+    float: right;
+}
+.client-detail{
+    line-height: 24px;
+    margin-bottom: 10px;
+}
+.client-detail > .label{
+    font-weight: bold;
+    display: inline-block;
+    width: 75px;
+    text-align: left;
+    margin-right: 8px;
+}
+.client-details input,.client-details select
+{
+    text-align: left;
+    display: inline-block;
+    overflow: hidden;
+    background: white;
+    min-height: -8px;
+    font-family: "Lato";
+    font-size: 15px;
+    color: #444;
+    padding: 6px;
+    border-radius: 3px;
+    border: black 1px solid;
+    box-shadow: 0px 0px 0px 1px rgb(220,220,220) inset;
+    box-sizing: border-box;
+}
+.client-details input.client-name {
+    font-size: 24px;
+    line-height: 24px;
+    margin: 18px 6px;
+    width: 340px;
+}
+.client-details input:focus,
+.client-details input.active {
+    outline: none;
+    border: 1px solid #4CAF50;
+}
+.client-details select:focus,
+.client-details select.active {
+    outline: none !important;
+    border: 1px solid #4CAF50 !important;
+}
+.client-details .required{
+    color: #f44336;
+    margin-left: 5px;
+}
+.sign-tab-fields{
+    justify-content: space-evenly;
+    display: flex;
+}
+.popup-product-list-contents .custom_popup_input{
+    width: 25% !important;
+    text-align: center !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    min-height: 12px !important;
+    max-height: 30px !important;
+}
+.popup-product-list-contents .minus,.popup-product-list-contents .plus{
+    width:20px;
+    height:20px;
+    padding:8px 5px 8px 5px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin:2px;
+}
+.reorder-table-div{
+    max-height: 246px;
+    height:auto;
+    /*overflow: auto;*/
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.popup-product-list{
+    border: 3px solid #e6e6e6;
+    margin: 8px 0px;
+}
+.popup-product-list .reorder-tr{
+    height: 34px;
+    background: #868686;
+    color:white;
+}
+.popup-product-list .popup-product-list-contents{
+    font-size:18px;
+    font-weight:500
+}
+.clear-signature{
+    background: rgb(230, 230, 230) !important;
+    border: solid 1px rgb(209, 209, 209) !important;
+    float: right !important;
+    margin-top: -4px !important;
+    font-size: 16px !important;
+    margin-right : 10px !important;
+}
+
+
+
+
+

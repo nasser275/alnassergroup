@@ -1,0 +1,17 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<odoo>-->
+<!--    <data>-->
+<!--        <record id="purchase_report_pivot_inherit" model="ir.ui.view">-->
+<!--            <field name="name">purchase.report.pivot.inherit</field>-->
+<!--            <field name="model">purchase.report</field>-->
+<!--            <field name="inherit_id" ref="purchase.view_purchase_order_pivot"/>-->
+<!--            <field name="arch" type="xml">-->
+
+<!--                <pivot>-->
+<!--                    <field name="total_received " type="measure"/>-->
+<!--                </pivot>-->
+
+<!--            </field>-->
+<!--        </record>-->
+<!--    </data>-->
+<!--</odoo>-->

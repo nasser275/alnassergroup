@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_update_images" model="ir.actions.server">
+            <field name="name">Update Product Images</field>
+            <field name="model_id" ref="product.model_product_product"/>
+            <field name="binding_model_id" ref="product.model_product_product"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                records.update_prods_image()
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
+

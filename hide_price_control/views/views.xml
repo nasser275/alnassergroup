@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_users_form_440" model="ir.ui.view">
+            <field name="name">res.users.form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//notebook" position="inside">
+                    <page string="Pos">
+                        <group>
+                            <field name="show_price_control"/>
+                            <field name="show_discount_control"/>
+                            <field name="can_edit_open_cash_control"/>
+                            <field name="show_cash_in_out"/>
+                            <field name="use_pos_password"/>
+                            <field name="user_password" attrs="{'invisible':[('use_pos_password','=',False)]}" password="1"/>
+                        </group>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <record id="add_to_user_preferences" model="ir.ui.view">
+
+            <field name="name">Inhetitance In Preference</field>
+
+            <field name="model">res.users</field>
+
+            <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+
+            <field name="arch" type="xml">
+
+                <xpath expr="//notebook/page[@name='preferences_page']" position="after">
+
+                    <page string="Pos">
+                        <group>
+                            <field name="use_pos_password" invisible="1"/>
+                            <field name="user_password" attrs="{'readonly':[('use_pos_password','=',False)]}"
+                                   password="1"/>
+                        </group>
+                    </page>
+
+                </xpath>
+
+            </field>
+
+        </record>
+
+
+    </data>
+</odoo>

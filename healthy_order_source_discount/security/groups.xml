@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="group_pos_order_source" model="res.groups">
+            <field name="name">Pos Order Source</field>
+        </record>
+        <record id="group_pos_order_discount" model="res.groups">
+            <field name="name">Pos Order Discount Button</field>
+        </record>
+          <record id="group_pos_order_discount_reasons" model="res.groups">
+            <field name="name">Pos Order Discount Reasons Menu</field>
+        </record>
+          <record id="group_pos_order_discount_offers" model="res.groups">
+            <field name="name">Pos Order Discount Offers Menu</field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_inter_warehouse_transfer,access_inter_warehouse_transfer,model_inter_warehouse_transfer,stock.group_stock_user,1,1,1,0
+access_inter_warehouse_transfer_mgr,access_inter_warehouse_transfer_mgr,model_inter_warehouse_transfer,stock.group_stock_manager,1,1,1,1
+access_inter_transfer_line,access_inter_transfer_line,model_inter_transfer_line,stock.group_stock_user,1,1,1,1
+access_inter_transfer_line_mgr,access_inter_transfer_line_mgr,model_inter_transfer_line,stock.group_stock_manager,1,1,1,1
+access_return_inter_warehouse_transfer,return.inter.warehouse.transfer,model_return_inter_warehouse_transfer,stock.group_stock_user,1,1,1,1
+access_return_inter_warehouse_transfer_mgr,return.inter.warehouse.transfer.mgr,model_return_inter_warehouse_transfer,stock.group_stock_manager,1,1,1,1
+access_return_inter_transfer_line,return.inter.transfer.line,model_return_inter_transfer_line,stock.group_stock_user,1,1,1,1
+access_return_inter_transfer_line_mgr,return.inter.transfer.line.mgr,model_return_inter_transfer_line,stock.group_stock_manager,1,1,1,1
+access_change_location_wiz,change.location.wiz,model_change_location_wiz,,1,1,1,1
+access_received_qty_wiz,received_qty_wiz,model_received_qty_wiz,,1,1,1,1
+access_inter_transfer_line_wiz,inter_transfer_line_wiz,model_inter_transfer_line_wiz,,1,1,1,1
+access_received_qty_return_wiz,received_qty_return_wiz,model_received_qty_return_wiz,,1,1,1,1
+access_inter_transfer_line_return_wiz,inter_transfer_line_return_wiz,model_inter_transfer_line_return_wiz,,1,1,1,1

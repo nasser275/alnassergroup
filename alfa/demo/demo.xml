@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+
+        <record id="seq_stock_request" model="ir.sequence">
+            <field name="name">Stock Request</field>
+            <field name="code">stock.request</field>
+            <field name="prefix">SR/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_refund_stock_request" model="ir.sequence">
+            <field name="name">Return Stock Request</field>
+            <field name="code">return.stock.request</field>
+            <field name="prefix">RMW/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="internal_rep_transfer" model="stock.picking.type">
+            <field name="name">Replenishment Internal Transfers</field>
+            <field name="code">internal</field>
+            <field name="company_id">1</field>
+            <field name="sequence_code">INT</field>
+            <field name="sequence_id" ref="alfa.seq_stock_request"/>
+            <field name="warehouse_id">1</field>
+        </record>
+        <record id="internal_return_rep_transfer" model="stock.picking.type">
+            <field name="name">Return Replenishment Internal Transfers</field>
+            <field name="code">internal</field>
+            <field name="company_id">1</field>
+            <field name="sequence_code">RINT</field>
+            <field name="sequence_id" ref="alfa.seq_refund_stock_request"/>
+            <field name="warehouse_id">1</field>
+        </record>
+    </data>
+</odoo>

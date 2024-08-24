@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="coupon_template" xml:space="preserve">
+    <t t-name="POSOrderSourceButton" owl="1">
+        <div class='control-button'>
+            <div class="pos-coupons">
+                <i class='fa fa-clock-o'/>
+                Set Order Source
+            </div>
+        </div>
+    </t>
+
+    <t t-name="POSOrderSourcePopup" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <Draggable>
+                <div class="popup popup-text">
+                    <header class="title">
+                        <div class="row">
+                            <t t-esc="props.title"/>
+                        </div>
+                    </header>
+                    <main class="body product_configurator_attributes col-lg-4 col-md-6 col-sm-12">
+                        <div class="row">
+                            <div>
+                                <span>Order Source</span>
+                            </div>
+                            <div>
+                                <select class="type" style="width: 233px;height:46px" t-model="state.order_source_id"  t-att-disabled="state.order_source_id"
+                                        required="">
+                                    <t t-foreach="env.pos.sources" t-as="order_source_id"
+                                       t-if="order_source_id.show" t-key="order_source_id.name">
+                                            <option t-att-value="order_source_id.id" t-esc="order_source_id.name"/>
+
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <br/>
+                        <t t-set="required_discount_reason" t-value="false"/>
+                        <t t-if="state.order_source_id">
+                            <t t-foreach="env.pos.sources" t-as="order_source_id">
+                                <t t-if="order_source_id.id==state.order_source_id">
+                                    <t t-set="required_discount_reason"
+                                       t-value="order_source_id.required_discount_reason"/>
+                                </t>
+                            </t>
+
+                        </t>
+
+                        <t t-if="state.order_source_id">
+                            <t t-if="required_discount_reason">
+                                   <br/>
+                                <div class="row">
+                        <input type="text" placeholder="Application Code" t-model="state.discount_code"
+                               class="popup-input discount_code active" style="margin-bottom: 10px;"/>
+                    </div>
+                            </t>
+
+                        </t>
+
+                    </main>
+                    <footer class="footer">
+                        <div class="button confirm-coupon" t-on-click="click_confirm">
+                            Select
+                        </div>
+                        <div class="button cancel" t-on-click="cancel">
+                            Cancel
+                        </div>
+                    </footer>
+                </div>
+            </Draggable>
+        </div>
+    </t>
+
+
+    <t t-name="APPPOSDiscountButton" owl="1">
+        <div class='control-button'>
+            <div class="pos-coupons">
+                <i class='fa fa-tablet'/>
+                Applications Discount
+            </div>
+        </div>
+    </t>
+    <t t-name="FixedPOSDiscountButton" owl="1">
+        <div class='control-button'>
+            <div class="pos-coupons">
+                <i class='fa fa-tag'/>
+                Fixed Discount
+            </div>
+        </div>
+    </t>
+    <t t-name="PerPOSDiscountButton" owl="1">
+        <div class='control-button'>
+            <div class="pos-coupons">
+                <i class='fa fa-percent'/>
+                Percentage Discount
+            </div>
+        </div>
+    </t>
+
+    <t t-name="HealthyNumberPopup" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <Draggable>
+                <div class="popup popup-number" style="height:663px;width:340px"
+                     t-att-class="{ 'popup-password': props.isPassword }">
+                    <t t-if="props.use=='f'">
+                        <header class="title drag-handle">
+                        Fixed Discount
+                    </header>
+                        <div t-if="state.discount_by=='code' and state.discount_type=='fixed'">
+                        <span>Discount Reason</span>
+                            <select class="type" style="width: 162px;height:32px;margin-left:10px"
+                                    t-model="state.discount_reason_id" required="">
+                            <t t-foreach="env.pos.reasons" t-as="discount_reason_id" t-key="discount_reason_id.name">
+                                <t t-if="discount_reason_id.fixed and discount_reason_id.is_offer==false">
+                                    <option t-att-value="discount_reason_id.id" t-esc="discount_reason_id.name"/>
+                                </t>
+                            </t>
+                        </select>
+
+
+                    </div>
+                        <div t-if="state.discount_by=='code' and state.discount_type=='percentage'">
+                        <span>Discount Reason</span>
+                            <select class="type" style="width: 162px;height:32px;margin-left:10px"
+                                    t-model="state.discount_reason_id" required="">
+                            <t t-foreach="env.pos.reasons" t-as="discount_reason_id" t-key="discount_reason_id.name">
+                                <t t-if="discount_reason_id.percentage and discount_reason_id.is_offer==false">
+                                    <option t-att-value="discount_reason_id.id" t-esc="discount_reason_id.name"/>
+                                </t>
+                            </t>
+                        </select>
+
+
+                    </div>
+                        <div t-if="state.discount_by=='offer' and state.discount_type=='fixed'">
+                        <span>Discount Offers</span>
+                            <select class="type" style="width: 158px;height:32px;margin-left:16px"
+                                    t-model="state.discount_offer_id" required="">
+                            <t t-foreach="env.pos.reasons" t-as="discount_offer_id" t-key="discount_offer_id.name">
+                                <t t-if="discount_offer_id.fixed and discount_offer_id.is_offer">
+                                    <option t-att-value="discount_offer_id.id" t-esc="discount_offer_id.name"/>
+                                </t>
+                            </t>
+                        </select>
+
+
+                    </div>
+                        <div t-if="state.discount_by=='offer' and state.discount_type=='percentage'">
+                        <span>Discount Offers</span>
+                            <select class="type" style="width: 158px;height:32px;margin-left:16px"
+                                    t-model="state.discount_offer_id" required="">
+                            <t t-foreach="env.pos.reasons" t-as="discount_offer_id" t-key="discount_offer_id.name">
+                                <t t-if="discount_offer_id.percentage and discount_offer_id.is_offer">
+                                    <option t-att-value="discount_offer_id.id" t-esc="discount_offer_id.name"/>
+                                </t>
+                            </t>
+                        </select>
+
+
+                    </div>
+                        <br/>
+                        <div t-if="state.discount_by=='code' and state.discount_type!=''">
+                        <input type="text" placeholder="Code" t-model="state.discount_code"
+                               class="popup-input discount_code active" style="margin-bottom: 10px;"/>
+                    </div>
+                        <br/>
+
+                    </t>
+                    <t t-if="props.use=='p'">
+                          <header class="title drag-handle">
+                        Percentage Discount
+                    </header>
+
+                        <div t-if="state.discount_by=='code' and state.discount_type=='fixed'">
+                        <span>Discount Reason</span>
+                            <select class="type" style="width: 162px;height:32px;margin-left:10px"
+                                    t-model="state.discount_reason_id" required="">
+                            <t t-foreach="env.pos.reasons" t-as="discount_reason_id" t-key="discount_reason_id.name">
+                                <t t-if="discount_reason_id.fixed and discount_reason_id.is_offer==false">
+                                    <option t-att-value="discount_reason_id.id" t-esc="discount_reason_id.name"/>
+                                </t>
+                            </t>
+                        </select>
+
+
+                    </div>
+                        <div t-if="state.discount_by=='code' and state.discount_type=='percentage'">
+                        <span>Discount Reason</span>
+                            <select class="type" style="width: 162px;height:32px;margin-left:10px"
+                                    t-model="state.discount_reason_id" required="">
+                            <t t-foreach="env.pos.reasons" t-as="discount_reason_id" t-key="discount_reason_id.name">
+                                <t t-if="discount_reason_id.percentage and discount_reason_id.is_offer==false">
+                                    <option t-att-value="discount_reason_id.id" t-esc="discount_reason_id.name"/>
+                                </t>
+                            </t>
+                        </select>
+
+
+                    </div>
+                        <div t-if="state.discount_by=='offer' and state.discount_type=='fixed'">
+                        <span>Discount Offers</span>
+                            <select class="type" style="width: 158px;height:32px;margin-left:16px"
+                                    t-model="state.discount_offer_id" required="">
+                            <t t-foreach="env.pos.reasons" t-as="discount_offer_id" t-key="discount_offer_id.name">
+                                <t t-if="discount_offer_id.fixed and discount_offer_id.is_offer">
+                                    <option t-att-value="discount_offer_id.id" t-esc="discount_offer_id.name"/>
+                                </t>
+                            </t>
+                        </select>
+
+
+                    </div>
+                        <div t-if="state.discount_by=='offer' and state.discount_type=='percentage'">
+                        <span>Discount Offers</span>
+                            <select class="type" style="width: 158px;height:32px;margin-left:16px"
+                                    t-model="state.discount_offer_id" required="">
+                            <t t-foreach="env.pos.reasons" t-as="discount_offer_id" t-key="discount_offer_id.name">
+                                <t t-if="discount_offer_id.percentage and discount_offer_id.is_offer">
+                                    <option t-att-value="discount_offer_id.id" t-esc="discount_offer_id.name"/>
+                                </t>
+                            </t>
+                        </select>
+
+
+                    </div>
+                        <br/>
+                        <div t-if="state.discount_by=='code' and state.discount_type!=''">
+                        <input type="text" placeholder="Code" t-model="state.discount_code"
+                               class="popup-input discount_code active" style="margin-bottom: 10px;"/>
+                    </div>
+                        <br/>
+
+                    </t>
+                    <t t-if="props.use=='ap'">
+                         <header class="title drag-handle">
+                        Applications Discount
+                    </header>
+                        <div t-if="state.discount_by=='code' and state.discount_type=='fixed'">
+                        <span>Discount Application</span>
+                            <select class="type" style="width: 162px;height:32px;margin-left:10px"
+                                    t-model="state.discount_reason_id" required="">
+                            <t t-foreach="env.pos.reasons" t-as="discount_reason_id" t-key="discount_reason_id.name">
+                                <t t-if="discount_reason_id.fixed and discount_reason_id.is_offer==false">
+                                    <option t-att-value="discount_reason_id.id" t-esc="discount_reason_id.name"/>
+                                </t>
+                            </t>
+                        </select>
+
+
+                    </div>
+                        <div t-if="state.discount_by=='code' and state.discount_type=='percentage'">
+                        <span>Discount Application</span>
+                            <select class="type" style="width: 162px;height:32px;margin-left:10px"
+                                    t-model="state.discount_reason_id" required="">
+                            <t t-foreach="env.pos.reasons" t-as="discount_reason_id" t-key="discount_reason_id.name">
+                                <t t-if="discount_reason_id.percentage and discount_reason_id.is_offer==false">
+                                    <option t-att-value="discount_reason_id.id" t-esc="discount_reason_id.name"/>
+                                </t>
+                            </t>
+                        </select>
+
+
+                    </div>
+                        <div t-if="state.discount_by=='offer' and state.discount_type=='fixed'">
+                        <span>Discount Offers</span>
+                            <select class="type" style="width: 158px;height:32px;margin-left:16px"
+                                    t-model="state.discount_offer_id" required="">
+                            <t t-foreach="env.pos.reasons" t-as="discount_offer_id" t-key="discount_offer_id.name">
+                                <t t-if="discount_offer_id.fixed and discount_offer_id.is_offer">
+                                    <option t-att-value="discount_offer_id.id" t-esc="discount_offer_id.name"/>
+                                </t>
+                            </t>
+                        </select>
+
+
+                    </div>
+                        <div t-if="state.discount_by=='offer' and state.discount_type=='percentage'">
+                        <span>Discount Offers</span>
+                            <select class="type" style="width: 158px;height:32px;margin-left:16px"
+                                    t-model="state.discount_offer_id" required="">
+                            <t t-foreach="env.pos.reasons" t-as="discount_offer_id" t-key="discount_offer_id.name">
+                                <t t-if="discount_offer_id.percentage and discount_offer_id.is_offer">
+                                    <option t-att-value="discount_offer_id.id" t-esc="discount_offer_id.name"/>
+                                </t>
+                            </t>
+                        </select>
+
+
+                    </div>
+                        <br/>
+                        <div t-if="state.discount_by=='code' and state.discount_type!=''">
+                        <input type="text" placeholder="Application Code" t-model="state.discount_code"
+                               class="popup-input discount_code active" style="margin-bottom: 10px;"/>
+                    </div>
+                        <br/>
+
+                    </t>
+                    <div class="popup-input value active">
+                        <span t-att-class="{ 'highlight': state.toStartOver }">
+                            <t t-esc="inputBuffer"/>
+                        </span>
+                    </div>
+                    <div class="popup-numpad">
+                        <button class="input-button number-char" t-on-mousedown.prevent="sendInput('1')">1</button>
+                        <button class="input-button number-char" t-on-mousedown.prevent="sendInput('2')">2</button>
+                        <button class="input-button number-char" t-on-mousedown.prevent="sendInput('3')">3</button>
+                        <t t-if="props.cheap">
+                            <button class="mode-button add" t-on-mousedown.prevent="sendInput('+1')">+1</button>
+                        </t>
+                        <t t-if="!props.cheap">
+                            <button class="mode-button add" t-on-mousedown.prevent="sendInput('+10')">+10</button>
+                        </t>
+                        <br/>
+                        <button class="input-button number-char" t-on-mousedown.prevent="sendInput('4')">4</button>
+                        <button class="input-button number-char" t-on-mousedown.prevent="sendInput('5')">5</button>
+                        <button class="input-button number-char" t-on-mousedown.prevent="sendInput('6')">6</button>
+                        <t t-if="props.cheap">
+                            <button class="mode-button add" t-on-mousedown.prevent="sendInput('+2')">+2</button>
+                        </t>
+                        <t t-if="!props.cheap">
+                            <button class="mode-button add" t-on-mousedown.prevent="sendInput('+20')">+20</button>
+                        </t>
+                        <br/>
+                        <button class="input-button number-char" t-on-mousedown.prevent="sendInput('7')">7</button>
+                        <button class="input-button number-char" t-on-mousedown.prevent="sendInput('8')">8</button>
+                        <button class="input-button number-char" t-on-mousedown.prevent="sendInput('9')">9</button>
+                        <button t-if="!props.isPassword" class="input-button number-char"
+                                t-on-mousedown.prevent="sendInput('-')">-</button>
+                        <br/>
+                        <button class="input-button numpad-char" t-on-mousedown.prevent="sendInput('Delete')">C</button>
+                        <button class="input-button number-char" t-on-mousedown.prevent="sendInput('0')">0</button>
+                        <button class="input-button number-char dot"
+                                t-on-mousedown.prevent="sendInput(decimalSeparator)">
+                            <t t-esc="decimalSeparator"/>
+                        </button>
+                        <button class="input-button numpad-backspace" t-on-mousedown.prevent="sendInput('Backspace')">
+                            <img style="pointer-events: none;" src="/point_of_sale/static/src/img/backspace.png"
+                                 width="24" height="21" alt="Backspace"/>
+                        </button>
+                        <br/>
+                    </div>
+                    <footer class="footer">
+                        <div class="button confirm-coupon" t-on-click="click_confirm">
+                            Select
+                        </div>
+                        <div class="button cancel" t-on-click="cancel">
+                            Cancel
+                        </div>
+                    </footer>
+                </div>
+            </Draggable>
+
+        </div>
+    </t>
+
+
+
+</templates>

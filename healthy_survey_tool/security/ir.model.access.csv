@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_healthy_survey_tool,healthy_survey_tool,model_healthy_survey_tool,,1,1,1,1
+access_healthy_survey_tool_line,healthy_survey_tool_line,model_healthy_survey_tool_line,,1,1,1,1

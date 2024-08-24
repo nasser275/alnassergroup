@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+
+    <t t-name="ImportRecords" t-inherit="base_import.ImportRecords" t-inherit-mode="extension" owl="1">
+        <xpath expr="//DropdownItem[hasclass('o_import_menu')]" position="replace">
+            <t t-if="state.data.user.group_import_access">
+                <DropdownItem  class="o_import_menu dropdown-item" t-on-click="importRecords">
+            Import records
+        </DropdownItem>
+            </t>
+            <t t-else="">
+                <DropdownItem  style="display:none" class="o_import_menu dropdown-item" t-on-click="importRecords">
+            Import records
+        </DropdownItem>
+            </t>
+
+        </xpath>
+    </t>
+</templates>

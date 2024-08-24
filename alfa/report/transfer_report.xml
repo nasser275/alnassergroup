@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+
+        <!--        <record model="ir.ui.view" id="stock_picking_type_view_kanban">-->
+
+
+        <record id="view_pivot_Replenishment" model="ir.ui.view">
+            <field name="name">report.transfer.pivot</field>
+            <field name="model">report.transfer</field>
+            <field name="arch" type="xml">
+                <pivot string="Transfers" sample="1">
+                    <field name="date" interval="day" type="row"/>
+<!--                    <field name="warehouse_from" type="row"/>-->
+<!--                    <field name="warehouse_to" type="row"/>-->
+                    <field name="reference" type="row"/>
+<!--                    <field name="date" interval="month" type="col"/>-->
+<!--                    <field name="transfer_id" type="measure"/>-->
+                    <field name="requested_qty" type="measure"/>
+                    <field name="approved_qty" type="measure"/>
+                    <field name="confirmed_qty" type="measure"/>
+                    <field name="difference" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+
+        <record id="action_view_Transfers_pivot" model="ir.actions.act_window">
+            <field name="name">Transfers Report</field>
+            <field name="res_model">report.transfer</field>
+            <field name="view_mode">pivot</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Enter the target</p>
+            </field>
+        </record>
+
+
+        <menuitem name="Transfers Report" id="menu_report_transfer" parent="alfa.reports"
+                  action="action_view_Transfers_pivot" sequence="1"/>
+
+    </data>
+</odoo>

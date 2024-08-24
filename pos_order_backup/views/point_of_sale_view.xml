@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+
+<odoo>
+    <record model="ir.ui.view" id="order_json_data_search">
+        <field name="name">order_json_data_search</field>
+        <field name="model">pos.order.backup</field>
+        <field name="arch" type="xml">
+            <search string="Unsaved Orders">
+                <filter string="Unsaved Orders" name="order_json_data_filter" domain="[('state','in',['open', 'error'])]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="order_data_tree_view" model="ir.ui.view">
+        <field name="name">Orders Data</field>
+        <field name="model">pos.order.backup</field>
+        <field name="arch" type="xml">
+            <tree string="Order Data" create="0" default_order="id desc">
+                <field name="name"/>
+                <field name="state" string="Status"/>
+                <button class='oe_highlight' name= 'create_order_from_data' string="Create Order" type="object" attrs="{'invisible': [('state', '!=', 'open'),('state', '!=', 'error')]}"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="order_data_form_view" model="ir.ui.view">
+        <field name="name">Orders Data</field>
+        <field name="model">pos.order.backup</field>
+        <field name="arch" type="xml">
+            <form string="Order Data" create="0">
+                <header>
+                    <button class='oe_highlight' name= 'create_order_from_data' string="Create Order" type="object" attrs="{'invisible': [('state', '!=', 'open'),('state', '!=', 'error')]}"/>
+                    <button class='oe_highlight' name= 'create_cancel' string="Cancel" type="object" attrs="{'invisible': [('state', '!=', 'open'),('state', '!=', 'error')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" readonly="1"/>
+                        <field name="order_json" attrs="{'readonly': [('state', '!=', 'open'),('state', '!=', 'error')]}"/>
+                    </group>
+                    <group></group>
+                    <label for="results" string="Results:"/>
+                    <field name="results" nolabel="1" readonly="1"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_import_orders" model="ir.actions.act_window">
+        <field name="name">Orders Data</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pos.order.backup</field>
+        <field name="context">{"search_default_order_json_data_filter":1}</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_import_orders_wizard" model="ir.actions.act_window">
+        <field name="name">Import Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pos.import.orders.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_point_import_orders"
+        name="Backup/Restore"
+        parent="point_of_sale.menu_point_root"
+        sequence="101"/>
+    
+    <menuitem id="sub_menu1_point_import_orders"
+        name="Order Data"
+        parent="menu_point_import_orders"
+        action="action_import_orders"
+        sequence="1"/>
+
+    <menuitem id="sub_menu2_point_import_orders"
+        name="Import Order JSON Data"
+        parent="menu_point_import_orders"
+        action="pos_order_backup.action_import_orders_wizard"
+        sequence="2"/>
+</odoo>

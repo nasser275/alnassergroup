@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="group_change_pos_password" model="res.groups">
+            <field name="name">Change Pos Password</field>
+        </record>
+
+        <record model="ir.ui.view" id="healthy_change_pos_passw_form_wiz">
+            <field name="name">Change Pos Password</field>
+            <field name="model">healthy.pos.password</field>
+            <field name="arch" type="xml">
+                <form string="create Part Payment">
+                    <group>
+                        <group>
+                            <field name="old_password" password="1"/>
+                            <field name="new_password" password="1"/>
+                        </group>
+
+
+                    </group>
+                    <footer>
+                        <button name="change_pws" string="Change" type="object" default_focus="1" class="oe_highlight"/>
+                        <button string="Close" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_healthy_change_pos" model="ir.actions.act_window">
+            <field name="name">Change Pos Password</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">healthy.pos.password</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="healthy_change_pos_passw_form_wiz"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_ealthy_change_pos_action" name="Change Pos Password"
+                  groups="hide_price_control.group_change_pos_password"
+                  action="action_healthy_change_pos" sequence="500"/>
+
+
+
+
+    </data>
+</odoo>

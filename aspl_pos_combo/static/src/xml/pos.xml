@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+
+    	<t t-extend="Product" t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
+
+		<xpath expr="//article[hasclass('product')]" position="replace">
+            <t t-if="props.product.hide_discount==false">
+                <t t-if="props.product.combo_limit>0 and props.product.pos_load">
+				<article class="product" tabindex="0" t-on-keypress="spaceClickProduct"
+                         t-on-click="trigger('click-product', props.product)"
+                         t-att-data-product-id="props.product.id"
+                         t-attf-aria-labelledby="article_product_{{props.product.id}}">
+            <div class="product-img">
+                <i role="img" aria-label="Info" title="Info" class="product-info-button fa fa-info-circle"
+                   t-on-click.stop="onProductInfoClick()"
+                />
+                <img t-att-src="imageUrl" t-att-alt="props.product.display_name"/>
+                <span class="price-tag">
+                    <t t-esc="price"/>
+                </span>
+            </div>
+                    <div class="product-name" t-attf-id="article_product_{{props.product.id}}">
+                <t t-esc="props.product.display_name"/>
+            </div>
+        </article>
+			</t>
+            </t>
+
+		</xpath>
+            <xpath expr="//div[hasclass('product-img')]" position="inside">
+		<!-- <t t-jquery=".product-img" t-operation="append"> -->
+                <t t-if="props.product.is_combo">
+				<div class="product-bundle-pack"
+                     style="position: absolute; box-sizing: border-box; bottom: 0;top: 65px; line-height: 15px; width: 100%; height: 30px; overflow: hidden; text-overflow: ellipsis; background: #FD142A; color: #fff; padding: 3px; padding-top: 5px;">
+				Combo Product
+				</div>
+			</t>
+                <!-- </t> -->
+		</xpath>
+	</t>
+    <t t-extend="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+        <xpath expr="//span[hasclass('product-name')]" position="inside">
+   		<!-- <t t-jquery=".product-name" t-operation="append"> -->
+            <t t-if="props.line.product.is_combo">
+				<t t-if="props.line.get_combo_prod_info()">
+					<span class="fa fa-edit edit-combo" style="font-size: 19px;color: green; margin-left: 10px;"
+                          t-on-click="on_click"/>
+				</t>
+			</t>
+            <!-- </t> -->
+   		</xpath>
+        <xpath expr="//li[hasclass('info')]" position="after">
+			<t t-if="props.line.product.is_combo">
+				<t t-if="props.line.get_combo_prod_info()">
+					<ul class="info-list">
+                        <t t-foreach="props.line.get_combo_prod_info()" t-as="prod_info">
+                        <div style="margin-left: 15px;">
+                            &#8594;<t t-esc="prod_info.product.display_name"/>
+                            :
+                            <t t-esc="prod_info.qty"/>
+                            <t t-if="env.pos.config.hide_uom">
+                                <span>Quantity</span>
+                            </t>
+                            <t t-if="!env.pos.config.hide_uom">
+                                <t t-if="prod_info.product.uom_id[0]">
+                                     <t t-esc="prod_info.product.uom_id[1]"/>
+                                </t>
+                            </t>
+                        </div>
+                    </t>
+
+					</ul>
+				</t>
+			</t>
+            <!-- </t> -->
+	</xpath>
+	</t>
+
+
+    <t t-name="POSComboProductPopup" owl="1">
+            <div class="modal-dialog">
+                <div class="popup popup-textinput pos_combo_product_popup custom-popup">
+                    <p class="title">Combo Product</p>
+                    <div class="combo_product_container">
+                        <div class="sub_product_container">
+                            <div class="combo_product_header2">
+                                <span>
+                                    Optional Products
+                                </span>
+                                <div class="collaps_div selective_products" t-on-click="collaps_div">
+                                    <i class="fa fa-angle-up"></i>
+                                </div>
+                            </div>
+                            <div class="combo_header2_body">
+                                <t t-if="new_combo_products_details">
+                                    <t t-foreach="new_combo_products_details" t-as="record" t-model="state.test">
+                                        <t t-if="!record.require">
+                                            <div class="category_data" t-att-categ-id="record.pos_category_id[0]">
+                                                <div class="categ_tile">
+                                                    <div class="categ_name">
+                                                        <div>
+                                                            <t t-esc="record.pos_category_id[1]"/>
+                                                        </div>
+                                                        <div class="blinking" style="text-align:right;">
+                                                            <span style="padding-right: 10px;">
+                                                                Choose Any <t t-esc="record.no_of_items"/>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="grid-container" t-att-id="record.pos_category_id[0]">
+    	                                                <t t-foreach="record.product_details" t-as="product_detail">
+                                                             <t t-set="product"
+                                                                t-value="env.pos.db.get_product_by_id(product_detail.product_id)"/>
+                                                            <t t-set="product_quantity"
+                                                               t-value="env.pos.get_product_qty_by_id(product_detail.product_id)"/>
+                                                            <div class="grid-item new-item-design"
+                                                                 t-if="(product_quantity > 0)">
+                                                                <span t-att-class="product_detail.used_time > 0 ? 'product product_content selective_product selected' : 'product product_content selective_product'"
+                                                                      t-on-click="select_product"
+                                                                      t-att-data-product-id="product.id"
+                                                                      t-att-data-product-qty="product_quantity"
+                                                                      t-att-data-categ-id="record.pos_category_id[0]"
+                                                                      t-att-data-line-id="record.id"
+                                                                      t-att-title="product.display_name">
+<!--                                                                    <t t-if="(product_quantity == false)">-->
+                                                                    <!--                                                                        <div class="overlay">-->
+                                                                    <!--                                                                            <t t-esc="addOverlay()"><span class="text">Out-Of-Stock</span></t>-->
+                                                                    <!--                                                                        </div>-->
+                                                                    <!--                                                                    </t>-->
+                                                                    <t t-if="(product_quantity > 0)">
+                                                                        <div class="product-img">
+                                                                            <img t-att-src="get_image(product)"/>
+                                                                            <span class="product-qty">
+                                                                                <t t-esc="product_detail.used_time"/>
+                                                                            </span>
+                                                                            <span class="product-remove">
+                                                                                <i class="fa fa-times"
+                                                                                   aria-hidden="true"></i>
+                                                                            </span>
+                                                                            <span class="product-quantity">
+                                                                                <t t-esc="product_quantity"/>
+                                                                            </span>
+
+                                                                            <div class="selected_product">
+                                                                                <i class="fa fa-shopping-cart"/>
+                                                                                <span>إضافه</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="product2-name">
+                                                                            <t t-esc="product.display_name"/>
+                                                                            </div>
+                                                                    </t>
+
+
+    	                                                    </span>
+                                                            </div>
+                                                        </t>
+    	                                            </div>
+
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </t>
+                                </t>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div class="button confirm" t-on-click="click_confirm">
+                            OK
+                        </div>
+                        <div class="button cancel" t-on-click="click_cancel">
+                            Cancel
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+
+    <t t-extend="OrderDetails" t-inherit="point_of_sale.OrderDetails" t-inherit-mode="extension" owl="1">
+		<xpath expr="//ul[hasclass('orderlines')]" position="replace">
+             <ul class="orderlines">
+                            <t t-foreach="orderlines" t-as="orderline" t-key="orderline.id">
+                                <t t-if="orderline.product.is_combo"></t>
+                                <t t-else="">
+                                    <OrderlineDetails line="orderline"
+                                                      isSelected="orderline.id == props.selectedOrderlineId"/>
+                                </t>
+                            </t>
+                        </ul>
+		</xpath>
+        <xpath expr="//div[hasclass('subentry')]" position="before">
+           <div t-if="total_discount" class="subentry">
+                                        Total Discount:
+                                        <span class="value">
+                                            <t t-esc="total_discount"/>
+                                        </span>
+                                    </div>
+		</xpath>
+        </t>
+
+
+
+
+</templates>

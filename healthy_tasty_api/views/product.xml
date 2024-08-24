@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="api_product_template_only_form_view" model="ir.ui.view">
+            <field name="name">view.product.template.inherit.new_fields</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='categ_id']" position="after">
+                    <field name="is_feature"/>
+                    <field name="is_popular"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="api_product_normal_form_view" model="ir.ui.view">
+            <field name="name">view.product.product.inherit.new_fields</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='categ_id']" position="after">
+                    <field name="is_feature"/>
+                    <field name="is_popular"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="api_product_category_normal_form_view" model="ir.ui.view">
+            <field name="name">view.product.category.inherit.new_fields</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="is_website"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

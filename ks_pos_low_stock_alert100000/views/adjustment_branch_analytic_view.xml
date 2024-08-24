@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Law Matter Form view -->
+    <record id="adjustment_branch_analytic_form_view" model="ir.ui.view">
+        <field name="name">adjustment.branch.analytic.form</field>
+        <field name="model">adjustment.branch.analytic</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="id" />
+                            <field name="journal_id"/>
+                        </group>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Law Matter Tree view -->
+    <record id="adjustment_branch_analytic_tree_view" model="ir.ui.view">
+        <field name="name">adjustment.branch.analytic.tree</field>
+        <field name="model">adjustment.branch.analytic</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="id" />
+                <field name="journal_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="adjustment_branch_analytic_action" model="ir.actions.act_window">
+        <field name="name">Set Adjustment Branch Analytic</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">adjustment.branch.analytic</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="adjustment_branch_analytic_menu" action="adjustment_branch_analytic_action"
+              parent="point_of_sale.menu_point_of_sale" name="Set Adjustment Branch Analytic"
+              groups="ks_pos_low_stock_alert.group_pos_order_picking"/>
+</odoo>

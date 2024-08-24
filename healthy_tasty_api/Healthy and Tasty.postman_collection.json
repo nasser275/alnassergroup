@@ -1,0 +1,931 @@
+{
+	"info": {
+		"_postman_id": "e5da0484-85cc-40f1-8247-f3598fe9bc9d",
+		"name": "Healthy and Tasty",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10368422"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "list all categories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n   \"limit\":100,\n   \"offset\":4,\n   \"order_by\":\"name asc\",\n   \"categ_ids\":[1]\n      \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+
+						"url": {
+							"raw": "{{url}}/api/v1/categ/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categ",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n   \"categ_id\":2\n      \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8015/api/v1/categ",
+							"host": [
+								"localhost"
+							],
+							"port": "8015",
+							"path": [
+								"api",
+								"v1",
+								"categ"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "list all products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"healthy_tasty_token\": \"100\",\n    \"limit\": 5,\n    \"offset\": 4,\n    \"order_by\": \"name asc\"\n  \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/product/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seach products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n    \"word\":\"Cabinet with Doors\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8015/api/v1/product/search",
+							"host": [
+								"localhost"
+							],
+							"port": "8015",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list top sale products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n    \"no_of_products\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8015/api/v1/product/top",
+							"host": [
+								"localhost"
+							],
+							"port": "8015",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"top"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list all products (feature and  popular)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n    \"limit\": 5,\n    \"offset\": 4,\n    \"is_feature\":true,\n    \"is_popular\":true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8015/api/v1/product/list",
+							"host": [
+								"localhost"
+							],
+							"port": "8015",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list all products for one caegory",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n    \"limit\": 5,\n    \"offset\": 4,\n    \"categ_id\":7\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8015/api/v1/categ/product/list",
+							"host": [
+								"localhost"
+							],
+							"port": "8015",
+							"path": [
+								"api",
+								"v1",
+								"categ",
+								"product",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list all products for one caegory  (feature and  popular)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n    \"limit\": 5,\n    \"offset\": 4,\n    \"categ_id\": 7,\n    \"is_feature\": true,\n    \"is_popular\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8015/api/v1/categ/product/list",
+							"host": [
+								"localhost"
+							],
+							"port": "8015",
+							"path": [
+								"api",
+								"v1",
+								"categ",
+								"product",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n   \"product_id\":49\n      \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8015/api/v1/product",
+							"host": [
+								"localhost"
+							],
+							"port": "8015",
+							"path": [
+								"api",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "promotion",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\"\n      \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/promotion",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"promotion"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "branch",
+			"item": [
+				{
+					"name": "list all branchs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/branch/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"branch",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single branch",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n   \"branch_id\":1\n      \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/branch",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"branch"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "others",
+			"item": [
+				{
+					"name": "get socail media",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n    \"limit\": 5,\n    \"offset\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/social",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"social"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get sliders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n    \"limit\": 5,\n    \"offset\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/sliders",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sliders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "common_question",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n    \"limit\": 5,\n    \"offset\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/common_question",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common_question"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "testimonials",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n    \"limit\": 5,\n    \"offset\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/testimonials",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"testimonials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get others page",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n    \"limit\": 5,\n    \"offset\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/others",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"others"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contact_us",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n    \"name\": \"yasser\",\n    \"email\": \"yasrmr@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/contact_us",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contact_us"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "signup user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"healthy_tasty_token\":\"100\",\n    \"user_name\": \"test1\",\n    \"user_email\": \"test3@test.com\",\n    \"user_password\": \"1\",\n    \"user_phone\": \"01148947262\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/sign_up",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sign_up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit user data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"healthy_tasty_token\": \"100\",\n    \"user_id\": 16,\n    \"user_name\": \"demo54\",\n    \"user_email\": \"demo\",\n    \"user_phone\": \"0114894726w2\",\n    \"user_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDk4OTEwMzMsImlhdCI6MTY0NzI5OTAzMywic3ViIjoxNiwibGduIjoidGVzdDNAdGVzdC5jb20ifQ.e1hBjv4d9ukdu9EbACyiHJgFfGvJ7IFTSVNYRrku0zM\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/save_user_info",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"save_user_info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"healthy_tasty_token\": \"100\",\n    \"user_email\": \"test3@test.com\",\n    \"user_password\": \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"healthy_tasty_token\": \"100\",\n    \"user_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDkyODc0MTUsImlhdCI6MTY0NjY5NTQxNSwic3ViIjoyLCJsZ24iOiJhZG1pbiJ9.z0GostB8PECgbYAuFt44q8Pu9msNZoLrWfAM6AioIBo\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"healthy_tasty_token\": \"100\",\n    \"user_id\": \"16\",\n    \"user_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDk4OTEwMzMsImlhdCI6MTY0NzI5OTAzMywic3ViIjoxNiwibGduIjoidGVzdDNAdGVzdC5jb20ifQ.e1hBjv4d9ukdu9EbACyiHJgFfGvJ7IFTSVNYRrku0zM\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/get_user_info",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"get_user_info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"healthy_tasty_token\": \"100\",\n    \"user_id\": 16,\n    \"user_password\": \"2\",\n   \"user_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDk4OTEwMzMsImlhdCI6MTY0NzI5OTAzMywic3ViIjoxNiwibGduIjoidGVzdDNAdGVzdC5jb20ifQ.e1hBjv4d9ukdu9EbACyiHJgFfGvJ7IFTSVNYRrku0zM\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/reset_password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reset_password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "create order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"healthy_tasty_token\":\"100\",\n    \"customer_id\":1,\n    \"customer_name\":\"yasser\",\n    \"phone\":\"01148947262\",\n    \"company_id\":1,\n    \"order_date\":\"2022-03-15 10:20:00\",\n    \"external_app_id\":2,\n    \"lines\":[\n        {\n            \"product_id\":1,\n            \"qty\":1,\n            \"price\":10\n        }\n    ]\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/create_odoo_app_order",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"create_odoo_app_order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"healthy_tasty_token\":\"100\",\n    \"odoo_id\":7,\n    \"customer_id\":1,\n    \"customer_name\":\"yasser\",\n    \"phone\":\"01148947262\",\n    \"company_id\":1,\n    \"order_date\":\"2022-03-15 10:20:00\",\n    \"due_date\":\"2022-03-15 10:20:00\",\n    \"external_app_id\":1,\n    \"lines\":[\n        {\n            \"product_id\":2,\n            \"qty\":1,\n            \"price\":102\n        }\n    ]\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/update_odoo_app_order",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"update_odoo_app_order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancel order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"healthy_tasty_token\":\"100\",\n    \"odoo_id\":6,\n    \"cancel_reason\":\"High Shipping\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/cancel_odoo_app_order",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cancel_odoo_app_order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"healthy_tasty_token\": \"100\",\n    \"limit\": 5,\n    \"offset\": 4,\n    \"order_by\": \"name asc\",\n    \"partner_id\":1,\n    \"from_date\":\"2022-03-15\"\n  \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/orders/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check_coupon",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"healthy_tasty_token\":\"100\",\n    \"total_order\":5,\n    \"coupon\":\"2DILP504JY\",\n    \"orderlines\":[\n        {\n            \"product\":1,\n            \"price\":50\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/check_coupon",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"check_coupon"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,14 @@
+<odoo>
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_partner_form_customer_id" model="ir.ui.view">
+        <field name="name">res.partner.form.customer_id</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='function']" position="before">
+                <field name="customer_id" invisible="1"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

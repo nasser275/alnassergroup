@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="AttachmentsWidget" owl="1">
+        <div id="tab-5" class="tab-content">
+            <div class="choices_content">
+                <div>
+                    <input type="file" id="upload_file" name="upload_file[]" multiple=""/>
+                </div>
+                <div class="flex-container">
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

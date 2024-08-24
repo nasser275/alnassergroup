@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_alfa_replanishment,access_alfa_replanishment,model_alfa_replanishment,base.group_user,1,1,1,1
+access_alfa_replenishment_line,access_alfa_replenishment_line,model_alfa_replenishment_line,base.group_user,1,1,1,1
+access_return_replanishment,access_return_replanishment,model_return_replanishment,base.group_user,1,1,1,1
+access_return_replenishment_line,access_return_replenishment_line,model_return_replenishment_line,base.group_user,1,1,1,1
+access_report_transfer,report.transfer,model_report_transfer,base.group_user,1,1,1,1
+access_report_return,report.return,model_report_return,base.group_user,1,1,1,1
+
+

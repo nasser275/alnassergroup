@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="healthy_balances_form_wiz">
+            <field name="name">تقرير بأرصدة خزائن الفروع</field>
+            <field name="model">healthy.balances.wiz</field>
+            <field name="arch" type="xml">
+                <form string="create Part Payment">
+                    <group>
+                        <group>
+                            <field name="branch_id"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="print_excel" string="Print" type="object" default_focus="1" class="oe_highlight"/>
+                        <button string="Close" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_healthy_balances" model="ir.actions.act_window">
+            <field name="name">تقرير بأرصدة خزائن الفروع</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">healthy.balances.wiz</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="healthy_balances_form_wiz"/>
+            <field name="target">new</field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="menu_healthy_balances_action" name="تقرير بأرصدة خزائن الفروع" parent="account.menu_finance_reports"
+                  action="action_healthy_balances" sequence="501"/>
+
+
+    </data>
+</odoo>

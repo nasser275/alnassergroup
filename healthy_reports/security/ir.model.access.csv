@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_healthy_balances_wiz,healthy_balances_wiz,model_healthy_balances_wiz,,1,1,1,1
+access_healthy_inventory_wiz,healthy_inventory_wiz,model_healthy_inventory_wiz,,1,1,1,1
+access_healthy_sales_wiz,healthy_sales_wiz,model_healthy_sales_wiz,,1,1,1,1
+access_healthy_sales_details_wiz,healthy_sales_details_wiz,model_healthy_sales_details_wiz,,1,1,1,1
+access_healthy_pricelist_wiz,healthy_pricelist_wiz,model_healthy_pricelist_wiz,,1,1,1,1
+access_healthy_start_balances_wiz,healthy_start_balances_wiz,model_healthy_start_balances_wiz,,1,1,1,1

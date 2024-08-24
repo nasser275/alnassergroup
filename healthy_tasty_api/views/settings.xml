@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form_api" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.api</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="90"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="API" string="ApI" data-key="api"
+                         groups="healthy_tasty_api.group_api_settings">
+                        <h2>API Token</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-12 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">
+                                        <label for="api_token"/>
+                                    </span>
+                                    <div class="text-muted content-group mt16">
+                                        <field name="api_token" required="1"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Category Fields</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-12 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">
+                                        <label for="category_fields"/>
+                                    </span>
+                                    <div class="text-muted content-group mt16">
+                                        <field name="category_fields" style="word-break:break-all" placeholder="[]"
+                                               required="1"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Product Fields</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-12 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">
+                                        <label for="product_fields"/>
+                                    </span>
+                                    <div class="text-muted content-group mt16">
+                                        <field name="product_fields" style="word-break:break-all" placeholder="[]"
+                                               required="1"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-12 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">
+                                        <label for="product_search_fields"/>
+                                    </span>
+                                    <div class="text-muted content-group mt16">
+                                        <field name="product_search_fields" style="word-break:break-all"
+                                               placeholder="[]" required="1"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Branch Fields</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-12 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">
+                                        <label for="branch_fields"/>
+                                    </span>
+                                    <div class="text-muted content-group mt16">
+                                        <field name="branch_fields" style="word-break:break-all" placeholder="[]"
+                                               required="1"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Order Fields</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-12 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">
+                                        <label for="order_fields"/>
+                                    </span>
+                                    <div class="text-muted content-group mt16">
+                                        <field name="order_fields" style="word-break:break-all" placeholder="[]"
+                                               required="1"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-12 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">
+                                        <label for="order_line_fields"/>
+                                    </span>
+                                    <div class="text-muted content-group mt16">
+                                        <field name="order_line_fields" style="word-break:break-all" placeholder="[]"
+                                               required="1"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

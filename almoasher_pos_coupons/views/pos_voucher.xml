@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="pos_voucher_form" model="ir.ui.view">
+            <field name="name">POS Voucher</field>
+            <field name="model">pos.voucher</field>
+            <field name="arch" type="xml">
+               <form>
+                    <header>
+                        <button string="Generate Coupons" name="generate_coupons" states="new" type="object" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="new,generated"/>
+                    </header>
+                   <sheet>
+                       <group>
+                            <field name="name" attrs="{'readonly':[('state', 'not in', ['new'])]}"/>
+                       </group>
+                       <group>
+                           <group>
+                               <field name="remove_promotion" attrs="{'readonly':[('state', 'not in', ['new'])]}"/>
+                               <field name="disable_combo" attrs="{'readonly':[('state', 'not in', ['new'])]}"/>
+                               <field name="voucher_type" widget="radio" attrs="{'readonly':[('state', 'not in', ['new'])]}"/>
+                               <field name="except_check"   widget="radio" attrs="{'readonly':[('state', 'not in', ['new'])],'invisible':[('voucher_type','!=','all')]
+                               }"
+
+                               />
+                               <field name="except_product_ids" widget="many2many_tags" attrs="{'invisible': [('except_check', '!=', 'product')],
+                                                                'readonly':[('state', 'not in', ['new'])],'required':[('except_check', '=', 'product'),('voucher_type', '=', 'all')]}"/>
+                                <field name="except_category_ids" widget="many2many_tags" attrs="{'invisible': [('except_check', '!=', 'category')],
+                                                                'readonly':[('state', 'not in', ['new'])],'required':[('except_check', '=', 'category'),('voucher_type', '=', 'all')]}"/>
+
+
+                               <field name="product_id" attrs="{'invisible': [('voucher_type', '!=', 'product')],
+                                                                'readonly':[('state', 'not in', ['new'])],'required':[('voucher_type', '=', 'product')]}"/>
+                                <field name="product_ids" widget="many2many_tags" attrs="{'invisible': [('voucher_type', '!=', 'multi')],
+                                                                'readonly':[('state', 'not in', ['new'])],'required':[('voucher_type', '=', 'multi')]}"/>
+                               <field name="discount_type" widget="radio" attrs="{'readonly':[('state', 'not in', ['new'])]}"/>
+                               <field name="discount_rule" widget="radio" attrs="{'readonly':[('state', 'not in', ['new'])]}"/>
+                               <field name="discount_value" attrs="{'readonly':[('state', 'not in', ['new'])]}"/>
+                               <field name="coupons_counts" attrs="{'readonly':[('state', 'not in', ['new'])]}"/>
+                               <field name="start_date" attrs="{'readonly':[('state', 'not in', ['new'])]}"/>
+                           </group>
+                           <group>
+                               <field name="partner_id" attrs="{'readonly':[('state', 'not in', ['new'])]}"/>
+                                  <field name="partner_limit" attrs="{'readonly':[('state', 'not in', ['new'])],'invisible': [('partner_id', '=',False)]}"/>
+                                <field name="coupon_usage" widget="radio" attrs="{'readonly':[('state', 'not in', ['new'])]}"/>
+                                <field name="coupon_usage_limit" string="Coupon Limit Use" attrs="{'invisible': [('coupon_usage', '!=', 'limited')],
+                                                                'readonly':[('state', 'not in', ['new'])],'required':[('coupon_usage', '=', 'limited')]}"/>
+                                <field name="min_order_value" attrs="{'readonly':[('state', 'not in', ['new'])]}"/>
+                                <field name="calc_by" widget="radio" attrs="{'readonly':[('state', 'not in', ['new'])]}"/>
+                                <field name="end_date" attrs="{'readonly':[('state', 'not in', ['new'])]}"/>
+                           </group>
+                       </group>
+                       <notebook>
+                           <page string="Coupons" name="coupon_ids">
+                                <field name="coupon_ids" readonly="1">
+                                    <tree editable="buttom">
+                                        <field name="name" />
+                                        <field name="discount_value" />
+                                        <field name="start_date" />
+                                        <field name="end_date" />
+                                    </tree>
+                                </field>
+                           </page>
+                       </notebook>
+                   </sheet>
+               </form>
+            </field>
+        </record>
+
+        <record id="pos_voucher_tree" model="ir.ui.view">
+            <field name="name">POS Voucher</field>
+            <field name="model">pos.voucher</field>
+            <field name="arch" type="xml">
+               <tree>
+                   <field name="name" />
+                   <field name="voucher_type" />
+                   <field name="discount_type" />
+                   <field name="calc_by" />
+                   <field name="coupon_usage" />
+                   <field name="discount_value" />
+                   <field name="start_date" />
+                   <field name="end_date" />
+               </tree>
+            </field>
+        </record>
+
+        
+        <record id="action_pos_voucher" model="ir.actions.act_window">
+            <field name="name">POS Vouchers</field>
+            <field name="res_model">pos.voucher</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="POS Coupons" id="pos_coupon_main" sequence="10"
+          groups="almoasher_pos_coupons.group_coupons_manager"
+        />
+        <menuitem name="POS Voucher" id="pos_voucher" action="action_pos_voucher" parent="pos_coupon_main"/>
+    </data>
+</odoo>

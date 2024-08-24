@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record id="control_loyalty" model="res.groups">
+            <field name="name">Control Loyalty</field>
+        </record>
+         <record id="phi_pos_loyalty_exclude_customer.view_partner_form" model="ir.ui.view">
+            <field name="name">"phi_pos_loyalty_exclude_customer.view_partner_form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority" eval="7"/>
+            <field name="arch" type="xml">
+              <xpath expr="//field[@name='property_payment_term_id']" position="after">
+                <field name="is_loyalty_exclude" groups="phi_pos_loyalty_exclude_customer.control_loyalty"/>
+              </xpath>
+                <xpath expr="//field[@name='loyalty_points']" position="attributes">
+                    <attribute name="groups">phi_pos_loyalty_exclude_customer.control_loyalty</attribute>
+                </xpath>
+            </field>
+       </record>
+
+         <record id="phi_pos_loyalty_exclude_customer.view_partner_filter" model="ir.ui.view">
+            <field name="name">"phi_pos_loyalty_exclude_customer.view_partner_filter</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+              <xpath expr="//filter[@name='supplier']" position="after">
+                <filter domain="[['is_loyalty_exclude','=',True]]" name="phi_pos_loyalty_exclude_customer_partner_is_exclude" string="Excluded Loyalty"/>
+              </xpath>
+            </field>
+       </record>
+        <!-- Inherit Form View to Modify it -->
+        <record id="branch_res_branch_view_form" model="ir.ui.view">
+            <field name="name">branch.res.branch.view.form</field>
+            <field name="model">res.branch</field>
+            <field name="inherit_id" ref="branch.branch_res_branch_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='telephone']" position="after">
+                    <field name="active_auto_set_point_for_customer" groups="phi_pos_loyalty_exclude_customer.control_loyalty"/>
+                    <field name="loyalty_points" groups="phi_pos_loyalty_exclude_customer.control_loyalty" attrs="{'invisible':[('active_auto_set_point_for_customer','=',False)]}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

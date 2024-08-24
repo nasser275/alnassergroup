@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_delivery_replanishment_document_slip">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-if="not o" t-set="o" t-value="doc"/>
+                <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+                     t-att-data-oe-lang="o and o.env.context.get('lang')">
+                    <t t-raw="0"/>
+                </div>
+                <!--                <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)" />-->
+                <div class="page">
+                    <style>
+                        .o_boxed_footer, .o_boxed_header, .o_report_layout_boxed {
+                        font-family: "Noto", "Lucida Grande", Helvetica, Verdana, Arial, sans-serif;
+                        color: rgb(73, 80, 87);
+                        font-size: 1.5rem;
+                        }
+                        body {
+                        font-family: "Noto", "Lucida Grande", Helvetica, Verdana, Arial, sans-serif;
+                        font-size: 1.5rem;
+                        line-height: 1.5;
+                        color: #212529;
+                        text-align: left;
+                        }
+                        thead { display: table-header-group; }
+                        tfoot { display: table-row-group; }
+                        tr {page-break-inside: avoid;}
+                    </style>
+                    <style>
+                        table {
+                        border-collapse: collapse;
+                        }
+                        tr {
+                        border: 5px double black;
+                        border-width: 1px 0;
+                        }
+                    </style>
+                    <h3 class="text-center">أذن صرف تحويل</h3>
+                    <table class="table table-borderless table-condensed table-sm"
+                           style="font-size: 1.5rem !important;font-family: monospace !important;">
+                        <thead>
+                            <tr>
+                                <th t-if="o.sequence_num" class="text-right">
+                                    <strong>اوردر</strong>
+                                </th>
+                                <th name="td_sched_date_h" class="text-right" style="padding-right: 15px;">
+                                    <strong>تاريخ</strong>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td t-if="o.sequence_num" class="text-right">
+                                    <span t-field="o.sequence_num"/>
+                                </td>
+                                <td name="td_sched_date" class="text-right" style="padding-right: 15px;">
+                                    <span t-field="o.create_date"/>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-borderless table-condensed table-sm"
+                           style="font-size: 1.5rem !important;font-family: monospace !important;">
+                        <thead>
+                            <tr>
+                                <th t-if="o.warehouse_to" class="text-right">
+                                    <strong>الفرع المستلم</strong>
+                                </th>
+                                <th t-if="o.warehouse_from" class="text-right">
+                                    <strong>من فرع</strong>
+                                </th>
+                                <!--                                <th t-if="o.partner_id" class="text-right">-->
+                                <!--                                    <strong>اسم المستلم</strong>-->
+                                <!--                                </th>-->
+                                <!--                                <th t-if="o.serial_number" class="text-right" style="padding-right: 15px;">-->
+                                <!--                                    <strong>رقم السيريال</strong>-->
+                                <!--                                </th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td t-if="o.warehouse_to" class="text-right">
+                                    <span t-field="o.warehouse_to.name"/>
+                                </td>
+                                <td t-if="o.warehouse_from" class="text-right">
+                                    <span t-field="o.warehouse_from.name"/>
+                                </td>
+                                <!--                                <td t-if="o.partner_id" class="text-right">-->
+                                <!--                                    <span t-field="o.partner_id"/>-->
+                                <!--                                </td>-->
+                                <!--                                <td t-if="o.serial_number" class="text-right" style="padding-right: 15px;">-->
+                                <!--                                    <span t-field="o.serial_number"/>-->
+                                <!--                                </td>-->
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table  table-sm mt48" t-if="o.state!='confirm'"
+                           style="font-size: 1.5rem !important;font-family: monospace !important;">
+                        <!--                        <thead>-->
+                        <tr>
+                            <th>
+                                <strong>الكميه</strong>
+                            </th>
+                            <th class="text-right" style="padding-right: 4px;">
+                                <strong>الباركود</strong>
+                            </th>
+                            <th class="text-right" style="padding-right: 7px;">
+                                <strong>اسم المنتج</strong>
+                            </th>
+                            <!--                            <th class="text-right" style="padding-right: 15px;">-->
+                            <!--                                <strong>باركود المنتج</strong>-->
+                            <!--                            </th>-->
+                        </tr>
+                        <!--                        </thead>-->
+                        <tbody>
+                            <t t-set="lines_count" t-value="0"/>
+                            <t t-set="lines_qty" t-value="0"/>
+                            <tr t-foreach="o.provided_products" t-as="move">
+                                <t t-set="lines_count" t-value="lines_count+1"/>
+                                <t t-set="lines_qty" t-value="lines_qty+move.approved_qty"/>
+                                <td>
+                                    <span t-esc="int(move.approved_qty)"/>
+                                    <!--                                    <span t-field="move.product_uom"/>-->
+                                </td>
+                                <td class="text-right" style="padding-right: 4px;">
+                                    <span t-field="move.product.barcode"/>
+                                </td>
+                                <td class="text-right" style="padding-right: 7px;">
+                                    <span t-field="move.product.name"/>
+
+                                </td>
+                                <!--                                <td class="text-right" style="padding-right: 15px;">-->
+                                <!--                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('EAN13', move.product.barcode, 150, 150)"/>-->
+                                <!--                                </td>-->
+                            </tr>
+                            <span>مجموع المنتجات :</span>
+                            <span style="padding-right: 10px;" t-esc="int(lines_count)"/>
+                            <br/>
+                            <span style="padding-right: 190px;">مجموع :</span>
+                            <span style="padding-right: 10px;" t-esc="int(lines_qty)"/>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm mt48"
+                           t-if="o.state=='confirm'"
+                           style="font-size: 1.5rem !important;font-family: monospace !important;">
+                        <!--                        <thead>-->
+                        <tr>
+                            <th>
+                                <strong>الكميه</strong>
+                            </th>
+
+                            <th class="text-right" style="padding-right: 4px;">
+                                <strong>الباركود</strong>
+                            </th>
+                            <th class="text-right" style="padding-right: 7px;">
+                                <strong>اسم المنتج</strong>
+                            </th>
+
+                        </tr>
+                        <!--                        </thead>-->
+                        <tbody>
+                            <t t-set="lines_count" t-value="0"/>
+                            <t t-set="lines_qty" t-value="0"/>
+                            <tr t-foreach="o.provided_products" t-as="move_line">
+                                <t t-set="lines_count" t-value="lines_count+1"/>
+                                <t t-set="lines_qty" t-value="lines_qty+move_line.approved_qty"/>
+                                <td>
+                                    <span t-esc="int(move_line.approved_qty)"/>
+                                    <!--                                    <span t-field="move_line.product_uom_id"/>-->
+                                </td>
+                                <td class="text-right" style="padding-right: 4px;">
+                                    <span t-field="move_line.product.barcode"/>
+                                </td>
+
+                                <td class="text-right" style="padding-right: 7px;">
+                                    <span t-field="move_line.product.name"/>
+                                </td>
+                                <!--                                <td class="text-right" style="padding-right: 15px;">-->
+                                <!--                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('EAN13', move_line.product.barcode, 150, 150)"/>-->
+                                <!--                                </td>-->
+                            </tr>
+                            <span>مجموع المنتجات :</span>
+                            <span style="padding-right: 10px;" t-esc="int(lines_count)"/>
+                            <br/>
+                            <span style="padding-right: 190px;">مجموع :</span>
+                            <span style="padding-right: 10px;" t-esc="int(lines_qty)"/>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+    <template id="report_delivery_replanishment_document_receipt">
+        <t t-call="web.html_container">
+            <t t-call="alfa.healthy_internal_layout_trans">
+                <div class="page">
+                    <style>
+                        .o_boxed_footer, .o_boxed_header, .o_report_layout_boxed {
+                        font-family: "Noto", "Lucida Grande", Helvetica, Verdana, Arial, sans-serif;
+                        color: rgb(73, 80, 87);
+                        font-size: 1.5rem;
+                        }
+                        body {
+                        font-family: "Noto", "Lucida Grande", Helvetica, Verdana, Arial, sans-serif;
+                        font-size: 1.5rem;
+                        line-height: 1.5;
+                        color: #212529;
+                        text-align: left;
+                        }
+                        thead { display: table-header-group; }
+                        tfoot { display: table-row-group; }
+                        tr {page-break-inside: avoid;}
+                    </style>
+                    <style>
+                        table {
+                        border-collapse: collapse;
+                        }
+                        tr {
+                        border: 5px double black;
+                        border-width: 1px 0;
+                        }
+                    </style>
+                    <h3 class="text-center">شركة هيلثي اند تيستي</h3>
+                    <br/>
+                    <h3 class="text-center">أذن صرف تحويل</h3>
+                    <table class="table table-borderless table-condensed table-sm"
+                           style="font-size: 1.5rem !important;font-family: monospace !important;">
+                        <thead>
+                            <tr>
+                                <th t-if="o.sequence_num" class="text-right">
+                                    <strong>اوردر</strong>
+                                </th>
+                                <th name="td_sched_date_h" class="text-right" style="padding-right: 15px;">
+                                    <strong>تاريخ</strong>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td t-if="o.sequence_num" class="text-right">
+                                    <span t-field="o.sequence_num"/>
+                                </td>
+                                <td name="td_sched_date" class="text-right" style="padding-right: 15px;">
+                                    <span t-field="o.create_date"/>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered"
+                           style="font-size: 1.5rem !important;font-family: monospace !important;">
+                        <thead>
+                            <tr>
+                                <th t-if="o.warehouse_to" class="text-right">
+                                    <strong>الفرع المستلم</strong>
+                                </th>
+                                <th t-if="o.warehouse_from" class="text-right">
+                                    <strong>من فرع</strong>
+                                </th>
+                                <!--                                <th t-if="o.partner_id" class="text-right">-->
+                                <!--                                    <strong>اسم المستلم</strong>-->
+                                <!--                                </th>-->
+                                <!--                                <th t-if="o.serial_number" class="text-right" style="padding-right: 15px;">-->
+                                <!--                                    <strong>رقم السيريال</strong>-->
+                                <!--                                </th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td t-if="o.warehouse_to" class="text-right">
+                                    <span t-field="o.warehouse_to.name"/>
+                                </td>
+                                <td t-if="o.warehouse_from" class="text-right">
+                                    <span t-field="o.warehouse_from.name"/>
+                                </td>
+                                <!--                                <td t-if="o.partner_id" class="text-right">-->
+                                <!--                                    <span t-field="o.partner_id"/>-->
+                                <!--                                </td>-->
+                                <!--                                <td t-if="o.serial_number" class="text-right" style="padding-right: 15px;">-->
+                                <!--                                    <span t-field="o.serial_number"/>-->
+                                <!--                                </td>-->
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table  table-sm mt48" t-if="o.state!='confirm'"
+                           style="font-size: 1.5rem !important;font-family: monospace !important;">
+                        <!--                        <thead>-->
+                        <tr>
+                            <th>
+                                <strong>الكميه</strong>
+                            </th>
+                            <th class="text-right" style="padding-right: 4px;">
+                                <strong>الباركود</strong>
+                            </th>
+                            <th class="text-right" style="padding-right: 7px;">
+                                <strong>اسم المنتج</strong>
+                            </th>
+
+                        </tr>
+                        <!--                        </thead>-->
+                        <tbody>
+                            <t t-set="lines_count" t-value="0"/>
+                            <t t-set="lines_qty" t-value="0"/>
+                            <tr t-foreach="o.provided_products" t-as="move">
+                                <t t-set="lines_count" t-value="lines_count+1"/>
+                                <t t-set="lines_qty" t-value="lines_qty+move.approved_qty"/>
+                                <td>
+                                    <span t-esc="int(move.approved_qty)"/>
+                                    <!--                                    <span t-field="move.product_uom"/>-->
+                                </td>
+                                <td class="text-right" style="padding-right: 4px;">
+                                    <span t-field="move.product.barcode"/>
+                                </td>
+                                <td class="text-right" style="padding-right: 7px;">
+                                    <span t-field="move.product.name"/>
+
+                                </td>
+
+                            </tr>
+                            <span>مجموع المنتجات :</span>
+                            <span style="padding-right: 10px;" t-esc="int(lines_count)"/>
+                            <br/>
+                            <span style="padding-right: 190px;">مجموع :</span>
+                            <span style="padding-right: 10px;" t-esc="int(lines_qty)"/>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered"
+                           t-if="o.state=='confirm'"
+                           style="font-size: 1.5rem !important;font-family: monospace !important;">
+                        <!--                        <thead>-->
+                        <tr>
+                            <th>
+                                <strong>الكميه</strong>
+                            </th>
+                            <th class="text-right" style="padding-right: 4px;">
+                                <strong>الباركود</strong>
+                            </th>
+
+                            <th class="text-right" style="padding-right: 7px;">
+                                <strong>اسم المنتج</strong>
+                            </th>
+
+                        </tr>
+                        <!--                        </thead>-->
+                        <tbody>
+                            <t t-set="lines_count" t-value="0"/>
+                            <t t-set="lines_qty" t-value="0"/>
+                            <tr t-foreach="o.provided_products" t-as="move_line">
+                                <t t-set="lines_count" t-value="lines_count+1"/>
+                                <t t-set="lines_qty" t-value="lines_qty+move_line.approved_qty"/>
+                                <td>
+                                    <span t-esc="int(move_line.approved_qty)"/>
+                                    <!--                                    <span t-field="move_line.product_uom_id"/>-->
+                                </td>
+                                <td class="text-right" style="padding-right: 4px;">
+                                    <span t-field="move_line.product.barcode"/>
+                                </td>
+
+                                <td class="text-right" style="padding-right: 7px;">
+                                    <span t-field="move_line.product.name"/>
+                                </td>
+
+                            </tr>
+                            <span>مجموع المنتجات :</span>
+                            <span style="padding-right: 10px;" t-esc="int(lines_count)"/>
+                            <br/>
+                            <span style="padding-right: 190px;">مجموع :</span>
+                            <span style="padding-right: 10px;" t-esc="int(lines_qty)"/>
+                        </tbody>
+                    </table>
+                    <div>
+
+                        <div class="text-left">
+                            <span>المستلم</span>
+                            <br/>
+                            <span>..........</span>
+                        </div>
+                        <div class="text-right" style="padding-left: 28px;">
+                            <span>مدير الفرع</span>
+                            <br/>
+                            <span>..........</span>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_deliveryslip">
+        <t t-foreach="docs" t-as="o">
+            <!--            <t t-call="healthy_features.report_delivery_document_receipt" t-lang="o.partner_id.lang"/>-->
+            <t t-call="alfa.report_delivery_replanishment_document_slip"/>
+        </t>
+    </template>
+    <template id="report_deliveryreciept">
+        <t t-foreach="docs" t-as="o">
+            <!--            <t t-call="healthy_features.report_delivery_document_receipt" t-lang="o.partner_id.lang"/>-->
+            <t t-call="alfa.report_delivery_replanishment_document_receipt"/>
+        </t>
+    </template>
+    <report
+            id="invoice_reprint_slip"
+            string="Warehouse Delivery Slip"
+            model="alfa.replanishment"
+            report_type="qweb-pdf"
+            file="alfa.report_deliveryslip"
+            name="alfa.report_deliveryslip"
+    />
+    <report
+            id="invoice_reprint_receipt"
+            string="Approved Warehouse Delivery Receipt"
+            model="alfa.replanishment"
+            report_type="qweb-pdf"
+            file="alfa.report_deliveryreciept"
+            name="alfa.report_deliveryreciept"
+            paperformat="alfa.paperformat_replanishmet_reprint_receipt"
+    />
+</odoo>

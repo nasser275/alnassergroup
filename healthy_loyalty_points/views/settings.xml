@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form_api" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.api</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="90"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Points" string="Points" data-key="points">
+                        <h2>Points Rate</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-12 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">
+                                        <label for="points_rate"/>
+                                    </span>
+                                    <div class="text-muted content-group mt16">
+                                        <field name="points_rate" required="1"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Amount Rate</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-12 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">
+                                        <label for="amount_rate"/>
+                                    </span>
+                                    <div class="text-muted content-group mt16">
+                                        <field name="amount_rate" required="1"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Loyal Points Starting Date</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-12 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">
+                                        <label for="loyal_points_start"/>
+                                    </span>
+                                    <div class="text-muted content-group mt16">
+                                        <field name="loyal_points_start" required="1"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

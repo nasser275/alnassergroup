@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="SaleOrderMode" owl="1">
+         <div class="sale-mode-toggle" t-on-click="onClick" style="font-size:25px;margin-top:10px;color:white">
+             <t t-if="env.pos.get_order().get_sale_order_mode()">
+                 <div class="toggle-on">
+                    <i class="fa fa-toggle-on" aria-hidden="true"></i>
+                 </div>
+             </t>
+             <t t-if="!env.pos.get_order().get_sale_order_mode()">
+                 <div class="toggle-off">
+                    <i class="fa fa-toggle-off" aria-hidden="true"></i>
+                 </div>
+             </t>
+         </div>
+    </t>
+
+</templates>

@@ -1,0 +1,2 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_healthy_pos_password,healthy_pos_password,model_healthy_pos_password,,1,1,1,1

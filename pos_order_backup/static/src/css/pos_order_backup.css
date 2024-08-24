@@ -1,0 +1,67 @@
+/* Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) */
+/* See LICENSE file for full copyright and licensing details. */
+/* License URL : <https://store.webkul.com/license.html/> */
+
+.order-backup-icon{
+    color: #dcd0c1 !important;
+}
+.order-backup-btn{
+    display:none;
+}
+.pos-order-backup-popup{
+    width: 420px !important;
+    height: 296px !important;
+}
+.order-backup-block{
+    padding: 15px;
+}
+.backup-popup-button {
+    text-align: center;
+    width: 130px;
+    padding: 24px;
+    border: solid 2px rgba(60, 60, 60, 0.1);
+    cursor: pointer;
+    border-radius: 10px;
+}
+#backup-order:hover {
+    background: #6EC89B;
+    color: white !important;
+}
+#clear-cache:hover {
+    background: #c86e6e;
+    color: white !important;
+}
+.backup-popup-button:hover .order-backup-top-text{
+    color: white !important;
+}
+.backup-popup-button:hover .wk_coupon_bottom_text{
+    color: white !important;
+}
+.wk-button-float1 {
+    float: left;
+}
+.wk-button-float2 {
+    float: right;
+}
+.order-backup-top-text {
+    font-weight: 700;
+    font-size: 14px;
+    color: #929292;
+    text-align: center;
+}
+.wk_coupon_bottom_text {
+    font-weight: 700;
+    font-size: 13px;
+    color: #929292;
+    text-align: center;
+}
+.backup-popup-icon{
+    font-size: 60px;
+    margin-bottom: 5px;
+}
+.backup-popup-two, .backup-popup-three{
+    display: none;
+}
+.body-message{
+    margin: 15%;
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="AppOrderRow" owl="1">
+        <div class="order-row"
+             t-att-class="{ highlight: highlighted }"
+             t-on-click="trigger('click-app-order', props.order)">
+            <div class="col name">
+                <div t-if="env.isMobile">Order</div>
+                <div><t t-esc="name"/></div>
+            </div>
+            <div class="col branch">
+                <div t-if="env.isMobile">Branch</div>
+                <div><t t-esc="branch"/></div>
+            </div>
+            <div class="col date">
+                <div t-if="env.isMobile">Date</div>
+                <div><t t-esc="date"/></div>
+            </div>
+            <div class="col schedule_time">
+                <div t-if="env.isMobile">Schedule Time</div>
+                <div><t t-esc="schedule_time"/></div>
+            </div>
+            <div class="col customer">
+                <div t-if="env.isMobile">Customer</div>
+                <div><t t-esc="customer"/></div>
+            </div>
+            <div class="col order_source">
+                <div t-if="env.isMobile">Order Source</div>
+                <div><t t-esc="order_source"/></div>
+            </div>
+            <div class="col salesman">
+                <div t-if="env.isMobile">Salesman</div>
+                <div><t t-esc="salesman"/></div>
+            </div>
+            <div class="col delivery_cost">
+                <div t-if="env.isMobile">Delivery Cost</div>
+                <div><t t-esc="delivery_cost"/></div>
+            </div>
+            <div class="col discount_type">
+                <div t-if="env.isMobile">Discount Type</div>
+                <div><t t-esc="discount_type"/></div>
+            </div>
+            <div class="col discount_value">
+                <div t-if="env.isMobile">Discount Value</div>
+                <div><t t-esc="discount_value"/></div>
+            </div>
+            <div class="col end total">
+                <div t-if="env.isMobile">Total</div>
+                <div><t t-esc="total"/></div>
+            </div>
+            <div class="col end final_total">
+                <div t-if="env.isMobile">Final Total</div>
+                <div><t t-esc="final_total"/></div>
+            </div>
+            <div class="col state">
+                <div t-if="env.isMobile">State</div>
+                <div><t t-esc="state"/></div>
+            </div>
+            <div class="col customer_notes">
+                <div t-if="env.isMobile">Customer Notes</div>
+                <div><t t-esc="customer_notes"/></div>
+            </div>
+            <div class="col is_payment">
+                <div t-if="env.isMobile">Payment</div>
+                <div><t t-esc="is_payment"/></div>
+            </div>
+        </div>
+    </t>
+
+
+</templates>

@@ -1,0 +1,55 @@
+<odoo>
+
+    <record id="group_import_vib_customers" model="res.groups">
+        <field name="name">Import Vib Customers</field>
+    </record>
+
+
+    <record id="import_customers_form" model="ir.ui.view">
+        <field name="name">Import Vib customers</field>
+        <field name="model">import.customers</field>
+        <field name="arch" type="xml">
+            <form string="Import" class="oe_form_configuration">
+                <header>
+                    <button name="import_excel" string="Import Data" type="object"
+                            class="btn-primary" states="draft"/>
+                                        <field name="state" widget="statusbar" statusbar_visible="draft,imported"/>
+
+                </header>
+                <sheet string="Import">
+                    <group>
+                        <field name="is_vib" attrs="{'readonly':[('state','=','imported')]}"/>
+                    </group>
+                    <group>
+                        <field name="file" filename="file_name" filetype="file_type" force_save="1" attrs="{'readonly':[('state','=','imported')]}"/>
+                        <field name="file_name" invisible="1" attrs="{'readonly':[('state','=','imported')]}"/>
+                    </group>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="import_customers_action_view" model="ir.actions.act_window">
+        <field name="name">Import Vib Customers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">import.customers</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+            </p>
+        </field>
+    </record>
+    <menuitem id="import_export_menu_root" name="Import Vib Customers"
+    />
+    <menuitem id="import_customers_menu" name="Import Vib Customers" parent="import_export_menu_root"
+              action="import_customers_action_view"
+    groups="import_vib_customers.group_import_vib_customers"
+    />
+
+</odoo>

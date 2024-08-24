@@ -1,0 +1,102 @@
+<odoo>
+    <data>
+        <record id="paperformat_posreceipt" model="report.paperformat">
+
+            <field name="name">Point Of Sale Receipt</field>
+
+            <field name="default" eval="True"/>
+
+            <field name="format">custom</field>
+
+            <field name="page_height">150</field>
+
+            <field name="page_width">70</field>
+
+            <field name="orientation">Portrait</field>
+
+            <field name="margin_top">30</field>
+
+            <field name="margin_bottom">3</field>
+
+            <field name="margin_left">3</field>
+
+            <field name="margin_right">3</field>
+
+            <field name="header_line" eval="False"/>
+
+            <field name="header_spacing">30</field>
+
+            <field name="dpi">130</field>
+
+        </record>
+        <template id="pos_session_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-if="session_data">
+                            <table class="table table-bordered">
+
+                                <tr>
+                                    <th>
+                                        orders:
+                                        <span t-esc="session_data.get('orders_details').get('quantity')"/>
+                                    </th>
+                                    <th>
+                                        Total Orders:
+                                        <span t-esc="session_data.get('orders_details').get('amount')"/>
+                                    </th>
+                                    <th>
+                                        Payments:
+                                        <span t-esc="session_data.get('payments_amount')"/>
+                                    </th>
+                                    <th>
+                                        Customer Account:
+                                        <span t-esc="session_data.get('pay_later_amount')"/>
+                                    </th>
+                                </tr>
+                            </table>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr style="background-color:gray">
+                                        <th class="text-center">Payment Method</th>
+                                        <th class="text-center">Expected</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th class="text-center">
+                                            <span t-esc="session_data.get('default_cash_details').get('name')"/>
+                                        </th>
+                                        <th class="text-center">
+                                            <span t-esc="session_data.get('default_cash_details').get('amount')"/>
+                                        </th>
+                                    </tr>
+                                    <tr t-foreach="session_data.get('other_payment_methods')" t-as="pm">
+                                        <th class="text-center">
+                                            <span t-esc="pm.get('name')"/>
+                                        </th>
+                                        <th class="text-center">
+                                            <span t-esc="pm.get('amount')"/>
+                                        </th>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+
+                    </div>
+                </t>
+            </t>
+        </template>
+        <report
+                id="session_report_action"
+                string="Session Report"
+                model="pos.order"
+                report_type="qweb-pdf"
+                file="print_pos_session.pos_session_template"
+                name="print_pos_session.pos_session_template"
+                menu="False"
+                paperformat="print_pos_session.paperformat_posreceipt"
+        />
+    </data>
+</odoo>

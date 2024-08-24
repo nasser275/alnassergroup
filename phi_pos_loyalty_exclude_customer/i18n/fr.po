@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* phi_pos_loyalty_exclude_customer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-19 14:53+0000\n"
+"PO-Revision-Date: 2020-08-19 14:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: phi_pos_loyalty_exclude_customer
+#. openerp-web
+#: code:addons/phi_pos_loyalty_exclude_customer/static/src/xml/loyalty.xml:0
+#, python-format
+msgid "Consumed Points"
+msgstr "Points Consommés"
+
+#. module: phi_pos_loyalty_exclude_customer
+#: model:ir.model,name:phi_pos_loyalty_exclude_customer.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: phi_pos_loyalty_exclude_customer
+#: model_terms:ir.ui.view,arch_db:phi_pos_loyalty_exclude_customer.view_partner_filter
+msgid "Excluded Loyalty"
+msgstr "Exclu Fidélité"
+
+#. module: phi_pos_loyalty_exclude_customer
+#: model:ir.model.fields,field_description:phi_pos_loyalty_exclude_customer.field_res_partner__is_loyalty_exclude
+#: model:ir.model.fields,field_description:phi_pos_loyalty_exclude_customer.field_res_users__is_loyalty_exclude
+msgid "Excluded from loyalty programs"
+msgstr "Exclu des programmes de fidélité"
+
+#. module: phi_pos_loyalty_exclude_customer
+#. openerp-web
+#: code:addons/phi_pos_loyalty_exclude_customer/static/src/xml/loyalty.xml:0
+#, python-format
+msgid "Points Before Ticket"
+msgstr "Points Avant Ticket"
+
+#. module: phi_pos_loyalty_exclude_customer
+#. openerp-web
+#: code:addons/phi_pos_loyalty_exclude_customer/static/src/xml/loyalty.xml:0
+#, python-format
+msgid "Points Earned"
+msgstr "Points Gagnés"
+
+#. module: phi_pos_loyalty_exclude_customer
+#. openerp-web
+#: code:addons/phi_pos_loyalty_exclude_customer/static/src/xml/loyalty.xml:0
+#, python-format
+msgid "Total Points"
+msgstr "Points total"

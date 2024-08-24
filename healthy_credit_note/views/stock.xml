@@ -1,0 +1,142 @@
+<odoo>
+    <data>
+        <record id="view_picking_type_form_5005" model="ir.ui.view">
+            <field name="name">stock.view_picking_type_form</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sequence_code']" position="after">
+                    <field name="enable_required_attachment"/>
+                    <field name="disenable_add_lines"/>
+                    <field name="enable_notes"/>
+                    <field name="enable_create_credit_note"/>
+                    <field name="enable_filter_vendors"/>
+                    <field name="vendor_ids" attrs="{'invisible':[('enable_filter_vendors','=',False)]}" widget="many2many_tags"/>
+                    <field name="credit_note_type" attrs="{'invisible':[('enable_create_credit_note','=',False)]}"/>
+                    <field name="journal_id" attrs="{'invisible':[('enable_create_credit_note','=',False)]}"/>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="view_picking_form_5520" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <field name="enable_create_credit_note" invisible="1"/>
+                    <field name="enable_required_attachment" invisible="1"/>
+                    <field name="required_attachment_name" invisible="1"/>
+                    <field name="disenable_add_lines" invisible="1"/>
+                    <field name="enable_notes" invisible="1"/>
+<!--                    <button name="create_creditnote"-->
+<!--                            attrs="{'invisible': ['|',('state', 'not in', ('done')), ('enable_create_credit_note', '=', False)]}"-->
+<!--                            string="Create Credit Note" type="object" groups="healthy_credit_note.create_creditnnote"-->
+<!--                            class="o_btn_validate"/>-->
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="refund_type"
+                           attrs="{'readonly': [('state', 'not in', ('draft'))],'invisible':[('enable_create_credit_note','=',False)],'required':[('enable_create_credit_note','=',True)]}"/>
+                    <field name="credit_note_id" readonly="1" attrs="{'invisible':[('credit_note_id','=',False)]}"/>
+                    <field name="required_attachment" widget="binary" filename="required_attachment_name"  attrs="{'readonly': [('state', 'in', ('donw'))],'invisible':[('enable_required_attachment','=',False)],'required':[('enable_required_attachment','=',True)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='%(stock.act_stock_return_picking)d']" position="attributes">
+                    <attribute name="groups">healthy_credit_note.return_button_picking</attribute>
+                </xpath>
+                   <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="options">
+                        {
+                        'no_create': True,
+                        'no_create_edit': True,
+                        'no_open': True
+                        }
+                    </attribute>
+                </xpath>
+                <xpath expr="//field[@name='move_ids_without_package']" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|',('disenable_add_lines','=',True),'&amp;', ('state', '=', 'done'), ('is_locked', '=', True)]}</attribute>
+                </xpath>
+		<xpath expr="//field[@name='move_line_ids_without_package']" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|',('disenable_add_lines','=',True),'&amp;', ('state', '=', 'done'), ('is_locked', '=', True)]}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='note']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('enable_notes','=',False)],'required':[('enable_notes','=',True)]}</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="product_template_tree_view" model="ir.ui.view">
+            <field name="name">product.template.product.tree</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="multi_edit">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='qty_available']" position="attributes">
+                    <attribute name="groups">healthy_credit_note.access_to_onhand_group_product</attribute>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="product_product_tree_view" model="ir.ui.view">
+            <field name="name">product.product.tree</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='qty_available']" position="attributes">
+                    <attribute name="groups">healthy_credit_note.access_to_onhand_group_product</attribute>
+                </xpath>
+                    <xpath expr="//tree" position="attributes">
+                    <attribute name="multi_edit">0</attribute>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="product_template_only_form_view" model="ir.ui.view">
+            <field name="name">product.template.product.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+
+
+                <xpath expr="//button[@name='action_open_quants']" position="attributes">
+                    <attribute name="groups">healthy_credit_note.access_to_onhand_group_product</attribute>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+
+
+                <xpath expr="//button[@name='action_open_quants']" position="attributes">
+                    <attribute name="groups">healthy_credit_note.access_to_onhand_group_product</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+                <record model="ir.ui.view" id="stock.product_template_kanban_stock_view">
+            <field name="name">Product Template Kanban Stock</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_kanban_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="inside">
+                    <field name="type"/>
+                </xpath>
+                <xpath expr="//div[@name='product_lst_price']" position="after">
+                    <div groups="healthy_credit_note.access_to_onhand_group_product" t-if="record.type.raw_value == 'product'">On hand: <field name="qty_available"/> <field name="uom_id"/></div>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

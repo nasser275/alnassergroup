@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PaymentScreenInherit" t-inherit="point_of_sale.PaymentScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[@class='button back']" position="replace">
+            <div class="button back" t-on-click="payment_back">
+                <i class="fa fa-angle-double-left fa-fw"></i>
+                <span class="back_text">Back</span>
+            </div>
+        </xpath>
+        <xpath expr="//div[@class='button next']" position="replace">
+            <t t-if="env.pos.get_order().get_sale_order_mode()">
+                    <t t-if="env.pos.get_order().get_invoice_id()">
+                        <div class="button next" t-on-click="payInvoice" t-att-class="{ highlight: currentOrder.is_paid() }">
+                            <span class="next_text">Pay Invoice</span>
+                            <i class="fa fa-angle-double-right fa-fw"></i>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <div class="button next" t-on-click="validateSO" t-att-class="{ highlight: currentOrder.is_paid() }">
+                            <span class="next_text">Validate SO</span>
+                            <i class="fa fa-angle-double-right fa-fw"></i>
+                        </div>
+                    </t>
+            </t>
+            <t t-else="">
+                <div class="button next" t-att-class="{ highlight: currentOrder.is_paid() }"
+                      t-on-click="validateOrder(false)">
+                    <span class="next_text">Validate</span>
+                    <i class="fa fa-angle-double-right fa-fw"></i>
+                </div>
+            </t>
+        </xpath>
+    </t>
+
+</templates>

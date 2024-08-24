@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="CreateSaleOrderScreen" owl="1">
+        <div class="ticket-screen screen">
+            <div class="screen-content">
+                <div class="controls">
+                    <div class="buttons">
+                        <button class="highlight" t-on-click="_createSaleOrder">
+                            <t t-if="props.operation == 'direct_pay'">
+                                Create and Pay
+                            </t>
+                            <t t-else="">
+                                <t t-if="env.pos.user.sale_order_operations == 'draft'">
+                                    <t t-if="env.pos.get_order().get_is_quotation()">
+                                        Modify
+                                    </t>
+                                    <t t-else="">
+                                        Create
+                                    </t>
+                                </t>
+                                <t t-if="env.pos.user.sale_order_operations == 'confirm'">
+                                    Create SO
+                                </t>
+                                <t t-if="env.pos.user.sale_order_operations == 'paid'">
+                                    <t t-if="env.pos.get_order().get_is_quotation()">
+                                        Modify
+                                    </t>
+                                    <t t-else="">
+                                        Create
+                                    </t>
+                                </t>
+                            </t>
+                        </button>
+                        <button class="discard" t-on-click="_closeScreen">Close</button>
+                    </div>
+                </div>
+                <div class="popup-sale-order">
+                    <div class="date_box">
+                        <div style="float: left">
+                            <span>Order Date </span>
+                            <input type="date" t-model="state.orderDate"/>
+                        </div>
+                        <div style="float: left">
+                            <span>Requested Date </span>
+                            <input type="date" t-model="state.requestedDate"/>
+                        </div>
+                        <t t-if="env.pos.company.country.code == 'IN'">
+                            <div style="float: left">
+                                <span>GST Treatment</span>
+                                <select t-model="state.gstTreatment" class="gst_selection">
+                                    <option value="regular">Registered Business - Regular</option>
+                                    <option value="composition">Registered Business - Composition</option>
+                                    <option value="unregistered">Unregistered Business</option>
+                                    <option value="consumer">Consumer</option>
+                                    <option value="overseas">Overseas</option>
+                                    <option value="special_economic_zone">Special Economic Zone</option>
+                                    <option value="deemed_export">Deemed Export</option>
+                                </select>
+                            </div>
+                        </t>
+                    </div>
+                    <div id="tabs-container">
+                        <ul class="tabs-menu">
+                            <li t-att-class="{ current : state.activeTab === 'ShippingAddress'}" t-on-click="onClickTab('ShippingAddress')">
+                                <span>Shipping Address</span>
+                            </li>
+                            <li t-att-class="{ current : state.activeTab === 'InvoiceAddress'}" t-on-click="onClickTab('InvoiceAddress')">
+                                <span>Invoice Address</span>
+                            </li>
+                            <li t-att-class="{ current : state.activeTab === 'Note'}" t-on-click="onClickTab('Note')">
+                                <span>Note</span>
+                            </li>
+                            <li t-att-class="{ current : state.activeTab === 'Signature'}" t-on-click="onClickTab('Signature')">
+                                <span>Signature</span>
+                            </li>
+                        </ul>
+
+                        <div class="tab client-details">
+                            <t t-if="state.activeTab === 'ShippingAddress'">
+                                <div id="tab-1">
+                                    <div class="choices_content client-detail">
+                                        <span class="label" style="display: initial;margin-right:10px">Shipping Address</span>
+                                        <select t-model="state.selectedShippingContact" class="shipping_contact_selection" t-att-disabled="state.ShipToDifferentAdd">
+                                            <option t-foreach="state.shippingContact" t-as="value" t-att-value="value.id">
+                                                <t t-esc="value.name"/>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="client-detail">
+                                        <input type="checkbox" t-model="state.ShipToDifferentAdd" class="ship_diff_address" name="ship_diff_address" />
+                                        <span class="label" style="display: contents;">Ship to Different Address</span>
+                                    </div>
+                                    <div class="choices_content">
+                                        <t t-if="state.ShipToDifferentAdd">
+                                            <div class="client-details-box client-details">
+                                                <div class="client-details-left">
+                                                    <div class="client-detail">
+                                                        <span class="label">Name</span>
+                                                        <input t-model="state.S_client_name" type="text" class="client_name" placeholder="Name"/>
+                                                    </div>
+                                                    <div class="client-detail">
+                                                         <span class="label">Email</span>
+                                                        <input t-model="state.S_client_email" type="text" class="client_email" placeholder="Email"/>
+                                                    </div>
+                                                    <div class="client-detail">
+                                                        <span class="label">Country</span>
+                                                        <input  type="text" t-model="state.selectedShippingCountry" t-on-change="captureCountryChange"  class="client_country" list="searchCountryList" placeholder="Country"/>
+                                                        <datalist id="searchCountryList">
+                                                            <option t-foreach="env.pos.countries" t-as="value" t-att-value="value.name" t-att-id="value.id">
+                                                                <t t-esc="value.name"/>
+                                                            </option>
+                                                        </datalist>
+                                                    </div>
+                                                    <div class="client-detail">
+                                                         <span class="label">State</span>
+                                                        <input  type="text" t-model="state.selectedShippingState" id="shipping_state" class="client_state" placeholder="States" list="searchStatesList"/>
+                                                        <datalist id="searchStatesList">
+                                                            <option t-foreach="env.pos.states" t-as="value" t-att-value="value.name" t-att-id="value.id">
+                                                                <t t-esc="value.name"/>
+                                                            </option>
+                                                        </datalist>
+                                                    </div>
+                                                </div>
+                                                <div class="client-details-right">
+                                                    <div class="client-detail">
+                                                         <span class="label">City</span>
+                                                         <input t-model="state.S_client_city" type="text" class="client_city" placeholder="City"/>
+                                                    </div>
+                                                    <div class="client-detail">
+                                                         <span class="label">Zip</span>
+                                                        <input t-model="state.S_client_zip" t-on-keydown="onInputKeyDown" type="text" class="client_zip" placeholder="Zip"/>
+                                                    </div>
+                                                    <div class="client-detail">
+                                                         <span class="label">Mobile</span>
+                                                        <input t-model="state.S_client_mobile" t-on-keydown="onInputKeyDown" type="text" class="client_mobile" placeholder="Mobile"/>
+                                                    </div>
+                                                    <div class="client-detail">
+                                                         <span class="label">Phone</span>
+                                                        <input t-model="state.S_client_phone" t-on-keydown="onInputKeyDown" type="text" class="client_phone" placeholder="Phone"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </t>
+                            <t t-if="state.activeTab === 'InvoiceAddress'">
+                                <div id="tab-2">
+                                    <div class="choices_content client-detail">
+                                        <span class="label" style="display:initial;margin-right:10px">Invoice Address</span>
+                                        <select t-model="state.selectedInvoiceContact" class="invoicing_contact_selection" t-att-disabled="state.InvToDifferentAdd">
+                                            <option t-foreach="state.invoiceContact" t-as="value" t-att-value="value.id">
+                                                <t t-esc="value.name"/>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="client-detail">
+                                        <input type="checkbox" t-model="state.InvToDifferentAdd" class="invoice_diff_address" />
+                                        <span class="label" style="display: contents;">Invoice to Different Address</span>
+                                    </div>
+                                    <t t-if="state.InvToDifferentAdd">
+                                        <div class="client-details-box client-details">
+                                            <div class="client-details-left">
+                                                <div class="client-detail">
+                                                     <span class="label">Name</span>
+                                                    <input type="text" t-model="state.invoiceData['name']" class="client_name" name="name"  t-on-change="captureChange" placeholder="Name"/>
+                                                </div>
+                                                <div class="client-detail">
+                                                     <span class="label">Email</span>
+                                                    <input type="text" t-model="state.invoiceData['email']" class="client_email" name="email" t-on-change="captureChange" placeholder="Email"/>
+                                                </div>
+                                                <div class="client-detail">
+                                                     <span class="label">Country</span>
+                                                    <input type="text" t-model="state.selectedInvoiceCountry" id="invoice_country" t-on-change="captureChange" class="client_country" list="searchCountryList" placeholder="Country"/>
+                                                    <datalist id="searchCountryList">
+                                                        <option t-foreach="env.pos.countries" t-as="value" t-att-value="value.name" t-att-id="value.id">
+                                                            <t t-esc="value.name"/>
+                                                        </option>
+                                                    </datalist>
+                                                </div>
+                                                <div class="client-detail">
+                                                     <span class="label">State</span>
+                                                    <input type="text" t-model="state.selectedInvoiceState" id="invoice_state" class="client_state" name="state" t-on-change="captureChange" list="searchStatesList"  placeholder="States"/>
+                                                    <datalist id="searchStatesList">
+                                                        <option t-foreach="env.pos.states" t-as="value" t-att-value="value.name" t-att-id="value.id">
+                                                            <t t-esc="value.name"/>
+                                                        </option>
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                            <div class="client-details-right">
+                                                 <div class="client-detail">
+                                                     <span class="label">City</span>
+                                                    <input type="text" t-model="state.invoiceData['city']"  class="client_city"  name="city"  t-on-change="captureChange" placeholder="City"/>
+                                                </div>
+                                                <div class="client-detail">
+                                                     <span class="label">Zip</span>
+                                                    <input type="text" t-model="state.invoiceData['zip']" t-on-keydown="onInputKeyDown" class="client_zip" name="zip"  t-on-change="captureChange" placeholder="Zip"/>
+                                                </div>
+                                                <div class="client-detail">
+                                                     <span class="label">Mobile</span>
+                                                    <input type="text" t-model="state.invoiceData['mobile']" t-on-keydown="onInputKeyDown" class="client_mobile" name="mobile"  t-on-change="captureChange" placeholder="Mobile"/>
+                                                </div>
+                                                <div class="client-detail">
+                                                     <span class="label">Phone</span>
+                                                    <input type="text" t-model="state.invoiceData['phone']" t-on-keydown="onInputKeyDown" class="client_phone"  name="phone" t-on-change="captureChange" placeholder="Phone"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </t>
+                            <t t-if="state.activeTab === 'Note'">
+                                <div id="tab-3" class="tab-content">
+                                    <div class="choices_content">
+                                        <textarea class="sale_order_note" t-model="state.orderNote"  placeholder="Note" rows="6" cols="30">
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </t>
+                            <t t-if="state.activeTab === 'Signature'">
+                               <SignatureWidget/>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

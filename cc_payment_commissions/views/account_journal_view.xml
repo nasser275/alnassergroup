@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+
+        <record id="account_journal_inherited_form" model="ir.ui.view">
+            <field name="name">commission.account.journal.inherited.form</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='bank_account']" position="after">
+                    <page string="Commission" attrs="{'invisible': [('type', '!=', 'bank')]}">
+                        <group colspan="4" col="4">
+                            <field name="provider_account"/>
+                            <label for="amount_percentage"/>
+                            <div name="amount_percentage_div" class="o_row">
+                                <field name="amount_percentage"/>%
+                            </div>
+                            <label for="amount"/>
+                            <div name="amount_div" class="o_row">
+                                <field name="amount"/>
+                                <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                       groups="base.group_multi_currency"/>
+                            </div>
+                        </group>
+                    </page>
+                    <!--                    <group string='ABA'>-->
+                    <!--                        <field name="aba_bsb"/>-->
+                    <!--                        <field name='aba_fic'/>-->
+                    <!--                        <field name='aba_user_spec'/>-->
+                    <!--                        <field name='aba_user_number'/>-->
+                    <!--                        <field name='aba_self_balancing'/>-->
+                    <!--                    </group>-->
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

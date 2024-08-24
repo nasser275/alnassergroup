@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+pos_voucher_mgr,access_pos_voucher_mgr,almoasher_pos_coupons.model_pos_voucher,almoasher_pos_coupons.group_coupons_manager,1,1,1,1
+pos_coupon_mgr,access_pos_coupon_mgr,almoasher_pos_coupons.model_pos_coupon,almoasher_pos_coupons.group_coupons_manager,1,1,1,1
+pos_coupon_line_mgr,access_pos_coupon_line_mgr,almoasher_pos_coupons.model_pos_coupon_line,almoasher_pos_coupons.group_coupons_manager,1,1,1,1
+pos_voucher_usr,access_pos_voucher_usr,almoasher_pos_coupons.model_pos_voucher,almoasher_pos_coupons.group_coupons_user,1,0,0,0
+pos_coupon_usr,access_pos_coupon_usr,almoasher_pos_coupons.model_pos_coupon,almoasher_pos_coupons.group_coupons_user,1,0,0,0
+pos_coupon_line_usr,access_pos_coupon_line_usr,almoasher_pos_coupons.model_pos_coupon_line,almoasher_pos_coupons.group_coupons_user,1,0,0,0
+pos_coupon_inter_user,pos_coupon,model_pos_coupon,,1,0,0,0
+pos_coupon_line_inter_user,pos_coupon_line,model_pos_coupon_line,,1,0,0,0
+access_pos_coupon_reports,pos_coupon_reports,model_pos_coupon_reports,,1,1,1,1

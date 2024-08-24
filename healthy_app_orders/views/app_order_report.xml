@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="app_order_view_order_product_pivot" model="ir.ui.view">
+         <field name="name">app.order.report.pivot</field>
+         <field name="model">app.order.report</field>
+         <field name="arch" type="xml">
+             <pivot string="App Order Analysis" disable_linking="True">
+                 <field name="partner_id" type="col"/>
+                 <field name="order_date" interval="day" type="row"/>
+                 <field name="qty" type="measure"/>
+             </pivot>
+         </field>
+    </record>
+
+    <record id="app_order_view_order_product_graph" model="ir.ui.view">
+         <field name="name">app.order.report.graph</field>
+         <field name="model">app.order.report</field>
+         <field name="arch" type="xml">
+             <graph string="App Order Analysis" type="line">
+                 <field name="product_id" type="row"/>
+                 <field name="qty" type="measure"/>
+             </graph>
+         </field>
+    </record>
+
+    <record id="app_order_view_order_product_search" model="ir.ui.view">
+        <field name="name">app.order.report.search</field>
+        <field name="model">app.order.report</field>
+        <field name="arch" type="xml">
+            <search string="App Order Analysis">
+                <field name="order_date"/>
+                <field name="due_date"/>
+                <field name="schedule_start_date"/>
+                <field name="schedule_end_date"/>
+                <field name="schedule_time"/>
+                <filter invisible="0" string="Today Orders" name="today_orders"
+                        domain="[('order_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Next Week" name="next_week"
+                        domain="[('order_date','&lt;',(context_today()+relativedelta(days=8)).strftime('%Y-%m-%d')),
+                         ('order_date','&gt;=',context_today().strftime('%Y-%m-%d'))]"/>
+                <filter name="tomorrow_filter" string="Tomorrow" domain="[('due_date','&lt;=', datetime.datetime.combine(context_today()+datetime.timedelta(days=1), datetime.time(23,59,59))), ('due_date','&gt;=', datetime.datetime.combine(context_today()+datetime.timedelta(days=1), datetime.time(0,0,0)))]"/>
+                <filter string="Next 15 Days" name="next_15_days"
+                        domain="[('order_date','&lt;',(context_today()+relativedelta(days=16)).strftime('%Y-%m-%d')),
+                         ('order_date','&gt;=',context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Current Month" name="current_month"
+                    domain="[('order_date','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')),
+                     ('order_date','&gt;=',time.strftime('%%Y-%%m-01'))]"
+                />
+                <filter string="Next Month" name="next_month"
+                    domain="[('order_date','&lt;',(context_today()+relativedelta(months=1,days=1)).strftime('%%Y-%%m-%d')),
+                     ('order_date','&gt;=',time.strftime('%%Y-%%m-%d'))]"
+                />
+                <filter string="Date" name="year" invisible="1" date="order_date" default_period="this_year"/>
+                <filter string="Due" name="year" invisible="1" date="due_date" default_period="this_year"/>
+                <filter name="draft" string="draft" domain="[('state','=', 'draft')]"/>
+                <filter name="received" string="Received" domain="[('state','=','received')]"/>
+                <filter name="delivery" string="Delivery" domain="[('state','=','delivery')]"/>
+                <filter name="payment" string="Payment" domain="[('state','=','payment')]"/>
+                <filter name="synced" string="Synced" domain="[('synced','=', True)]"/>
+                <filter name="deleted" string="Deleted" domain="[('deleted','=', True)]"/>
+                <filter name="is_schedule" string="Is Schedule" domain="[('is_schedule','=', True)]"/>
+                <filter name="saturday" string="Saturday" domain="[('saturday','=', True)]"/>
+                <filter name="sunday" string="Sunday" domain="[('sunday','=', True)]"/>
+                <filter name="monday" string="Monday" domain="[('monday','=', True)]"/>
+                <filter name="tuesday" string="Tuesday" domain="[('tuesday','=', True)]"/>
+                <filter name="wednesday" string="Wednesday" domain="[('wednesday','=', True)]"/>
+                <filter name="thursday" string="Thursday" domain="[('thursday','=', True)]"/>
+                <filter name="friday" string="Friday" domain="[('friday','=', True)]"/>
+                <separator/>
+                <field name="sales_person"/>
+                <field name="product_id"/>
+                <field name="partner_id"/>
+                <group expand="0" string="Extended Filters">
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </group>
+                <group expand="1" string="Group By">
+                    <filter string="Sales Person" name="sales_person" context="{'group_by':'sales_person'}"/>
+                    <filter string="Is Schedule" name="is_schedule" context="{'group_by':'is_schedule'}"/>
+                    <filter string="Synced" name="synced" context="{'group_by':'synced'}"/>
+                    <filter string="Deleted" name="deleted" context="{'group_by':'deleted'}"/>
+                    <filter string="Customer" name="Customer" context="{'group_by':'partner_id'}"/>
+                    <filter string="Product" name="Product" context="{'group_by':'product_id'}"/>
+                    <filter name="status" string="Status" context="{'group_by':'state'}"/>
+                    <filter name="schedule_time" string="Schedule Time" context="{'group_by':'schedule_time'}"/>
+                    <filter string="Company" name="company" groups="base.group_multi_company" context="{'group_by':'company_id'}"/>
+                    <separator/>
+                    <filter string="Order Date" name="order_date" context="{'group_by':'order_date'}"/>
+                    <filter string="Due Date" name="due_date" context="{'group_by':'due_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="app_order_action_order_report_all" model="ir.actions.act_window">
+        <field name="name">App Order Analysis</field>
+        <field name="res_model">app.order.report</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="view_id"></field>  <!-- force empty -->
+        <field name="search_view_id" ref="app_order_view_order_product_search"/>
+        <field name="context">{'search_default_Date':1, 'group_by_no_leaf':1,'group_by':[]}</field>
+    </record>
+    <menuitem id="analysis_report_app_order_id" groups="app_order_manager,group_store_manager" name="App Orders Report" action="app_order_action_order_report_all" parent="app_order_menu_id" sequence="15"/>
+</odoo>

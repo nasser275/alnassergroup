@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+  <t t-name="DeliveryButton" owl="1">
+    <div class='control-button'>
+      <i class="fa fa-home"/>
+        Create Delivery
+    </div>
+  </t>
+    <t t-name="DeliveryOrdersButton" owl="1">
+    <div class='control-button'>
+      <i class="fa fa-gift"/>
+        Unpaid Delivery Orders
+    </div>
+  </t>
+
+    <t t-name="GiftButton" owl="1">
+    <div class='control-button'>
+      <i class="fa fa-home"/>
+        Gift Products
+    </div>
+  </t>
+
+
+    <t t-name="DeliveryOrderWidget" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <Draggable>
+                <div class="popup popup-text">
+                    <header class="title">
+                        <div class="row">
+                            <t t-esc="props.title"/>
+                        </div>
+                    </header>
+                    <main class="body product_configurator_attributes col-lg-4 col-md-6 col-sm-12">
+                        <div class="row">
+                            <div>
+                                <span> Delivery Person</span>
+                            </div>
+                            <div>
+                                <select class="type" style="width: 233px;height:46px" t-model="state.delivery_person_id"
+                                        required="">
+                                    <t t-foreach="env.pos.delivery_persons" t-as="delivery_person_id"
+                                       t-key="delivery_person_id.name">
+                                        <option t-att-value="delivery_person_id.id" t-esc="delivery_person_id.name"/>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <br/>
+                        <span class='label'>Delivery Amount</span>
+
+                        <div class="row">
+                        <input type="number" t-model="state.delivery_amount"
+                               class="popup-input delivery_amount active" style="margin-bottom: 10px;"/>
+                    </div>
+
+                    </main>
+                    <footer class="footer">
+                        <div class="button confirm-coupon" t-on-click="click_confirm">
+                            Select
+                        </div>
+                        <div class="button cancel" t-on-click="cancel">
+                            Cancel
+                        </div>
+                    </footer>
+                </div>
+            </Draggable>
+        </div>
+    </t>
+    <t t-name="RefundReasonWidget" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <Draggable>
+                <div class="popup popup-text">
+                    <header class="title">
+                        <div class="row">
+                            <t t-esc="props.title"/>
+                        </div>
+                    </header>
+                    <main class="body product_configurator_attributes col-lg-4 col-md-6 col-sm-12">
+                        <div class="row">
+                            <div>
+                                <span> Refund Reason</span>
+                            </div>
+                            <div>
+                                <select class="type" style="width: 233px;height:46px" t-model="state.return_reason"
+                                        required="">
+                                    <t t-foreach="env.pos.return_reasons" t-as="return_reason"
+                                       t-key="return_reason.reason">
+                                        <option t-att-value="return_reason.id" t-esc="return_reason.reason"/>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+
+                    </main>
+                    <footer class="footer">
+                        <div class="button confirm-coupon" t-on-click="click_confirm">
+                            Select
+                        </div>
+                        <div class="button cancel" t-on-click="cancel">
+                            Cancel
+                        </div>
+                    </footer>
+                </div>
+            </Draggable>
+        </div>
+    </t>
+    <t t-name="GiftPop" owl="1">
+        <div class="modal-dialog gift-dialog">
+            <div class="popup popup-gift" style="width:650px !important; height:401px !important;">
+                <div class="header">
+                        <p class="title">Gift</p>
+                </div>
+                <div class="">
+                    <div class="row">
+                    <table class="table" border="1" style="width:100%;">
+                      <thead class="thead-dark"
+                             style="display:table;width:100%;table-layout:fixed;background: gainsboro;">
+                          <tr>
+                          <th scope="col">Product</th>
+                              <th scope="col">Qty</th>
+                              <th scope="col">Discount</th>
+                              <th scope="col">Price</th>
+                        </tr>
+                      </thead>
+                        <tbody class="product_list"
+                               style="display:block;height:250px;overflow:auto;:active {background-color: green;}">
+                                                                    <t t-foreach="env.pos.gift_products"
+                                                                       t-as="product"
+                                                                       t-key="product.name">
+                                  <tr t-attf-class='product-line' t-att-data-id='product.id'>
+            <t t-if="product">
+                <tr t-on-click="_on_click_product(product)"
+                    t-att-id="product.id" class="click-product" t-attf-data-id="{{ product.id }}"
+                    style="display:table;width:100%;table-layout:fixed;height: 50px;cursor: pointer;">
+                    <td>
+                        <t t-esc='product.name'/>
+                    </td>
+                    <td>
+                        <t t-esc='product.qty_available'/>
+                    </td>
+                    <td>
+                        <t t-esc='product.gift_discount'/>
+                    </td>
+                    <td>
+                        <t t-esc='product.list_price'/>
+                    </td>
+                </tr>
+            </t>
+        </tr>
+                                                                    </t>
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+                <div class="footer">
+                <div class="button cancel" style="margin-right: 30px;" t-on-click="cancel">
+                        Close
+				</div>
+            </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="TicketScreen" t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension" owl="1">
+      <xpath expr="//t[@t-foreach='_filteredOrderList']//div" position="attributes">
+                  <attribute name="t-if">!order.is_delivery</attribute>
+
+      </xpath>
+
+
+
+    </t>
+    <t t-name="ReprintReceiptScreen" t-inherit="point_of_sale.ReprintReceiptScreen" t-inherit-mode="extension" owl="1">
+      <xpath expr="//span[@class='button back']" position="replace">
+          <t t-if="props.order.is_delivery">
+               <span class="button back" t-on-click="new_order">
+                        <i class="fa fa-angle-double-left"></i>
+                        <span> </span>
+                        <span>New Order</span>
+                    </span>
+          </t>
+          <t t-else="">
+               <span class="button back" t-on-click="confirm">
+                        <i class="fa fa-angle-double-left"></i>
+                        <span> </span>
+                        <span>Back</span>
+                    </span>
+          </t>
+
+      </xpath>
+
+
+
+    </t>
+
+
+
+</templates>

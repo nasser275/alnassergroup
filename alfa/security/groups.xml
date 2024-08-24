@@ -1,0 +1,56 @@
+<odoo>
+    <data>
+
+<!--        <record model="ir.module.category" id="alfa_transfer_management">-->
+<!--            <field name="name">Transfers Management</field>-->
+<!--            <field name="description">User access level for Transfers module</field>-->
+<!--            <field name="sequence">20</field>-->
+<!--        </record>-->
+        <record id="transfer_user" model="res.groups">
+            <field name="name">Transfers Users</field>
+        </record>
+        <record id="transfer_manager" model="res.groups">
+            <field name="name">Transfers Managers</field>
+
+        </record>
+        <record id="return_user" model="res.groups">
+            <field name="name">Transfers Return Users</field>
+        </record>
+        <record id="return_manager" model="res.groups">
+            <field name="name">Transfers Return Managers</field>
+
+        </record>
+<!--        <record model="ir.module.category" id="alfa_return_management">-->
+<!--            <field name="name">Return To Main Management</field>-->
+<!--            <field name="description">User access level for Return module</field>-->
+<!--            <field name="sequence">20</field>-->
+<!--        </record>-->
+<!--        <record id="return_user" model="res.groups">-->
+<!--            <field name="name">User</field>-->
+<!--            <field name="category_id" ref="alfa_return_management"/>-->
+<!--&lt;!&ndash;            <field name="users" eval="[(4, ref('base.user_root'))]"/>&ndash;&gt;-->
+<!--        </record>-->
+<!--        <record id="return_manager" model="res.groups">-->
+<!--            <field name="name">Manager</field>-->
+<!--            <field name="category_id" ref="alfa_return_management"/>-->
+<!--            <field name="implied_ids" eval="[(4, ref('return_user'))]"/>-->
+<!--        </record>-->
+<!--        <record id="replanishmet_rule" model="ir.rule">-->
+<!--            <field name="name">Transfer Order</field>-->
+<!--            <field name="model_id" ref="alfa.model_alfa_replanishment"/>-->
+<!--            <field name="global" eval="True"/>-->
+<!--            <field name="domain_force">['|',('warehouse_from.branch_id', 'in', user.branch_ids.ids),('warehouse_to.branch_id', '=',-->
+<!--                user.branch_ids.ids)]-->
+<!--            </field>-->
+<!--        </record>-->
+<!--        <record id="replanishmetreturn_rule" model="ir.rule">-->
+<!--            <field name="name">Transfer Order</field>-->
+<!--            <field name="model_id" ref="alfa.model_return_replanishment"/>-->
+<!--            <field name="global" eval="True"/>-->
+<!--            <field name="domain_force">['|',('warehouse_from.branch_id', 'in', user.branch_ids.ids),('warehouse_to.branch_id', '=',-->
+<!--                user.branch_ids.ids)]-->
+<!--            </field>-->
+<!--        </record>-->
+    </data>
+
+</odoo>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="InvoiceAddressWidget" owl="1">
+        <div id="tab-2" class="tab-content">
+            <div class="choices_content">
+                <span class="invoice_content">Invoice Address</span>
+                <select class="invoicing_contact_selection">
+                    <option>Select Address</option>
+                </select>
+            </div>
+            <div class="choices_content">
+                <div class="invoice_content choice-2">
+                    <input type="checkbox" class="invoice_diff_address" />
+                    <span>Invoice to Different Address</span>
+                </div>
+                <div class="invoice_create_contact">
+                    <table>
+                        <tr>
+                            <td><input type="text" class="client_name" placeholder="Name"/></td>
+                            <td><input type="text" class="client_email" placeholder="Email"/></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="client_city" placeholder="City"/></td>
+                            <td><input type="text" class="client_state" placeholder="States"/></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="client_zip" placeholder="Zip"/></td>
+                            <td><input type="text" class="client_country" placeholder="Country"/></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="client_mobile" placeholder="Mobile"/></td>
+                            <td><input type="text" class="client_phone" placeholder="Phone"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

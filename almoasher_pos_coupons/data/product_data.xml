@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record model="product.product" id="pos_coupon_product">
+        <field name="name">POS-Coupon-Product</field>
+        <field name="display_name">POS-Coupon-Product</field>
+        <field name="available_in_pos">True</field>
+        <field name="type">service</field>
+    </record>
+</odoo>

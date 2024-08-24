@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="SignatureWidget" owl="1">
+        <div id="tab-4" class="tab-content">
+            <table style="border-collapse: collapse; width: 100%; height: 100%;">
+                <tbody>
+                    <tr style="height: 18px;">
+                        <td style="width: 50%; height: 18px; text-align: center;"><span>Signed By</span></td>
+                        <td style="width: 50%; height: 18px; text-align: center;"><span>Signed On</span></td>
+                    </tr>
+                    <tr style="height: 24px;">
+                        <td style="width: 50%; height: 24px; text-align: center;">
+                            <input style="width: 90%; height: 24px;" t-on-focusout="captureChange" t-model="state.SignedBy" type="text"/>
+                        </td>
+                        <td style="width: 50%; height: 24px; text-align: center;">
+                            <input style="width: 90%; height: 24px;" t-on-focusout="captureChange" t-model="state.SignedOn" type="date"/>
+                        </td>
+                    </tr>
+                    <tr style="height: 400px;">
+                        <td sstyle="width: 100%; height: 400px;" colspan="2">
+                            <div id="signature_canvas"/>
+                        </td>
+                    </tr>
+                    <tr style="height: 50px;">
+                        <td style="width: 50%;">
+                            <button class="discard clear-signature" t-on-click="applySign"
+                                    style="width: 100%; height: 100%;"> Apply </button>
+                        </td>
+                        <td style="width: 50%;">
+                            <button class="discard clear-signature" t-on-click="clear"
+                                    style="width: 100%; height: 100%;"> Clear </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </t>
+
+</templates>

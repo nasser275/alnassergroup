@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="CreateSaleOrderButton" owl="1">
+        <span class="control-button order-line-note">
+            <i class="fa fa-tag" aria-hidden="true"></i>
+            <t t-if="env.pos.user.sale_order_operations !== 'confirm'">
+                <t t-if="env.pos.get_order().get_is_quotation()">
+                    <span>Modify Quotation</span>
+                </t>
+                <t t-else="">
+                    <span>Create Quotation</span>
+                </t>
+            </t>
+            <t t-if="env.pos.user.sale_order_operations == 'confirm'">
+                <t t-if="env.pos.get_order().get_is_quotation()">
+                    <span>Modify Quotation</span>
+                </t>
+                <t t-else="">
+                    <span>Create SO</span>
+                </t>
+            </t>
+
+        </span>
+    </t>
+
+</templates>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+
+<odoo>
+    <record id="import_orders_wizard" model="ir.ui.view">
+        <field name="name">pos.import.orders.form</field>
+        <field name="model">pos.import.orders.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import Orders">
+                <group>
+                    <field name="order_json" style="width:40%%"/>
+                </group>
+                <footer>
+                    <button name="import_data" string="Import Data" type="object" class="btn-primary"/>
+                    <button name="import_and_create_orders" string="Import Data and Create Orders" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

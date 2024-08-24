@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="group_franchise_user_report_product_t" model="res.groups">
+            <field name="name">Franchise Report Without Products With Tax</field>
+        </record>
+
+
+    </data>
+</odoo>

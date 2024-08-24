@@ -1,0 +1,61 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="trans_stock_move_line">
+            <field name="name">trans.stock.move.line</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_move_line_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='location_dest_id']" position="after">
+                    <field name="transfer_to_location" optional="hide"/>
+                    <field name="transfer_from_location" optional="hide"/>
+                    <field name="transfer_seq" optional="hide"/>
+                    <field name="ref_to_seq" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <!--
+            <record model="ir.actions.act_window" id="combo_tax_edit.action_window">
+              <field name="name">product_priceWithoutTax window</field>
+              <field name="res_model">combo_tax_edit.combo_tax_edit</field>
+              <field name="view_mode">tree,form</field>
+            </record>
+        -->
+
+        <!-- server action to the one above -->
+        <!--
+            <record model="ir.actions.server" id="combo_tax_edit.action_server">
+              <field name="name">product_priceWithoutTax server</field>
+              <field name="model_id" ref="model_product_price_without_tax_product_price_without_tax"/>
+              <field name="state">code</field>
+              <field name="code">
+                action = {
+                  "type": "ir.actions.act_window",
+                  "view_mode": "tree,form",
+                  "res_model": model._name,
+                }
+              </field>
+            </record>
+        -->
+
+        <!-- Top menu item -->
+        <!--
+            <menuitem name="product_priceWithoutTax" id="combo_tax_edit.menu_root"/>
+        -->
+        <!-- menu categories -->
+        <!--
+            <menuitem name="Menu 1" id="combo_tax_edit.menu_1" parent="combo_tax_edit.menu_root"/>
+            <menuitem name="Menu 2" id="combo_tax_edit.menu_2" parent="combo_tax_edit.menu_root"/>
+        -->
+        <!-- actions -->
+        <!--
+            <menuitem name="List" id="combo_tax_edit.menu_1_list" parent="combo_tax_edit.menu_1"
+                      action="combo_tax_edit.action_window"/>
+            <menuitem name="Server to list" id="combo_tax_edit" parent="combo_tax_edit.menu_2"
+                      action="combo_tax_edit.action_server"/>
+        -->
+    </data>
+</odoo>

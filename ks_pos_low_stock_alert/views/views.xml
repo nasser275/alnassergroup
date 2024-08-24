@@ -1,0 +1,191 @@
+<odoo>
+    <data>
+        <data noupdate="1">
+
+
+        <record id="dev_product_2" model="product.product">
+            <field name="name">Delivery</field>
+            <field name="type">service</field>
+            <field name="is_delivery_charge">True</field>
+            <field name="available_in_pos">True</field>
+        </record>
+        </data>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_pos_pos_form_inherit" model="ir.ui.view">
+            <field name="name">view.pos.form.inherit</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="replace">
+
+                    <header>
+                        <button name="%(point_of_sale.action_pos_payment)d" string="Payment" class="oe_highlight" type="action"
+                                states="draft,in_prgress"/>
+                        <button name="action_pos_order_invoice" string="Invoice" type="object"
+                                attrs="{'invisible': ['|', ('invoice_group', '=', False), ('state','!=','paid')]}"/>
+                        <button name="refund" string="Return Products" type="object"
+                                attrs="{'invisible':[('has_refundable_lines', '=', False)]}" states="paid,done,"/>
+
+                        <button name="action_pos_order_in_prgress" class="oe_highlight" type="object"
+                                string="In Progress" states="draft"/>
+<!--                        <button name="%(ks_pos_low_stock_alert.action_pos_cancel)d" class="oe_highlight" type="action"-->
+<!--                                string="Cancel" states="draft,in_prgress,paid,done,"/>-->
+
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,in_prgress,paid,done"/>
+                        <field name="has_refundable_lines" invisible="1"/>
+                        <field name="refunded_orders_count" invisible="1"/>
+                    </header>
+
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="delivery_person_id" attrs="{'readonly': [('state', 'not in', ('new'))]}"/>
+                    <field name="free_delivery" attrs="{'readonly': [('state', 'not in', ('new'))]}"/>
+                    <field name="delivery_amount" readonly="1"/>
+                    <field name="cancel_reason_id" readonly="1" attrs="{'invisible': [('state', '!=', 'cancel')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='lines']//tree//field[@name='full_product_name']" position="after">
+                    <field name="is_gift"/>
+                </xpath>
+                  <xpath expr="//field[@name='lines']//tree//field[@name='margin']" position="after">
+                    <field name="extra_margin_value"  optional="hide"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="progress_date" readonly="1"/>
+                    <field name="paid_date" readonly="1"/>
+                    <field name="return_reason"/>
+                </xpath>
+                <xpath expr="//label[@for='margin']" position="attributes">
+                    <attribute name="groups">ks_pos_low_stock_alert.group_margin_pos_order</attribute>
+                </xpath>
+                  <xpath expr="//group[@name='order_total']//div[2]" position="attributes">
+                    <attribute name="groups">ks_pos_low_stock_alert.group_margin_pos_order</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="product_template_only_form_view_gift" model="ir.ui.view">
+            <field name="name">view.product.template.inherit.gift</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="extra_margin"/>
+                    <field name="is_gift"/>
+                    <field name="gift_discount"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="product_normal_form_view_gift" model="ir.ui.view">
+            <field name="name">view.product.product.inherit.gift</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="extra_margin"/>
+                    <field name="is_gift"/>
+                    <field name="gift_discount"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="unpaid_pos_orders_action_view" model="ir.actions.act_window">
+            <field name="name">Unpaid Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','in',['draft','in_prgress']),('is_delivery','=',True)]</field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_pos_order_filter_inherit" model="ir.ui.view">
+            <field name="name">view.pos.order.filter.inherit</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="pos_reference"/>
+                </xpath>
+
+
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_employee_form_inherit" model="ir.ui.view">
+            <field name="name">view.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='work_phone']" position="after">
+                    <field name="branch_id"/>
+                    <field name="is_delivery_person"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_pos_payment_inherit" model="ir.ui.view">
+            <field name="name">view.pos.payment.inherit</field>
+            <field name="model">pos.make.payment</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_payment"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='amount']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+<!--         <record id="unpaid_pos_orders_action_view" model="ir.actions.act_window">-->
+<!--            <field name="name">Unpaid Orders</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">pos.order</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--            <field name="domain">[('is_delivery','=',True)]</field>-->
+<!--        </record>-->
+
+
+        <record id="action_pos_cancel_reasons" model="ir.actions.act_window">
+            <field name="name">Pos Cancel Reasons</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.cancel.reasons</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record id="action_pos_return_reasons" model="ir.actions.act_window">
+            <field name="name">Pos Return Reasons</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.return.reasons</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="menu_pos_cancel_reasons_action" name="Pos Cancel Reasons"
+                  parent="point_of_sale.menu_point_config_product" action="action_pos_cancel_reasons" sequence="300"/>
+        <menuitem id="menu_pos_return_reasons_action" name="Pos Return Reasons"
+                  parent="point_of_sale.menu_point_config_product" action="action_pos_return_reasons" sequence="301"/>
+    </data>
+</odoo>

@@ -1,0 +1,19 @@
+<odoo>
+    <record model="ir.module.category" id="pos_coupons_category">
+      <field name="name">Coupons</field>
+      <field name="description">User access level for this module</field>
+      <field name="sequence">10</field>
+    </record>
+
+    <record id="group_coupons_user" model="res.groups">
+      <field name="name">Coupons User</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+      <field name="category_id" ref="almoasher_pos_coupons.pos_coupons_category"/>
+    </record>
+    <record id="group_coupons_manager" model="res.groups">
+      <field name="name">Coupons Manager</field>
+        <field name="implied_ids" eval="[(4, ref('group_coupons_user'))]"/>
+      <field name="category_id" ref="almoasher_pos_coupons.pos_coupons_category"/>
+    </record>
+
+</odoo>

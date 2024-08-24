@@ -1,0 +1,61 @@
+<odoo>
+    <data>
+        <record id="alfa_stock_customized" model="ir.ui.view">
+            <field name="name">stock_picking_inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='product_id']" position="after">
+                    <field name="source_qty"/>
+                    <field name="destination_qty"/>
+                </xpath>
+<!--                <xpath expr="//button[@name='button_validate'][1]" position="attributes">-->
+<!--                    <attribute name="context">{'skip_backorder': True}</attribute>-->
+<!--                </xpath>-->
+            </field>
+        </record>
+        <record id="api_product_template_only_form_view" model="ir.ui.view">
+            <field name="name">view.product.template.inherit.new_fields</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='categ_id']" position="after">
+                    <field name="disable_show_in_franchise"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="api_product_normal_form_view" model="ir.ui.view">
+            <field name="name">view.product.product.inherit.new_fields</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='categ_id']" position="after">
+                    <field name="disable_show_in_franchise"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="alfa_stock_move" model="ir.ui.view">
+            <field name="name">stock_move_line_inherit</field>
+            <field name="model">stock.move</field>
+            <field name="arch" type="xml">
+                <tree string="decoration" create="0" editable="top">
+                    <field name="source_qty"/>
+                    <field name="destination_qty"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="alfa_stock_location" model="ir.ui.view">
+            <field name="name">stock_location_inherit</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_form"/>
+            <field name="arch" type="xml">
+                <field name="usage" position="after">
+                    <field name="is_trans"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

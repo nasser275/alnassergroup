@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_orders_loyalty_points,orders.loyalty.points,model_orders_loyalty_points,base.group_user,1,1,1,1
+access_redeem_loyalty_points,redeem.loyalty.points,model_redeem_loyalty_points,base.group_user,1,1,1,1
+access_loyalty_subscriber,loyalty.subscriber,model_loyalty_subscriber,base.group_user,1,1,1,1

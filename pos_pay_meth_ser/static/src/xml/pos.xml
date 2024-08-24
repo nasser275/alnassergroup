@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="point_of_sale.template" xml:space="preserve">
+	<t t-name="PaymentScreen" t-inherit="point_of_sale.PaymentScreen" t-inherit-mode="extension" owl="1">
+		<xpath expr="//div[hasclass('payment-controls')]" position="inside">
+             <div  class="pay_serial_no">
+                 <input class="pay_serial_no_input"  style=" width: 300px;height: 40px;" placeholder="Serial Number"/>
+        </div>
+        </xpath>
+    </t>
+</templates>

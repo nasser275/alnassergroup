@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="return_received_qty_wiz" model="ir.ui.view">
+		<field name="name">Receive  Return Quantities</field>
+		<field name="model">received.qty.return.wiz</field>
+		<field name="arch" type="xml">
+			<form string="Move Transfer">
+                <group>
+                    <field name="inter_trans_id"/>
+                </group>
+				<notebook>
+                    <page string="Lines">
+                        <field name="lines" force_save="1"  options='{"no_open": True, "no_create": True}'>
+                            <tree editable="bottom">
+                                 <field name="product_id" force_save="1"/>
+                                 <field name="qty" force_save="1"/>
+                                 <field name="received_qty" force_save="1"/>
+                                 <field name="iwt_line_id" force_save="1"/>
+                            </tree>
+                        </field>
+                    </page>
+
+				</notebook>
+				<footer>
+					<button name="make" string="Confirm" type="object" class="btn-primary"/>
+					<button string="Cancel" class="btn-default" special="cancel" />
+				</footer>
+			</form>
+		</field>
+	</record>
+	<record id="return_action_received_qty" model="ir.actions.act_window">
+		<field name="name">Receive  Return Quantities</field>
+		<field name="res_model">received.qty.return.wiz</field>
+		<field name="view_mode">form</field>
+        <field name="view_id" ref="return_received_qty_wiz"/>
+		<field name="target">new</field>
+	</record>
+
+
+    </data>
+</odoo>

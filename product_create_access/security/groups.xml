@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="group_allow_create_edit_product" model="res.groups">
+            <field name="name">Product Create On Fly</field>
+        </record>
+
+
+    </data>
+</odoo>

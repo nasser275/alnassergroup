@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="NoteWidget" owl="1">
+         <div id="tab-3" class="tab-content">
+            <div class="choices_content">
+                <textarea class="sale_order_note" t-on-focusout="captureChange" t-model="state.Note"  placeholder="Note" rows="6" cols="30">
+                </textarea>
+            </div>
+        </div>
+    </t>
+
+</templates>

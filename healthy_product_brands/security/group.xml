@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="brands_menu" model="res.groups">
+            <field name="name">Healthy Brands</field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="group_healthy_survey_tool" model="res.groups">
+            <field name="name">H&amp;T Survey Data Tool</field>
+        </record>
+
+
+    </data>
+</odoo>

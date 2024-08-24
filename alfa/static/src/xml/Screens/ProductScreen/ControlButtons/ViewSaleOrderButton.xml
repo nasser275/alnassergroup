@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ViewSaleOrderButton" owl="1">
+        <span class="control-button order-line-note">
+            <i class="fa fa-list" aria-hidden="true"></i>
+            <span>Sale Orders</span>
+        </span>
+    </t>
+
+</templates>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data >
+
+        <record id="group_validate_inter_warehouse" model="res.groups">
+            <field name="name">Validate button on Inter Warehouse Transfer</field>
+        </record>
+
+	</data>
+</odoo>

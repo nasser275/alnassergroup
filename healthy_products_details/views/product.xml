@@ -1,0 +1,174 @@
+<odoo>
+    <data>
+
+        <record id="healthy_products_details_product_template_only_form_view" model="ir.ui.view">
+            <field name="name">view.product.template.inherit.new_fields</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='options']" position="inside">
+                    <div>
+                        <field name="display_on_mwebsite"/>
+                        <label for="display_on_mwebsite"/>
+                    </div>
+                </xpath>
+                <xpath expr="//page[@name='general_information']" position="after">
+                    <page string="Product Details" groups="healthy_products_details.group_healthy_products_details">
+                        <group>
+                            <group>
+                                <field name="sku_name_english"/>
+                                <field name="sku_supplier_code"/>
+                                <field name="ht_sku_code"/>
+                                <field name="supplier_id"/>
+                                <field name="original_supplier_id"/>
+                                <field name="shelf_life"/>
+                                <field name="size"/>
+                            </group>
+                            <group>
+                                <field name="healty_weight"/>
+                                <field name="height"/>
+                                <field name="base_width"/>
+                                <field name="base_depth"/>
+                                <field name="storage_temprature"/>
+                                <field name="calories"/>
+                                <field name="sugar"/>
+                                <field name="sodium"/>
+                            </group>
+                            <group>
+                                <field name="fats_protein"/>
+                                <field name="Protein"/>
+                                <field name="product_nature"/>
+                                <field name="container_type_id"/>
+                            </group>
+
+                            <group>
+                                <field name="container_shape_id"/>
+                                <field name="container_material_id"/>
+                                <field name="content_type_id"/>
+                                <field name="storage_type_id"/>
+                                <field name="color_id"/>
+                                <field name="flavor_id"/>
+                            </group>
+                            <group>
+                                <field name="healthy" invisible="1"/>
+                                <field name="natural" invisible="1"/>
+                                <field name="keto"/>
+                                <field name="low_carb"/>
+                                <field name="low_brotein"/>
+                                <field name="pbd"/>
+                                <field name="vegan"/>
+                                <field name="vegeterian"/>
+                                <field name="odor_less" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="website_description" widget="html"/>
+
+                            </group>
+                        </group>
+                        <group>
+                            <field name="all_data_done"/>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='taxes_id']" position="before">
+                    <field name="price_changing_date" readonly="1"/>
+                    <field name="last_change_price" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="healthy_products_details_product_normal_form_view" model="ir.ui.view">
+            <field name="name">view.product.product.inherit.new_fields</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='options']" position="inside">
+                    <div>
+                        <field name="display_on_mwebsite"/>
+                        <label for="display_on_mwebsite"/>
+                    </div>
+                </xpath>
+                <xpath expr="//page[@name='general_information']" position="after">
+                    <page string="Product Details" groups="healthy_products_details.group_healthy_products_details">
+                        <group>
+                            <group>
+                                <field name="sku_name_english"/>
+                                <field name="sku_supplier_code"/>
+                                <field name="ht_sku_code"/>
+                                <field name="supplier_id"/>
+                                <field name="original_supplier_id"/>
+                                <field name="shelf_life"/>
+                                <field name="size"/>
+                            </group>
+                            <group>
+                                <field name="healty_weight"/>
+                                <field name="height"/>
+                                <field name="base_width"/>
+                                <field name="base_depth"/>
+                                <field name="storage_temprature"/>
+                                <field name="calories"/>
+                                <field name="sugar"/>
+                                <field name="sodium"/>
+                            </group>
+                            <group>
+                                <field name="fats_protein"/>
+                                <field name="Protein"/>
+                                <field name="product_nature"/>
+                                <field name="container_type_id"/>
+                                <field name="meta_description"/>
+                                <field name="white_label"/>
+                                <field name="have_image"/>
+                            </group>
+
+                            <group>
+                                <field name="container_shape_id"/>
+                                <field name="container_material_id"/>
+                                <field name="content_type_id"/>
+                                <field name="storage_type_id"/>
+                                <field name="color_id"/>
+                                <field name="flavor_id"/>
+                            </group>
+                            <group>
+                                <field name="healthy" invisible="1"/>
+                                <field name="natural" invisible="1"/>
+                                <field name="keto"/>
+                                <field name="low_carb"/>
+                                <field name="low_brotein"/>
+                                <field name="pbd"/>
+                                <field name="vegan"/>
+                                <field name="vegeterian"/>
+                                <field name="odor_less" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="website_description" widget="html"/>
+
+                            </group>
+                        </group>
+                        <group>
+                            <field name="all_data_done"/>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='taxes_id']" position="before">
+                    <field name="price_changing_date" readonly="1"/>
+                    <field name="last_change_price" readonly="1"/>
+                    <field name="last_name" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_supplierinfo_form_view_4778" model="ir.ui.view">
+            <field name="name">product.supplierinfo.form.view</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='date_start']" position="before">
+                    <field name="price_changing_date" readonly="1"/>
+                    <field name="last_change_price" readonly="1"/>
+                </xpath>
+
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

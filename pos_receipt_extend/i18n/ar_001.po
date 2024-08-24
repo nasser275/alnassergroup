@@ -1,0 +1,199 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_receipt_extend
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-29 15:47+0000\n"
+"PO-Revision-Date: 2024-06-29 15:47+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,field_description:pos_receipt_extend.field_account_bank_statement_line__account_barcode
+#: model:ir.model.fields,field_description:pos_receipt_extend.field_account_move__account_barcode
+#: model:ir.model.fields,field_description:pos_receipt_extend.field_account_payment__account_barcode
+msgid "Account Barcode"
+msgstr ""
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,field_description:pos_receipt_extend.field_pos_config__is_customer_address
+msgid "Customer Address"
+msgstr "عنوان العميل"
+
+#. module: pos_receipt_extend
+#. openerp-web
+#: code:addons/pos_receipt_extend/static/src/xml/order_receipt_templates.xml:0
+#, python-format
+msgid "Customer Address:"
+msgstr "عنوان العميل"
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,field_description:pos_receipt_extend.field_pos_config__is_customer_details
+msgid "Customer Details"
+msgstr "تفاصيل العميل"
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,field_description:pos_receipt_extend.field_pos_config__is_customer_email
+msgid "Customer Email"
+msgstr "بريد العميل الإلكتروني"
+
+#. module: pos_receipt_extend
+#. openerp-web
+#: code:addons/pos_receipt_extend/static/src/xml/order_receipt_templates.xml:0
+#, python-format
+msgid "Customer Email:"
+msgstr "بريد العميل الإلكتروني"
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,field_description:pos_receipt_extend.field_pos_config__is_customer_mobile
+msgid "Customer Mobile"
+msgstr "هاتف العميل المحمول"
+
+#. module: pos_receipt_extend
+#. openerp-web
+#: code:addons/pos_receipt_extend/static/src/xml/order_receipt_templates.xml:0
+#, python-format
+msgid "Customer Mobile:"
+msgstr "هاتف العميل المحمول"
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,field_description:pos_receipt_extend.field_pos_config__is_customer_name
+msgid "Customer Name"
+msgstr "إسم العميل"
+
+#. module: pos_receipt_extend
+#. openerp-web
+#: code:addons/pos_receipt_extend/static/src/xml/order_receipt_templates.xml:0
+#, python-format
+msgid "Customer Name:"
+msgstr "إسم العميل"
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,field_description:pos_receipt_extend.field_pos_config__is_customer_phone
+msgid "Customer Phone"
+msgstr "هاتف العميل"
+
+#. module: pos_receipt_extend
+#. openerp-web
+#: code:addons/pos_receipt_extend/static/src/xml/order_receipt_templates.xml:0
+#, python-format
+msgid "Customer Phone:"
+msgstr "هاتف العميل"
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,field_description:pos_receipt_extend.field_pos_config__is_customer_vat
+msgid "Customer VAT"
+msgstr "الرقم الضريبي للعميل"
+
+#. module: pos_receipt_extend
+#. openerp-web
+#: code:addons/pos_receipt_extend/static/src/xml/order_receipt_templates.xml:0
+#, python-format
+msgid "Customer Vat:"
+msgstr "الرقم الضريبي للعميل"
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,help:pos_receipt_extend.field_pos_config__is_customer_address
+msgid "Enable this field to show the customer address code to pos receipt"
+msgstr ""
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,help:pos_receipt_extend.field_pos_config__is_customer_email
+msgid "Enable this field to show the customer email to pos receipt"
+msgstr ""
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,help:pos_receipt_extend.field_pos_config__is_customer_mobile
+msgid "Enable this field to show the customer mobile to pos receipt"
+msgstr ""
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,help:pos_receipt_extend.field_pos_config__is_customer_name
+msgid "Enable this field to show the customer name to pos receipt"
+msgstr ""
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,help:pos_receipt_extend.field_pos_config__is_customer_details
+msgid "Enable this field to show the customer number to pos receipt"
+msgstr ""
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,help:pos_receipt_extend.field_pos_config__is_customer_phone
+msgid "Enable this field to show the customer phone to pos receipt"
+msgstr ""
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,help:pos_receipt_extend.field_pos_config__is_customer_vat
+msgid "Enable this field to show the customer vat to pos receipt"
+msgstr ""
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,help:pos_receipt_extend.field_pos_config__is_invoice_number
+msgid "Enable this field to show the invoice number to pos receipt"
+msgstr ""
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,help:pos_receipt_extend.field_pos_config__is_qr_code
+msgid "Enable this field to show the qr code to pos receipt"
+msgstr ""
+
+#. module: pos_receipt_extend
+#: model_terms:ir.ui.view,arch_db:pos_receipt_extend.pos_config_view_form
+msgid "Enable to show QRCode on receipt"
+msgstr ""
+
+#. module: pos_receipt_extend
+#: model_terms:ir.ui.view,arch_db:pos_receipt_extend.pos_config_view_form
+msgid "Enable to show customer details on receipt"
+msgstr ""
+
+#. module: pos_receipt_extend
+#: model_terms:ir.ui.view,arch_db:pos_receipt_extend.pos_config_view_form
+msgid "Enable to view invoice number on receipt"
+msgstr ""
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,help:pos_receipt_extend.field_account_bank_statement_line__account_barcode
+#: model:ir.model.fields,help:pos_receipt_extend.field_account_move__account_barcode
+#: model:ir.model.fields,help:pos_receipt_extend.field_account_payment__account_barcode
+msgid "Enter the barcode associated with thisaccount."
+msgstr ""
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,field_description:pos_receipt_extend.field_pos_config__is_invoice_number
+msgid "Invoice Number"
+msgstr "رقم الفاتورة"
+
+#. module: pos_receipt_extend
+#. openerp-web
+#: code:addons/pos_receipt_extend/static/src/xml/order_receipt_templates.xml:0
+#, python-format
+msgid "Invoice Number:"
+msgstr "رقم الفاتورة"
+
+#. module: pos_receipt_extend
+#: model:ir.model,name:pos_receipt_extend.model_account_move
+msgid "Journal Entry"
+msgstr "قيد اليومية"
+
+#. module: pos_receipt_extend
+#: model:ir.model.fields,field_description:pos_receipt_extend.field_pos_config__is_qr_code
+msgid "Order QRCode"
+msgstr ""
+
+#. module: pos_receipt_extend
+#: model:ir.model,name:pos_receipt_extend.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "تهيئة نقطة البيع "
+
+#. module: pos_receipt_extend
+#: model:ir.model,name:pos_receipt_extend.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "طلبات نقطة البيع "

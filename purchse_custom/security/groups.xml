@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="group_access_purchase" model="res.groups">
+            <field name="name">Access Change Price Purchase</field>
+        </record>
+          <record id="group_no_access_purchase" model="res.groups">
+            <field name="name">Access Not Change Price Purchase</field>
+        </record>
+
+
+    </data>
+</odoo>

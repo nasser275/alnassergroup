@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="group_start_balance_report" model="res.groups">
+            <field name="name">تقرير رصيد أول المدة</field>
+        </record>
+
+
+    </data>
+</odoo>

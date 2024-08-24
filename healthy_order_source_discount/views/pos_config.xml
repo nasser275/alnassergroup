@@ -1,0 +1,107 @@
+<odoo>
+
+    <record id="pos_config_view_form_inherit_add_order_source" model="ir.ui.view">
+        <field name="name">delivery.order.pos.config.form</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='category_reference']" position="after">
+
+                <div class="col-xs-12 col-md-6 o_setting_box"
+                     groups="healthy_order_source_discount.group_pos_order_source">
+
+                    <div class="o_setting_left_pane">
+                        <field name="show_order_source"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="show_order_source" string="Show Order Source"/>
+                        <div class="text-muted">
+                            Show Order Source
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 o_setting_box"
+                     groups="healthy_order_source_discount.group_pos_order_source">
+
+                    <div class="o_setting_left_pane">
+                        <field name="customer_required"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="customer_required" string="Customer Required"/>
+                        <div class="text-muted">
+                            order requires customer
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 col-12 o_setting_box"
+                     groups="healthy_order_source_discount.group_pos_order_discount">
+
+                    <div class="o_setting_left_pane">
+                        <field name="enable_discount"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="enable_discount" string="Enable Application Discount"/>
+<!--                        <div class="text-muted">-->
+<!--                            <field name="healthy_discount_product_id"-->
+<!--                                   attrs="{'required':[('enable_discount','=',True)],'invisible':[('enable_discount','=',False)]}"/>-->
+<!--                        </div>-->
+                    </div>
+
+                </div>
+                <div class="col-12 col-12 o_setting_box"
+                     groups="healthy_order_source_discount.group_pos_order_discount">
+
+                    <div class="o_setting_left_pane">
+                        <field name="enable_fdiscount"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="enable_discount" string="Enable Fixed Discount"/>
+                        <div class="text-muted">
+                            <field name="healthy_fdiscount_product_id" attrs="{'required':[('enable_fdiscount','=',True)],'invisible':[('enable_fdiscount','=',False)]}"/>
+                        </div>
+                          <label for="fixed_min_order_total" />
+                        <div class="text-muted">
+                            <field name="fixed_min_order_total" attrs="{'required':[('enable_fdiscount','=',True)],'invisible':[('enable_fdiscount','=',False)]}"/>
+                        </div>
+                          <label for="fixed_max_order_total" />
+                        <div class="text-muted">
+                            <field name="fixed_max_order_total" attrs="{'required':[('enable_fdiscount','=',True)],'invisible':[('enable_fdiscount','=',False)]}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-12 o_setting_box"
+                     groups="healthy_order_source_discount.group_pos_order_discount">
+
+                    <div class="o_setting_left_pane">
+                        <field name="enable_pdiscount"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="enable_pdiscount" string="Enable Percentage Discount"/>
+                        <div class="text-muted">
+                            <field name="healthy_pdiscount_product_id"
+                                   attrs="{'required':[('enable_pdiscount','=',True)],'invisible':[('enable_pdiscount','=',False)]}"/>
+                        </div>
+                        <label for="perc_min_order_total" />
+                        <div class="text-muted">
+                            <field name="perc_min_order_total"
+                                   attrs="{'required':[('enable_pdiscount','=',True)],'invisible':[('enable_pdiscount','=',False)]}"/>
+                        </div>
+
+                        <label for="perc_max_order_total" />
+                        <div class="text-muted">
+                            <field name="perc_max_order_total"
+                                   attrs="{'required':[('enable_pdiscount','=',True)],'invisible':[('enable_pdiscount','=',False)]}"/>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

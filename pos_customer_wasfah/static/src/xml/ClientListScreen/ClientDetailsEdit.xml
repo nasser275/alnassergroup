@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    
+    <t t-name="ClientDetailsEditWhatsApp" t-inherit="point_of_sale.ClientDetailsEdit" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('client-details-right')]/div[hasclass('client-detail')]" position="after">            
+             <div class="client-detail">
+                 <span class="label">الوصفه</span>
+                 <input class="detail wasfah" name="wasfah" type="text"
+                 		t-on-change="captureChange"
+                        t-att-value="props.partner.wasfah || ''" />
+             </div>
+        </xpath>
+    </t>
+
+</templates>

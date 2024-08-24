@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="InvoiceScreen" owl="1">
+        <div class="ticket-screen screen">
+            <div class="screen-content" style="max-width:100%;">
+                <div class="controls">
+                    <div class="buttons">
+                        <button class="discard" t-on-click="_closeInvoiceScreen">Close</button>
+                    </div>
+                    <SearchBar config="searchBarConfig" placeholder="'Search Orders...'" />
+                </div>
+                <div class="orders">
+                    <div class="header-row">
+                        <div class="col start wide">Name</div>
+                        <div class="col start wide">Customer</div>
+                        <div class="col start wide">Invoice Date</div>
+                        <div class="col start wide">Due Date</div>
+                        <div class="col start wide">Amount Due</div>
+                        <div class="col start wide">Total</div>
+                        <div class="col start">Pay</div>
+                        <div class="col start">Download</div>
+                    </div>
+                     <t t-foreach="filteredInvoiceList" t-as="invoice">
+                        <InvoiceLine line="invoice"/>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

@@ -1,0 +1,123 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="healthy_loyalty_subscriber_list">
+            <field name="name">healthy_loyalty_subscriber_list</field>
+            <field name="model">loyalty.subscriber</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="customer_id"/>
+                    <field name="customer_phone" optional="hide"/>
+                    <field name="customer_mobile" optional="hide"/>
+                    <field name="code"/>
+                    <field name="is_subscribed"/>
+                    <field name="points"/>
+                    <field name="date_action"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="manager_loyalty_subscriber_tree" model="ir.ui.view">
+            <field name="name">loyalty.subscriber.list.inherit</field>
+            <field name="model">loyalty.subscriber</field>
+            <field name="inherit_id" ref="healthy_loyalty_points.healthy_loyalty_subscriber_list"/>
+            <field name="groups_id" eval="[(6, 0, [ref('healthy_loyalty_points.group_loyal_points_modify') ])]"/>
+            <field name="arch" type="xml">
+                <field name="is_subscribed" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+                <field name="points" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="healthy_loyalty_redeemed_list">
+            <field name="name">healthy_loyalty_redeemed_list</field>
+            <field name="model">redeem.loyalty.points</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom" create="0">
+                    <field name="customer_id"/>
+                    <field name="points"/>
+                    <field name="coupon"/>
+                    <field name="expire_date"/>
+                    <field name="points_amount"/>
+                    <field name="total_points_redeemed"/>
+                    <field name="points_residual"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="healthy_loyalty_points_list">
+            <field name="name">healthy_loyalty_points_list</field>
+            <field name="model">orders.loyalty.points</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom" create="0">
+                    <field name="customer_id"/>
+                    <field name="order_id"/>
+                    <field name="total_order_amount" string="Total Amount Order"/>
+                    <field name="points"/>
+                    <field name="total_points_amount"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="pos_sale_order_point_field">
+            <field name="name">pos.order.view.form</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <!--                <field name="table_id" position="after">-->
+                <!--                    <field string="Branch" name="branch_id" readonly="True"/>-->
+                <!--                </field>-->
+
+                <xpath expr="//header/button[@name='refund']" position="after">
+                    <button string="G" type="object" name="convert_points" invisible="1"/>
+                    <button string="P" type="object" name="residual_points" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="healthy_loyalty_points_action">
+            <field name="name">Loyalty Points</field>
+            <field name="res_model">orders.loyalty.points</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="healthy_loyalty_subscriber_action">
+            <field name="name">Subscriber</field>
+            <field name="res_model">loyalty.subscriber</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="healthy_loyalty_points_redeemed_action">
+            <field name="name">Loyalty Points Redeemed</field>
+            <field name="res_model">redeem.loyalty.points</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+
+        <!-- Top menu item -->
+
+        <menuitem name="Loyalty Points Program" id="healthy_loyalty_points_menu_root"
+                  groups="healthy_loyalty_points.group_loyal_points_admin"/>
+
+
+        <!-- actions -->
+
+        <menuitem name="Loyal Points Subscribers" id="healthy_loyalty_subscriber_menu"
+                  parent="healthy_loyalty_points_menu_root"
+                  action="healthy_loyalty_subscriber_action"/>
+        <menuitem name="Orders Loyal Points" id="healthy_loyalty_points_menu" parent="healthy_loyalty_points_menu_root"
+                  action="healthy_loyalty_points_action"/>
+        <menuitem name="Loyal Points Redeemed" id="healthy_loyalty_points_redeemed_menu"
+                  parent="healthy_loyalty_points_menu_root"
+                  action="healthy_loyalty_points_redeemed_action"/>
+
+
+    </data>
+</odoo>

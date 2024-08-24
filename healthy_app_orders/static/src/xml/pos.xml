@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<!--    <t t-name="APPOrderButton" owl="1">-->
+<!--        <div class="control-button">-->
+<!--            <i class="fa fa-home" />-->
+<!--            App Orders-->
+<!--        </div>-->
+<!--    </t>-->
+<!--    <t t-name="OrderListScreenWidget" owl="1">-->
+<!--        <div class="ticket-screen screen">-->
+<!--            <div class="screen-content">-->
+<!--                <section class="top-content">-->
+<!--                    <span class='button back' t-on-click="back">-->
+<!--                        <i class='fa fa-angle-double-left'></i>-->
+<!--                        Cancel-->
+<!--                    </span>-->
+
+<!--                    <SearchBar config="searchBarConfig" style="right: auto; margin-left: 90px; margin-top:8px;" placeholder="'Search Orders...'" />-->
+
+<!--                    <span class='button refresh refreshbutton' t-on-click="reload" style="right: auto; margin-left: 180px; margin-top:8px; left: 85%;">-->
+<!--                        <i class="fa fa-refresh"></i>-->
+<!--                        Refresh-->
+<!--                    </span>-->
+
+<!--                </section>-->
+<!--                <div class="orders">-->
+<!--                    <table class="client-list app_order_list">-->
+<!--                            <thead>-->
+<!--                                <tr style="background-color: rgb(135, 160, 166);color: white;">-->
+<!--                                    <th>#</th>-->
+<!--                                    <th>App Reference</th>-->
+<!--                                    <th>Customer</th>-->
+<!--                                    <th>Branch</th>-->
+<!--                                    <th>Schedule Time</th>-->
+<!--                                    <th>Order Date</th>-->
+<!--                                    <th>Order Source</th>-->
+<!--                                    <th>Delivery Cost</th>-->
+<!--                                    <th>Total</th>-->
+<!--                                    <th>Discount Type</th>-->
+<!--                                    <th>Discount</th>-->
+<!--                                    <th>Final Total</th>-->
+<!--                                    <th>Customer Notes</th>-->
+<!--                                </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody class="app-order-list-contents">-->
+<!--                                <t t-set="count" t-value="0"/>-->
+<!--                                <t t-foreach="ordersList" t-as="order" t-key="order.cid">-->
+<!--                                    <tr class="app-order-line"  t-on-click="create_order_click(order)"-->
+<!--                                        style="cursor:pointer;">-->
+<!--                                        <td>-->
+<!--                                            <t t-set="count" t-value="count+1"/>-->
+<!--                                            <t t-esc="count"/>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <t t-esc="order.name"/>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <t t-esc="order.partner_id[1]"/>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <t t-esc="order.branch_id[1]"/>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <t t-if="order.schedule_time &gt; 12">-->
+<!--                                                <t t-esc="order.schedule_time - 12"/>-->
+<!--                                                <span>PM</span>-->
+<!--                                            </t>-->
+<!--                                            <t t-else="">-->
+<!--                                                <t t-esc="order.schedule_time"/>-->
+<!--                                                <span>AM</span>-->
+<!--                                            </t>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <t t-esc="order.order_date"/>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <t t-esc="order.order_source_id[1]"/>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <t t-esc="order.delivery_cost"/>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <t t-esc="order.amount_total"/>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <t t-if="order.discount_type=='percent'">-->
+<!--                                                <span>Percent</span>-->
+<!--                                            </t>-->
+<!--                                            <t t-if="order.discount_type=='amount'">-->
+<!--                                                <span>Amount</span>-->
+<!--                                            </t>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <t t-esc="order.discount"/>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <t t-esc="order.final_total"/>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <t t-esc="order.customer_notes"/>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                </t>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </t>-->
+    <t t-name="ScheduleAppOrderButton" owl="1">
+        <div class='control-button'>
+            <i class="fa fa-clock-o" />
+            Schedule Order
+        </div>
+    </t>
+    <t t-name="ScheduleAppOrderPopupWidget" owl="1">
+        <div class="modal-dialog">
+            <div class="popup popup-schedule" style="max-width:560px !important; height:760px !important;">
+                <div class="header">
+                    <p class="title">Schedule Order</p>
+                </div>
+                <div class="body">
+                    <div class="checkboxes">
+                        <label for="saturday"><input class="weekdays" value="false" type="checkbox" id="saturday"/><span>Saturday</span></label>
+                        <label for="sunday"><input class="weekdays" value="false" type="checkbox" id="sunday"/><span>Sunday</span></label>
+                        <label for="monday"><input class="weekdays" value="false" type="checkbox" id="monday"/><span>Monday</span></label>
+                        <label for="tuesday"><input class="weekdays" value="false" type="checkbox" id="tuesday"/><span>Tuesday</span></label>
+                        <label for="wednesday"><input class="weekdays" value="false" type="checkbox" id="wednesday"/><span>Wednesday</span></label>
+                        <label for="thursday"><input class="weekdays" value="false" type="checkbox" id="thursday"/><span>Thursday</span></label>
+                        <label for="friday"><input class="weekdays" value="false" type="checkbox" id="friday"/><span>Friday</span></label>
+                    </div>
+                    <div class='required-field' style="position: relative;">
+                        <span class=''>Start Date</span>
+                        <input class="schedule-start-date" style="width: 300px;" type="date" name="schedule_start_date" required="required" />
+                    </div>
+                    <div class='required-field' style="position: relative;">
+                        <span class=''>End Date </span>
+                      <input class="schedule-end-date" style="width: 300px;margin-left: 10px;" type="date" name="schedule_end_date" required="required" />
+                    </div>
+                    <div class='saturday_time' style="position: relative;display:none">
+                        <span class=''>Saturday Time </span>
+                        <select class='form-control schedule_time' name='saturday_time' style="width: 298px;margin-left: 20px;">
+                            <option t-att-value='0' selected="selected">Select Time</option>
+                            <option t-att-value='1'>1:00</option><option t-att-value='2'>2:00</option><option t-att-value='3'>3:00</option>
+                            <option t-att-value='4'>4:00</option><option t-att-value='5'>5:00</option><option t-att-value='6'>6:00</option>
+                            <option t-att-value='7'>7:00</option><option t-att-value='8'>8:00</option><option t-att-value='9'>9:00</option>
+                            <option t-att-value='10'>10:00</option><option t-att-value='11'>11:00</option><option t-att-value='12'>12:00</option>
+                            <option t-att-value='13'>13:00</option><option t-att-value='14'>14:00</option><option t-att-value='15'>15:00</option>
+                            <option t-att-value='16'>16:00</option><option t-att-value='17'>17:00</option><option t-att-value='18'>18:00</option>
+                            <option t-att-value='19'>19:00</option><option t-att-value='20'>20:00</option><option t-att-value='21'>21:00</option>
+                            <option t-att-value='22'>22:00</option><option t-att-value='23'>23:00</option><option t-att-value='24'>24:00</option>
+                        </select>
+                    </div>
+                    <div class='sunday_time' style="position: relative;display:none">
+                        <span class=''>Sunday Time </span>
+                        <select class='form-control schedule_time' name='sunday_time' style="width: 298px;margin-left: 34px;">
+                            <option t-att-value='0' selected="selected">Select Time</option>
+                            <option t-att-value='1'>1:00</option><option t-att-value='2'>2:00</option><option t-att-value='3'>3:00</option>
+                            <option t-att-value='4'>4:00</option><option t-att-value='5'>5:00</option><option t-att-value='6'>6:00</option>
+                            <option t-att-value='7'>7:00</option><option t-att-value='8'>8:00</option><option t-att-value='9'>9:00</option>
+                            <option t-att-value='10'>10:00</option><option t-att-value='11'>11:00</option><option t-att-value='12'>12:00</option>
+                            <option t-att-value='13'>13:00</option><option t-att-value='14'>14:00</option><option t-att-value='15'>15:00</option>
+                            <option t-att-value='16'>16:00</option><option t-att-value='17'>17:00</option><option t-att-value='18'>18:00</option>
+                            <option t-att-value='19'>19:00</option><option t-att-value='20'>20:00</option><option t-att-value='21'>21:00</option>
+                            <option t-att-value='22'>22:00</option><option t-att-value='23'>23:00</option><option t-att-value='24'>24:00</option>
+                        </select>
+                    </div>
+                    <div class='monday_time' style="position: relative;display:none">
+                        <span class=''>Monday Time </span>
+                        <select class='form-control schedule_time' name='monday_time' style="width: 298px;margin-left: 26px;">
+                            <option t-att-value='0' selected="selected">Select Time</option>
+                            <option t-att-value='1'>1:00</option><option t-att-value='2'>2:00</option><option t-att-value='3'>3:00</option>
+                            <option t-att-value='4'>4:00</option><option t-att-value='5'>5:00</option><option t-att-value='6'>6:00</option>
+                            <option t-att-value='7'>7:00</option><option t-att-value='8'>8:00</option><option t-att-value='9'>9:00</option>
+                            <option t-att-value='10'>10:00</option><option t-att-value='11'>11:00</option><option t-att-value='12'>12:00</option>
+                            <option t-att-value='13'>13:00</option><option t-att-value='14'>14:00</option><option t-att-value='15'>15:00</option>
+                            <option t-att-value='16'>16:00</option><option t-att-value='17'>17:00</option><option t-att-value='18'>18:00</option>
+                            <option t-att-value='19'>19:00</option><option t-att-value='20'>20:00</option><option t-att-value='21'>21:00</option>
+                            <option t-att-value='22'>22:00</option><option t-att-value='23'>23:00</option><option t-att-value='24'>24:00</option>
+                        </select>
+                    </div>
+                    <div class='tuesday_time' style="position: relative;display:none">
+                        <span class=''>Tuesday Time </span>
+                        <select class='form-control schedule_time' name='tuesday_time' style="width: 298px;margin-left: 27px;">
+                            <option t-att-value='0' selected="selected">Select Time</option>
+                            <option t-att-value='1'>1:00</option><option t-att-value='2'>2:00</option><option t-att-value='3'>3:00</option>
+                            <option t-att-value='4'>4:00</option><option t-att-value='5'>5:00</option><option t-att-value='6'>6:00</option>
+                            <option t-att-value='7'>7:00</option><option t-att-value='8'>8:00</option><option t-att-value='9'>9:00</option>
+                            <option t-att-value='10'>10:00</option><option t-att-value='11'>11:00</option><option t-att-value='12'>12:00</option>
+                            <option t-att-value='13'>13:00</option><option t-att-value='14'>14:00</option><option t-att-value='15'>15:00</option>
+                            <option t-att-value='16'>16:00</option><option t-att-value='17'>17:00</option><option t-att-value='18'>18:00</option>
+                            <option t-att-value='19'>19:00</option><option t-att-value='20'>20:00</option><option t-att-value='21'>21:00</option>
+                            <option t-att-value='22'>22:00</option><option t-att-value='23'>23:00</option><option t-att-value='24'>24:00</option>
+                        </select>
+                    </div>
+                    <div class='wednesday_time' style="position: relative;display:none">
+                        <span class=''>Wednesday Time </span>
+                        <select class='form-control schedule_time' name='wednesday_time' style="width: 298px;margin-left: -1px;">
+                            <option t-att-value='0' selected="selected">Select Time</option>
+                            <option t-att-value='1'>1:00</option><option t-att-value='2'>2:00</option><option t-att-value='3'>3:00</option>
+                            <option t-att-value='4'>4:00</option><option t-att-value='5'>5:00</option><option t-att-value='6'>6:00</option>
+                            <option t-att-value='7'>7:00</option><option t-att-value='8'>8:00</option><option t-att-value='9'>9:00</option>
+                            <option t-att-value='10'>10:00</option><option t-att-value='11'>11:00</option><option t-att-value='12'>12:00</option>
+                            <option t-att-value='13'>13:00</option><option t-att-value='14'>14:00</option><option t-att-value='15'>15:00</option>
+                            <option t-att-value='16'>16:00</option><option t-att-value='17'>17:00</option><option t-att-value='18'>18:00</option>
+                            <option t-att-value='19'>19:00</option><option t-att-value='20'>20:00</option><option t-att-value='21'>21:00</option>
+                            <option t-att-value='22'>22:00</option><option t-att-value='23'>23:00</option><option t-att-value='24'>24:00</option>
+                        </select>
+                    </div>
+                    <div class='thursday_time' style="position: relative;display:none">
+                        <span class=''>Thursday Time </span>
+                        <select class='form-control schedule_time' name='thursday_time' style="width: 298px;margin-left: 20px;">
+                            <option t-att-value='0' selected="selected">Select Time</option>
+                            <option t-att-value='1'>1:00</option><option t-att-value='2'>2:00</option><option t-att-value='3'>3:00</option>
+                            <option t-att-value='4'>4:00</option><option t-att-value='5'>5:00</option><option t-att-value='6'>6:00</option>
+                            <option t-att-value='7'>7:00</option><option t-att-value='8'>8:00</option><option t-att-value='9'>9:00</option>
+                            <option t-att-value='10'>10:00</option><option t-att-value='11'>11:00</option><option t-att-value='12'>12:00</option>
+                            <option t-att-value='13'>13:00</option><option t-att-value='14'>14:00</option><option t-att-value='15'>15:00</option>
+                            <option t-att-value='16'>16:00</option><option t-att-value='17'>17:00</option><option t-att-value='18'>18:00</option>
+                            <option t-att-value='19'>19:00</option><option t-att-value='20'>20:00</option><option t-att-value='21'>21:00</option>
+                            <option t-att-value='22'>22:00</option><option t-att-value='23'>23:00</option><option t-att-value='24'>24:00</option>
+                        </select>
+                    </div>
+                    <div class='friday_time' style="position: relative;display:none">
+                        <span class=''>Friday Time </span>
+                        <select class='form-control schedule_time' name='friday_time' style="width: 298px;margin-left: 43px;">
+                            <option t-att-value='0' selected="selected">Select Time</option>
+                            <option t-att-value='1'>1:00</option><option t-att-value='2'>2:00</option><option t-att-value='3'>3:00</option>
+                            <option t-att-value='4'>4:00</option><option t-att-value='5'>5:00</option><option t-att-value='6'>6:00</option>
+                            <option t-att-value='7'>7:00</option><option t-att-value='8'>8:00</option><option t-att-value='9'>9:00</option>
+                            <option t-att-value='10'>10:00</option><option t-att-value='11'>11:00</option><option t-att-value='12'>12:00</option>
+                            <option t-att-value='13'>13:00</option><option t-att-value='14'>14:00</option><option t-att-value='15'>15:00</option>
+                            <option t-att-value='16'>16:00</option><option t-att-value='17'>17:00</option><option t-att-value='18'>18:00</option>
+                            <option t-att-value='19'>19:00</option><option t-att-value='20'>20:00</option><option t-att-value='21'>21:00</option>
+                            <option t-att-value='22'>22:00</option><option t-att-value='23'>23:00</option><option t-att-value='24'>24:00</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="button create" style="margin-right: 30px;" t-on-click="click_create">
+                        Create
+                    </div>
+                    <div class="button cancel" style="margin-right: 30px;" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
+

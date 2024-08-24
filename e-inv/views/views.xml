@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="e-inv.list">
+      <field name="name">E-inv list</field>
+      <field name="model">e-inv.e-inv</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="e-inv.action_window">
+      <field name="name">E-inv window</field>
+      <field name="res_model">e-inv.e-inv</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="e-inv.action_server">
+      <field name="name">E-inv server</field>
+      <field name="model_id" ref="model_e-inv_e-inv"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="E-inv" id="e-inv.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="e-inv.menu_1" parent="e-inv.menu_root"/>
+    <menuitem name="Menu 2" id="e-inv.menu_2" parent="e-inv.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="e-inv.menu_1_list" parent="e-inv.menu_1"
+              action="e-inv.action_window"/>
+    <menuitem name="Server to list" id="e-inv" parent="e-inv.menu_2"
+              action="e-inv.action_server"/>
+-->
+  </data>
+</odoo>

@@ -1,0 +1,95 @@
+<odoo>
+    <data>
+<!--        <record id="view_report_pos_order_graph" model="ir.ui.view">-->
+<!--            <field name="name">report.pos.inherited</field>-->
+<!--            <field name="model">report.pos.order</field>-->
+<!--            <field name="inherit_id" ref="point_of_sale.view_report_pos_order_search"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                &lt;!&ndash;                 <filter name="order_month"&ndash;&gt;-->
+<!--                <xpath expr="//group/filter[@name='order_month']" position="after">-->
+<!--                    <group>-->
+
+
+<!--                        <filter string="Today" name="todaydate"-->
+<!--                                domain="[-->
+<!--('date','&gt;=',context_today().strftime('%Y-%m-%d'))-->
+<!--]"/>-->
+<!--                        <separator/>-->
+
+<!--                        <filter string="Yesterday" name="yesterdaydate"-->
+<!--                                domain="[-->
+<!--('date','&gt;=',(context_today()-relativedelta(days=1)).strftime('%Y-%m-%d'))-->
+<!--]"/>-->
+<!--                        <separator/>-->
+
+<!--                        <filter string="Last 7 Days" name="lastsevendaysdaydate"-->
+<!--                                domain="[-->
+<!--('date','&gt;=',((context_today()-relativedelta(days=7))-(relativedelta(hours=1))).strftime('%Y-%m-%d'))-->
+<!--]"/>-->
+<!--                        <separator/>-->
+
+<!--                        <filter string="Last 30 Days" name="lastthirtydaysdaydate"-->
+<!--                                domain="[-->
+<!--('date','&gt;=',(context_today()-relativedelta(days=30)).strftime('%Y-%m-%d'))-->
+<!--]"/>-->
+
+<!--                        <separator/>-->
+
+<!--                        <filter string="This Week" name="thisweek"-->
+
+<!--                                domain="[('date', '&lt;=', ((context_today()+relativedelta(weeks=0, weekday=-1)).strftime('%Y-%m-%d'))),-->
+
+<!--('date', '&gt;=', ((context_today()-relativedelta(weeks=1, weekday=0)).strftime('%Y-%m-%d')))]"/>-->
+<!--                        <separator/>-->
+
+
+<!--                        <filter string="This Month" name="thismonth"-->
+<!--                                domain="[('date','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')), ('date','&gt;=',time.strftime('%%Y-%%m-01'))]"/>-->
+
+<!--                        <separator/>-->
+<!--                        <filter string="This Year" name="thisyeardate"-->
+<!--                                domain="[('date','&gt;=',(context_today()+relativedelta(years=1)).strftime('%%Y-01-01')),('date','&lt;=', time.strftime('%%Y-01-01'))]"/>-->
+<!--                        <separator/>-->
+
+
+<!--                        <filter string="Last Week" name="lastweekdate"-->
+<!--                                domain="[-->
+<!--('date','&gt;=',(context_today()-relativedelta(weeks=1)).strftime('%Y-%m-%d'))-->
+<!--]"/>-->
+<!--                        <separator/>-->
+
+
+<!--                        <filter string="Last Month" name="lastmonth"-->
+<!--                                domain="[('date','&gt;=',(context_today()-relativedelta(months=1)).strftime('%%Y-%%m-01')),('date','&lt;',time.strftime('%%Y-%%m-01'))]"/>-->
+<!--                        <separator/>-->
+
+<!--                        <filter string="Last Year" name="lastyeardate"-->
+<!--                                domain="[('date','&gt;=',(context_today()-relativedelta(years=1)).strftime('%%Y-01-01')),('date','&lt;=', time.strftime('%%Y-01-01'))]"/>-->
+
+<!--                        <separator/>-->
+<!--                    </group>-->
+<!--                </xpath>-->
+
+
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="action_report_franchise_sales_wp" model="ir.actions.act_window">
+            <field name="name">Franchise Report</field>
+            <field name="res_model">report.pos.sales.wp</field>
+            <field name="view_mode">pivot,graph</field>
+            <field name="search_view_id" ref="point_of_sale.view_report_pos_order_search"/>
+            <field name="context">{'group_by_no_leaf':1,'group_by':[]}</field>
+        </record>
+
+        <menuitem id="menu_report_pos_order_franchise_user"
+                  name="Sales Report Custom"
+                  action="healthy_sales_report.action_report_franchise_sales_wp"
+                  sequence="3"
+                  groups="healthy_sales_report.group_franchise_user_report_product"
+
+        />
+
+
+    </data>
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Law Matter Form view -->
+    <record id="pos_order_picking_form_view" model="ir.ui.view">
+        <field name="name">pos.order.create.picking.form</field>
+        <field name="model">pos.order.create.picking</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="order_id"/>
+                        </group>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Law Matter Tree view -->
+    <record id="pos_order_picking_tree_view" model="ir.ui.view">
+        <field name="name">pos.order.create.picking.tree</field>
+        <field name="model">pos.order.create.picking</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="order_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="pos_order_picking_action" model="ir.actions.act_window">
+        <field name="name">POS Order Picking</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pos.order.create.picking</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="pos_order_picking_menu" action="pos_order_picking_action"
+              parent="point_of_sale.menu_point_of_sale" name="POS Order Picking"
+              groups="ks_pos_low_stock_alert.group_pos_order_picking"/>
+</odoo>

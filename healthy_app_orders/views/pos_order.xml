@@ -1,0 +1,27 @@
+<odoo>
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_pos_pos_form_app_order" model="ir.ui.view">
+        <field name="name">pos.order.form.app.order</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="app_order_id"  attrs="{'readonly': [('state', 'not in', ('new'))]}"/>
+                <field name="call_center_agent_name"  attrs="{'readonly': [('state', 'not in', ('new'))]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_order_tree" model="ir.ui.view">
+        <field name="name">pos.order.tree</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="before">
+                <field name="call_center_agent_name"  />
+            </xpath>
+        </field>
+    </record>
+
+    
+</odoo>

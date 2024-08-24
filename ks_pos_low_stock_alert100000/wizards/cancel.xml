@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+          <record model="ir.ui.view" id="pos_cancel_wiz">
+            <field name="name">Cancel Pos Order</field>
+            <field name="model">pos.cancel.wiz</field>
+            <field name="arch" type="xml">
+                <form string="create Part Payment">
+                    <group>
+                        <group>
+                            <field name="cancel_reason_id"  options='{"no_open": True, "no_create": True}'/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="cancel" string="Cancel" type="object" default_focus="1" class="oe_highlight"/>
+                        <button string="Close" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_pos_cancel" model="ir.actions.act_window">
+            <field name="name">Cancel Pos Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.cancel.wiz</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="pos_cancel_wiz"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.ui.view" id="pos_password_return_wiz">
+            <field name="name">Password Return Pos Order</field>
+            <field name="model">pos.password.return.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Return Products">
+                    <group>
+                        <group>
+                            <field name="user_password" password="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="return_products" string="Return" type="object" default_focus="1" class="oe_highlight"/>
+                        <button string="Close" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_pos_pass_return" model="ir.actions.act_window">
+            <field name="name">Password Return Pos Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.password.return.wiz</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="pos_password_return_wiz"/>
+            <field name="target">new</field>
+        </record>
+
+
+
+    </data>
+</odoo>

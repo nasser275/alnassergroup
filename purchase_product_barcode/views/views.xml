@@ -1,0 +1,14 @@
+<odoo>
+<!--    <record model="ir.ui.view" id="purchase.form.inherit">-->
+<!--        <field name="name">purchase.form.inherit</field>-->
+<!--        <field name="model">purchase.order</field>-->
+<!--        <field name="inherit_id" ref="purchase.purchase_order_form"/>-->
+<!--        <field name="arch" type="xml">-->
+
+<!--            <xpath expr="//field[@name='order_line']/form//field[@name='name']" position="after">-->
+<!--                <field name="barcode"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+</odoo>

@@ -1,0 +1,31 @@
+<odoo>
+  <data>
+     <record id="payment_custom_pos_payment_method_view_form" model="ir.ui.view">
+      <field name="name">pos.payment.method.form</field>
+      <field name="model">pos.payment.method</field>
+      <field name="inherit_id" ref="point_of_sale.pos_payment_method_view_form"/>
+      <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='journal_id']" position="after">
+          <field name="serial_number_required"/>
+        </xpath>
+
+      </field>
+    </record>
+      <!-- Inherit Form View to Modify it -->
+      <record id="view_pos_pos_form333" model="ir.ui.view">
+          <field name="name">pos.order.form</field>
+          <field name="model">pos.order</field>
+          <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+          <field name="arch" type="xml">
+
+              <xpath expr="//field[@name='partner_id']" position="after">
+                  <field name="payment_serial_no" readonly="1"/>
+              </xpath>
+
+          </field>
+      </record>
+
+
+  </data>
+</odoo>

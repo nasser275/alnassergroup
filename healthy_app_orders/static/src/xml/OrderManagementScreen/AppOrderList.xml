@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="AppOrderList" owl="1">
+        <div class="orders">
+            <div class="header-row" t-att-class="{ oe_hidden: env.isMobile }">
+                <div class="col name">Order</div>
+                <div class="col branch">Branch</div>
+                <div class="col date">Date</div>
+                <div class="col schedule_time">Schedule Time</div>
+                <div class="col customer">Customer</div>
+                <div class="col order_source">Order Source</div>
+                <div class="col salesman">Salesperson</div>
+                <div class="col delivery_cost">Delivery Cost</div>
+                <div class="col discount_type">Discount Type</div>
+                <div class="col discount_value">Discount Value</div>
+                <div class="col end total">Total</div>
+                <div class="col end final_total">Final Total</div>
+                <div class="col state">State</div>
+                <div class="col customer_notes">Customer Notes</div>
+                <div class="col is_payment">Payment</div>
+            </div>
+            <div class="order-list">
+                <t t-foreach="props.orders" t-as="order" t-key="order.id">
+                    <t t-if="order.state=='draft'">
+                        <AppOrderRow order="order" highlightedOrder="highlightedOrder" />
+                    </t>
+                </t>
+            </div>
+        </div>
+    </t>
+
+</templates>

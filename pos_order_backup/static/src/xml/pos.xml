@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+<templates id="template" xml:space="preserve">
+    <t t-name="OrderBackupWidget" owl="1">
+        <div class="oe_status order-backup-btn" t-on-click="onClick">
+            <div class="js_connected oe_icon order-backup-icon">
+                <i class="fa fa-cloud-download"></i>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="Chrome" t-inherit="point_of_sale.Chrome" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('status-buttons')]" position="inside">
+            <OrderBackupWidget />
+        </xpath>
+    </t>
+
+    <t t-name="OrderBackupPopup" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup pos-order-backup-popup">
+                <p class="title backup-popup-one">Choose Your Operation</p>
+                <p class="title backup-popup-two">Confirm!</p>
+                <p class="title backup-popup-three">Confirm!</p>
+                <div class="backup-popup-one">
+                    <div>
+                        <div class="order-backup-block">
+                            <div id="backup-order" t-on-click="backup_cache" class="backup-popup-button wk-button-float1">
+                                <i class="fa fa-cloud-download backup-popup-icon"></i>
+                                <div class="wk_coupon_bottom_text">
+                                    Download Unsaved Orders
+                                </div>
+                                <a id="json_download_element" style="display:none"></a>
+                            </div>
+                            <div id="clear-cache" t-on-click="clear_cache" class="backup-popup-button wk-button-float2">
+                                <i class="fa fa-trash-o backup-popup-icon"></i>
+                                <div class="wk_coupon_bottom_text">
+                                    Delete Unsaved Orders
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="backup-popup-two body-message">
+                    This will remove the locally stored unsaved orders.
+                </div>
+                <div class="backup-popup-three body-message">
+                    Remove locally stored unsaved orders?
+                </div>
+
+                <div class="footer backup-popup-one">
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </div>
+                <div class="footer backup-popup-two">
+                    <div class="button order-clear-ok" t-on-click="confirm_clear_cache">
+                        Ok
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </div>
+                <div class="footer backup-popup-three">
+                    <div class="button order-clear-ok" t-on-click="confirm_clear_cache">
+                        Ok
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

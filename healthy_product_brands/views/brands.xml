@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_brands_form" model="ir.ui.view">
+            <field name="name">Brands</field>
+            <field name="model">healthy.brands</field>
+            <field name="arch" type="xml">
+                <form string="">
+
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <div class="oe_title">
+                            <label for="name" string="Brand Name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="English Name"/>
+                                <field name="name_ar" placeholder="Arabic Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="description_en"/>
+                            <field name="description_ar"/>
+                            <field name="url_en"/>
+                            <field name="url_ar"/>
+                            <field name="published"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_brands_tree" model="ir.ui.view">
+            <field name="name">Brands</field>
+            <field name="model">healthy.brands</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="name_ar"/>
+                    <field name="published"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_brands" model="ir.actions.act_window">
+            <field name="name">Brands</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">healthy.brands</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <menuitem id="menu_bands_root" name="Brands" groups="healthy_product_brands.brands_menu" />
+        <menuitem id="menu_brands_action" name="Brands" parent="menu_bands_root" action="action_brands"/>
+
+
+    </data>
+</odoo>

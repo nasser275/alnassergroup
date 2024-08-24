@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="SaleOrdersLine" owl="1">
+        <div class="order-row pointer">
+            <div class="col start wide">
+                <t t-esc="props.line.name"/>
+            </div>
+            <div class="col start wide">
+                <t t-esc="env.pos.db.get_partner_by_id(props.line.partner_id).name"/>
+            </div>
+            <div class="col start wide">
+                <t t-esc="props.line.date_order"/>
+            </div>
+            <div class="col start wide">
+                <t t-esc="env.pos.format_currency(props.line.amount_due or 0.0)"/>
+            </div>
+            <div class="col start wide">
+                <t t-esc="env.pos.format_currency(props.line.amount_total)"/>
+            </div>
+            <t t-if="props.line.state == 'draft'">
+                <div class="col start" t-on-click="editOrder(props.line.id)">
+                    <i class="fa fa-edit" aria-hidden="true" style="font-size: x-large;"></i>
+                </div>
+            </t>
+            <t t-if="props.line.state == 'done'">
+                <t t-if="env.pos.user.sale_order_operations == 'paid'">
+                    <div class="col start" t-on-click="returnOrder(props.line.id)">
+                        <i class="fa fa-arrow-circle-left" aria-hidden="true" style="font-size: x-large;"></i>
+                    </div>
+                </t>
+                <t t-else="">
+                    <div class="col start"> </div>
+                </t>
+            </t>
+            <t t-if="props.line.state != 'done' and props.line.state != 'draft'">
+                <t t-if="props.line.amount_due > 0 and env.pos.user.sale_order_operations ==  'paid'">
+                    <div class="col start" t-on-click="payOrder(props.line.id)">
+                        <i class="fa fa-money" aria-hidden="true" style="font-size: x-large;"></i>
+                    </div>
+                </t>
+                <t t-else="">
+                    <div class="col start"></div>
+                </t>
+            </t>
+        </div>
+    </t>
+
+</templates>

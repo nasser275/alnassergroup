@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_color,vendor_rfq_group,healthy_products_details.model_product_color,,1,1,1,1
+access_storage_type,access_storage_type,healthy_products_details.model_storage_type,,1,1,1,1
+access_container_type,access_container_type,healthy_products_details.model_container_type,,1,1,1,1
+access_container_shape,access_container_shape,healthy_products_details.model_container_shape,,1,1,1,1
+access_container_material,access_container_material,healthy_products_details.model_container_material,,1,1,1,1
+access_storage_type,access_storage_type,healthy_products_details.model_storage_type,,1,1,1,1
+access_product_flavor,access_product_flavor,healthy_products_details.model_product_flavor,,1,1,1,1
+
+
+

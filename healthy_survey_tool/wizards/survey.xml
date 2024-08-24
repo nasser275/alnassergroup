@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="healthy_survey_form_wiz">
+            <field name="name">H&amp;T Survey Data Tool</field>
+            <field name="model">healthy.survey.tool</field>
+            <field name="arch" type="xml">
+                <form string="create Part Payment">
+                    <group>
+                        <group>
+                            <field name="customers"/>
+                            <field name="show_products"/>
+                        </group>
+                        <group string="Date">
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="except_products" widget="many2many_tags"/>
+                        </group>
+
+                    </group>
+                    <notebook>
+                        <page string="Order Source Percentage">
+                            <field name="order_platforms">
+                                <tree editable="bottom">
+                                    <field name="order_source_id" options='{"no_open": True, "no_create": True}'/>
+                                    <field name="is_new"/>
+                                    <field name="lines"/>
+                                    <field name="percentage"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="print_excel" string="Print" type="object" default_focus="1" class="oe_highlight"/>
+                        <button string="Close" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_healthy_survey" model="ir.actions.act_window">
+            <field name="name">H&amp;T Survey Data Tool</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">healthy.survey.tool</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="healthy_survey_form_wiz"/>
+            <field name="target">new</field>
+        </record>
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="menu_healthysurvey_categ" name="H&amp;T Survey Data Tool" />
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="menu_healthysurvey_action" name="H&amp;T Survey Data Tool"
+                  groups="healthy_survey_tool.group_healthy_survey_tool" parent="menu_healthysurvey_categ"
+                  action="action_healthy_survey" sequence="201"/>
+
+
+    </data>
+</odoo>

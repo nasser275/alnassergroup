@@ -1,0 +1,69 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="pharm_product_template">
+            <field name="name">pharm.product.template</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+
+               <div name="button_box" position="inside">
+
+                        <button name="action_sales_ok" type="object" class="oe_stat_button" icon="fa-stack">
+
+                            <span attrs="{'invisible':[('sale_ok','=',True)]}">>Sales Archive</span>
+                            <span attrs="{'invisible':[('sale_ok','=',False)]}">>Sales Active</span>
+                        </button>
+                        <button name="action_purchase_ok" type="object" class="oe_stat_button" icon="fa-bars">
+
+                            <span attrs="{'invisible':[('purchase_ok','=',True)]}">Purchase Archive</span>
+                            <span attrs="{'invisible':[('purchase_ok','=',False)]}">Purchase Active</span>
+                        </button>
+
+               </div>
+                <xpath expr="//page[last()]" position="after">
+                    <page string="Medicine">
+                        <group>
+                            <group>
+                                <field name="code"/>
+                                <field name="effective_material"/>
+                                <field name="general_classification"/>
+                                <field name="shape_classification"/>
+                                <field name="medicine_shape"/>
+                            </group>
+                            <group>
+                                <field name="production_company"/>
+                                <field name="department"/>
+                                <field name="use"/>
+                                <field name="refrigerator"/>
+                                <field name="world_barcode"/>
+
+
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Consumption">
+                        <group>
+                            <group>
+                                <field name="calculation_type"/>
+                                <field name="consumption_daily" attrs="{'readonly':[('calculation_type','=','automatic')]}"/>
+                                <field name="minimum_days" attrs="{'readonly':[('calculation_type','!=','automatic')]}"/>
+                                <field name="maximum_days" attrs="{'readonly':[('calculation_type','!=','automatic')]}"/>
+                            </group>
+                            <group>
+                                <br></br>
+                                <br></br>
+                                <field name="minimum" attrs="{'invisible':[('calculation_type','!=','automatic')]}"/>
+                                <field name="maximum" attrs="{'invisible':[('calculation_type','!=','automatic')]}"/>
+                                <field name="minimum_manual" attrs="{'invisible':[('calculation_type','=','automatic')]}"/>
+                                <field name="maximum_manual" attrs="{'invisible':[('calculation_type','=','automatic')]}"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

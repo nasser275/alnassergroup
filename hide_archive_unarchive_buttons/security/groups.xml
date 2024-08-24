@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="group_archive_user" model="res.groups">
+            <field name="name">Archive User</field>
+        </record>
+
+
+    </data>
+</odoo>

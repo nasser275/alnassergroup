@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pos_cancel_reasons,pos_cancel_reasons,model_pos_cancel_reasons,,1,1,1,1
+access_pos_return_reasons,pos_return_reasons,model_pos_return_reasons,,1,1,1,1
+access_pos_order_create_picking,pos_order_create_picking,model_pos_order_create_picking,,1,1,1,1
+access_pos_cancel_wiz,pos_cancel_wiz,model_pos_cancel_wiz,,1,1,1,1
+access_pos_password_return_wiz,pos_password_return_wiz,model_pos_password_return_wiz,,1,1,1,1
+access_account_move_journal01,account move journal draft,model_account_move_journal_draft,,1,1,1,1
+access_account_move_line_byjournal01,account_move_line_byjournal,model_account_move_line_byjournal,,1,1,1,1
+access_journals_branch_analytic01,journals_branch_analytic,model_journals_branch_analytic,,1,1,1,1
+access_pos_order_main_combo,pos_order_main_combo,model_pos_order_main_combo,,1,1,1,1

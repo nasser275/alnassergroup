@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Law Matter Form view -->
+    <record id="account_move_line_form_view" model="ir.ui.view">
+        <field name="name">account.move.line.byjournal.form</field>
+        <field name="model">account.move.line.byjournal</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="id" />
+                            <field name="journal_id"/>
+                        </group>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Law Matter Tree view -->
+    <record id="account_move_line_tree_view" model="ir.ui.view">
+        <field name="name">account.move.line.byjournal.tree</field>
+        <field name="model">account.move.line.byjournal</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="id" />
+                <field name="journal_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="account_move_line_action" model="ir.actions.act_window">
+        <field name="name">POS Journal item update</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.move.line.byjournal</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="account_move_line_menu" action="account_move_line_action"
+              parent="point_of_sale.menu_point_of_sale" name="POS Journal item update"
+              groups="ks_pos_low_stock_alert.group_pos_order_picking"/>
+</odoo>

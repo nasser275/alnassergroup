@@ -1,0 +1,69 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="purchase_purchase_talabayat_tree">
+            <field name="name">purchase_purchase_talabayat_tree</field>
+            <field name="model">purchase.talabayat</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="type"/>
+                    <field name="product_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="purchase_purchase_talabayat_form">
+            <field name="name">purchase_purchase_talabayat_form</field>
+            <field name="model">purchase.talabayat</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="get_lines" string="Compute" type="object"
+                                 />
+                        <button name="create_purchase_order" string="Create Purchase" type="object"
+                                />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" name="view_purchase_order" class="oe_stat_button"
+                                    icon="fa-pencil-square-o" attrs="{'invisible':[('purchase_count', '=', 0)]}">
+                                <field name="purchase_count" widget="statinfo" string="Purchase Order"/>
+
+                            </button>
+                        </div>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="type" required="1"/>
+                            <field name="product_ids" widget="many2many_tags"/>
+                        </group>
+                        <notebook>
+                            <page string="Lines">
+                                <field name="line_ids">
+                                    <tree editable="top">
+                                        <field name="product_id"/>
+                                        <field name="partner_ids" widget="many2many_tags"/>
+                                        <field name="qty"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_talabayat">
+            <field name="name">Talabayat</field>
+            <field name="res_model">purchase.talabayat</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem name="Talabayat" id="purchse_custom.menu_talabayat" parent="purchase.menu_procurement_management"
+                  action="action_talabayat"/>
+
+
+    </data>
+</odoo>

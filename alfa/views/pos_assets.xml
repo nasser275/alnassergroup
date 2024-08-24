@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="aspl_pos_create_so_extension_assets" inherit_id="point_of_sale.assets">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/alfa/static/src/css/pos.css"/>
+                <script type="text/javascript" src="/alfa/static/src/js/db.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/models.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Chrome.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/jSignature.min.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/flashcanvas.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Screens/ProductScreen/ProductScreen.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Screens/ProductScreen/ControlButtons/CreateSaleOrderButton.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Screens/ProductScreen/ControlButtons/InvoicesButton.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Screens/ProductScreen/ControlButtons/ViewSaleOrderButton.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Screens/PaymentScreen/PaymentScreen.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Screens/ChromeWidgets/SaleOrderMode.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Screens/CreateSaleOrderScreen/CreateSaleOrderScreen.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Screens/CreateSaleOrderScreen/SignatureWidget.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Screens/InvoiceScreen/InvoiceScreen.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Screens/InvoiceScreen/InvoiceLine.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Popups/SaleOrderConfirmPopup.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Popups/SaleOrderReturnPopup.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Popups/PopupProductLines.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Screens/SaleOrderScreen/SaleOrderScreen.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/Screens/SaleOrderScreen/SaleOrdersLine.js"></script>
+                <script type="text/javascript" src="/alfa/static/src/js/PosStockChrome.js"></script>
+				<script type="text/javascript" src="/alfa/static/src/js/PosStockSyncStock.js"></script>
+				<script type="text/javascript" src="/alfa/static/src/js/PosStockModels.js"></script>
+				<script type="text/javascript" src="/alfa/static/src/js/Screens/ProductScreen/ProductStockScreen.js"></script>
+				<script type="text/javascript" src="/alfa/static/src/js/Screens/ProductScreen/ProductsStockWidget.js"></script>
+				<script type="text/javascript" src="/alfa/static/src/js/Screens/ReceiptScreen/ReceiptStockScreen.js"></script>
+            </xpath>
+        </template>
+    </data>
+</odoo>

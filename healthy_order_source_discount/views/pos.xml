@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="healthy_order_source_view_pos_pos_form" model="ir.ui.view">
+            <field name="name">pos.order.form</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="order_source_id" readonly="1"/>
+                    <field name="discount_type" readonly="1"/>
+                    <field name="discount_by" readonly="1"/>
+                    <field name="discount_reason_id" attrs="{'invisible':[('discount_by','!=','code')]}" readonly="1"/>
+                    <field name="discount_code" attrs="{'invisible':[('discount_by','!=','code')]}" readonly="1"/>
+                    <field name="discount_offer_id" attrs="{'invisible':[('discount_by','!=','offer')]}" readonly="1"/>
+                    <field name="call_center_agent_name"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+    <record id="pos_order_form_inherit" model="ir.ui.view">
+        <field name="name">pos.order.form.inherit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+
+            <field name="price_unit" position="after">
+                <field name="unit_cost"/>
+            </field>
+
+        </field>
+    </record>
+
+    <record id="view_pos_order_tree" model="ir.ui.view">
+        <field name="name">pos.order.tree</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="before">
+                <field name="order_source_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_pos_order_source_conf" model="ir.actions.act_window">
+        <field name="name">Pos Order Source</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pos.order.source</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+            </p>
+        </field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="menu_pos_order_source_conf_action" name="Pos Order Source"
+              groups="healthy_order_source_discount.group_pos_order_source"
+              action="action_pos_order_source_conf" parent="point_of_sale.menu_point_config_product" sequence="43"/>
+</odoo>

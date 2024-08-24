@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="create_creditnnote" model="res.groups">
+            <field name="name">Create Credit Note </field>
+        </record>
+         <record id="return_button_picking" model="res.groups">
+            <field name="name">Return-Inventory</field>
+        </record>
+
+           <record id="access_to_onhand_group_product" model="res.groups">
+            <field name="name">On Hand Access-Product</field>
+        </record>
+
+
+    </data>
+</odoo>

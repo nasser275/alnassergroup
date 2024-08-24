@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_pos_discount_reasons_form" model="ir.ui.view">
+            <field name="name">Pos Discount Reasons</field>
+            <field name="model">pos.discount.reasons</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="show"/>
+                            <field name="is_offer" invisible="1"/>
+                            <field name="fixed" invisible="1"/>
+                            <field name="healthy_discount_product_id" attrs="{'invisible':[('is_offer','=',True)]}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_pos_discount_reasons_tree" model="ir.ui.view">
+            <field name="name">Pos Discount Reasons</field>
+            <field name="model">pos.discount.reasons</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="show"/>
+                      <field name="is_offer" invisible="1"/>
+                            <field name="fixed" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_pos_discount_reasons_fixed" model="ir.actions.act_window">
+            <field name="name">Cash Pos Applications</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.discount.reasons</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'default_fixed':True}</field>
+            <field name="domain">[('fixed','=',True),('is_offer','=',False)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record id="action_pos_discount_reasons_fixed_offers" model="ir.actions.act_window">
+            <field name="name">Cash Pos Offers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.discount.reasons</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'default_fixed':True,'default_is_offer':True}</field>
+            <field name="domain">[('fixed','=',True),('is_offer','=',True)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record id="action_pos_discount_reasons_percentage" model="ir.actions.act_window">
+            <field name="name">Percentage Pos Applications</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.discount.reasons</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'default_percentage':True}</field>
+            <field name="domain">[('percentage','=',True),('is_offer','=',False)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <record id="action_pos_discount_reasons_percentage_offers" model="ir.actions.act_window">
+            <field name="name">Percentage Pos Offers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.discount.reasons</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'default_percentage':True,'default_is_offer':True}</field>
+            <field name="domain">[('percentage','=',True),('is_offer','=',True)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_pos_discount_reasons_categ" name="Pos Discount Applications"
+                  groups="healthy_order_source_discount.group_pos_order_discount_reasons"
+                  parent="point_of_sale.menu_point_config_product" sequence="44"/>
+
+        <menuitem id="menu_fixed_pos_discount_reasons_action"
+                  name="Cash Pos Applications" parent="menu_pos_discount_reasons_categ"
+                  action="action_pos_discount_reasons_fixed" sequence="1"/>
+
+<!--        <menuitem id="menu_percentage_pos_discount_reasons_action"-->
+<!--                  name="Percentage Pos Applications" parent="menu_pos_discount_reasons_categ"-->
+<!--                  action="action_pos_discount_reasons_percentage" sequence="2"/>-->
+
+
+
+
+        <menuitem id="menu_pos_discount_reasons_categ_offers" name="Pos  Discount Offers"
+                  groups="healthy_order_source_discount.group_pos_order_discount_offers"
+                  parent="point_of_sale.menu_point_config_product" sequence="45"/>
+
+        <menuitem id="menu_fixed_pos_discount_reasons_action_offers"
+                  name="Cash Pos Offers" parent="menu_pos_discount_reasons_categ_offers"
+                  action="action_pos_discount_reasons_fixed_offers" sequence="1"/>
+
+        <menuitem id="menu_percentage_pos_discount_reasons_action_offers"
+                  name="Percentage Pos Offers" parent="menu_pos_discount_reasons_categ_offers"
+                  action="action_pos_discount_reasons_percentage_offers" sequence="2"/>
+
+
+    </data>
+</odoo>
