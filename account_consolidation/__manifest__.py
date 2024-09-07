@@ -43,5 +43,4 @@
             'account_consolidation/static/tests/**/*'
         ]
     },
-    'license': 'OEEL-1',
 }

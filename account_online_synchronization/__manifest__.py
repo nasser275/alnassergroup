@@ -21,7 +21,6 @@ a periodic and automatic synchronization of their bank statements.
         'views/account_online_sync.xml',
         'wizard/account_link_journal_wizard.xml',
     ],
-    'license': 'OEEL-1',
     'auto_install': True,
     'assets': {
         'web.assets_backend': [

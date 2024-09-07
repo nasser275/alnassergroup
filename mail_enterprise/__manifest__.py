@@ -13,7 +13,6 @@ Display a preview of the last chatter attachment in the form view for large
 screen devices.
 """,
     'auto_install': True,
-    'license': 'OEEL-1',
     'assets': {
         'mail.assets_discuss_public': [
             'web_enterprise/static/src/webclient/webclient.scss',

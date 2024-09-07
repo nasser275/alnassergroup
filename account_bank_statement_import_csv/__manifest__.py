@@ -23,7 +23,6 @@ Whenever possible, you should use a more appropriate file format like OFX.
         ],
     'installable': True,
     'auto_install': True,
-    'license': 'OEEL-1',
     'assets': {
         'web.assets_backend': [
             'account_bank_statement_import_csv/static/src/**/*',

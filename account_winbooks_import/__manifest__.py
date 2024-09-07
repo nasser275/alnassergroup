@@ -14,5 +14,4 @@
         'security/ir.model.access.csv',
         'wizard/import_wizard_views.xml',
     ],
-    'license': 'OEEL-1',
 }

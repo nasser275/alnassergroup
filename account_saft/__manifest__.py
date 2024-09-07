@@ -16,5 +16,4 @@ This is meant to be used with localization specific modules.
     'data': [
         'data/saft_report.xml',
     ],
-    'license': 'OEEL-1',
 }

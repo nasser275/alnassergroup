@@ -39,7 +39,6 @@ of recall defined. You can define different policies for different companies.
     ],
     'installable': True,
     'auto_install': True,
-    'license': 'OEEL-1',
     'assets': {
         'account_followup.assets_followup_report': [
             ('include', 'web._assets_helpers'),

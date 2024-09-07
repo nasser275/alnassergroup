@@ -15,5 +15,4 @@ Cash Basis for Accounting Reports
         'views/report_financial.xml',
     ],
     'installable': True,
-    'license': 'OEEL-1',
 }

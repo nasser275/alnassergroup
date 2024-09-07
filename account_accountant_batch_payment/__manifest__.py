@@ -8,7 +8,6 @@
     'summary': 'Allows using Reconciliation with the Batch Payment feature.',
     'depends': ['account_accountant', 'account_batch_payment'],
     'auto_install': True,
-    'license': 'OEEL-1',
     'assets': {
         'web.assets_backend': [
             'account_accountant_batch_payment/static/src/css/account_reconciliation.css',

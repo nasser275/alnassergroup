@@ -29,7 +29,6 @@ When you reconcile, simply select the corresponding batch payment to reconcile a
     ],
     'test': [],
     'installable': True,
-    'license': 'OEEL-1',
     'assets': {
         'web.report_assets_common': [
             'account_batch_payment/static/src/scss/**/*',

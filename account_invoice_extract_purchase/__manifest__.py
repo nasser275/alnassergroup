@@ -8,5 +8,4 @@
     'summary': 'Automatically finds the purchase order linked to a vendor bill when using invoice extraction',
     'depends': ['account_invoice_extract', 'purchase'],
     'auto_install': True,
-    'license': 'OEEL-1',
 }

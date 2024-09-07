@@ -11,7 +11,6 @@
         "views/res_partner_views.xml",
     ],
     'auto_install': True,
-    'license': 'OEEL-1',
     'assets': {
         'web.assets_backend': [
             'web_map/static/src/js/map_controller.js',

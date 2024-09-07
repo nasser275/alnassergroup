@@ -17,5 +17,4 @@ Manage automatic transfers between your accounts.
     ],
     'application': False,
     'auto_install': True,
-    'license': 'OEEL-1',
 }

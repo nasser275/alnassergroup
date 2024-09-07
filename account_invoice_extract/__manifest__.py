@@ -17,7 +17,6 @@
         'views/account_move_views.xml',
     ],
     'auto_install': True,
-    'license': 'OEEL-1',
     'assets': {
         'web.assets_backend': [
             'account_invoice_extract/static/src/js/invoice_extract_box.js',

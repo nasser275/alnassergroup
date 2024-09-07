@@ -55,5 +55,4 @@
         'views/account_batch_payment_views.xml',
         'views/account_move_view.xml',
     ],
-    'license': 'OEEL-1',
 }

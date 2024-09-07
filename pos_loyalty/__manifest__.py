@@ -26,7 +26,6 @@ and get rewards.
     ],
     'installable': True,
     'auto_install': True,
-    'license': 'OEEL-1',
     'assets': {
         'point_of_sale.assets': [
             'pos_loyalty/static/src/css/pos.css',

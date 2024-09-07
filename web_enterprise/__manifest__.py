@@ -108,5 +108,4 @@ This module modifies the web addon to provide Enterprise design and responsivene
             'web_enterprise/static/tests/legacy/barcodes_mobile_tests.js',
         ],
     },
-    'license': 'OEEL-1',
 }

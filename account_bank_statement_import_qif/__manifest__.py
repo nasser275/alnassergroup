@@ -23,5 +23,4 @@ Whenever possible, you should use a more appropriate file format like OFX.
     ],
     'installable': True,
     'auto_install': False,
-    'license': 'OEEL-1',
 }

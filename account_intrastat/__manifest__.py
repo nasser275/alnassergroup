@@ -23,5 +23,4 @@ Intrastat Reports
         'views/report_invoice.xml',
     ],
     'installable': True,
-    'license': 'OEEL-1',
 }
